@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "./config/colors";
 import fonts from "./config/fonts";
 
-export const SampleAppContainer = styled.div`
+export const APMCRTContainer = styled.div`
   background-color: ${colors.background};
   color: ${colors.text};
   ${fonts.default};
@@ -13,3 +13,4 @@ export const SampleAppContainer = styled.div`
   left: 0;
   overflow-y: scroll;
 `;
+

@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
-import SampleApp from "./SampleApp";
+import APMCRT from "./APMCRT";
 import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "./SampleApp/Store";
+import { Provider } from "./APMCRT/Store";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider>
       <Router>
-        <SampleApp />
+        <APMCRT />
       </Router>
     </Provider>
   </React.StrictMode>,
