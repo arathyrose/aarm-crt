@@ -3,9 +3,10 @@ import colors from "./config/colors";
 import fonts from "./config/fonts";
 
 export const APMCRTContainer = styled.div`
-  background-color: ${colors.background};
+  background-color: ${colors.primary};
   color: ${colors.text};
   ${fonts.default};
+  text-align: center;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -13,4 +14,3 @@ export const APMCRTContainer = styled.div`
   left: 0;
   overflow-y: scroll;
 `;
-
