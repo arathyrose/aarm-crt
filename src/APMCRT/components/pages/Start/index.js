@@ -5,6 +5,7 @@ import { appBasePath } from "../../../config/paths";
 import Home from "./Home"
 import Details from "./Details"
 import Consent from "./Consent"
+import Guidelines from "./Guidelines";
 
 function Start(props) {
   let currentPath = appBasePath + "start/"
@@ -12,7 +13,7 @@ function Start(props) {
     <Switch>
       <Route path={currentPath + "details"} component={Details} />
       <Route path={currentPath + "consent"} component={Consent} />
-      <Route path={currentPath + "guidelines"} component={Home} />
+      <Route path={currentPath + "guidelines"} component={Guidelines} />
       <Route path={currentPath} component={Home} />
 
     </Switch>
