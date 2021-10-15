@@ -1,9 +1,9 @@
-import Home from "../index";
+import Guidelines from "../index";
 import { shallow } from "enzyme";
 import React from 'react';
-describe("Home", () => {
+describe("Guidelines", () => {
   it("should render correctly", () => {
-    let HomeSnapshot = shallow(<Home/>);
-    expect(HomeSnapshot).toMatchSnapshot();
+    let GuidelinesSnapshot = shallow(<Guidelines/>);
+    expect(GuidelinesSnapshot).toMatchSnapshot();
   });
 });
