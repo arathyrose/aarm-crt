@@ -12,6 +12,7 @@ const colors = {
   instructionText: "#000000",
   majorText: "#9C7A7A",
   titleText: "#FFFDF9",
+  errorText: "#ff0000"
 
   /* text: "#62615F",
   primary: "#FE8590",

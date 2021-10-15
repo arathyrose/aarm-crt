@@ -39,7 +39,7 @@ function Home() {
             addUser({ browserDetails, IPDetails, position: nextposition, APMType: APMType, startTime: startTime }).then((uid) => {
               console.log("User ID successfully created!: ", uid)
               localStorage.setItem("token", uid)
-              setUserDetails({ position: nextposition, uid:uid, APMType: APMType })(dispatch);
+              setUserDetails({ position: nextposition, uid: uid, APMType: APMType })(dispatch);
               history.push(appBasePath + nextposition)
             })
           })

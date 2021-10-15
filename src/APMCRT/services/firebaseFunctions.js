@@ -22,10 +22,15 @@ export async function addUser(userDetails) {
 }
 
 export async function editUser(uid, newUserDetails) {
-    const washingtonRef = doc(db, "users", uid);
-    return await updateDoc(washingtonRef, newUserDetails)
+    try{
+    const userRef = doc(db, "users", uid);
+    return await updateDoc(userRef, newUserDetails)
         .then(() => { return true })
         .catch((e) => { console.log(e); return false })
+}
+catch(error){
+    console.log(error)
+}
 }
 
 export async function getUser(uid, field = undefined) {

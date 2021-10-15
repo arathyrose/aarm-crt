@@ -17,7 +17,7 @@ function Guidelines() {
       let uid = getUser(state).uid
       let nextposition = "demographic/" + "instructions"
       editUser(uid, { position: nextposition }).then(() => {
-        setUserDetails({ position: nextposition })(dispatch);
+        setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })
     }}>
