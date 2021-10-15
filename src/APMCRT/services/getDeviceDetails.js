@@ -52,3 +52,9 @@ export async function getIPDetails() {
             }
         })
 }
+
+export function getCurrentTime() {
+    var date = new Date();
+    var timestamp = date.getTime();
+    return timestamp
+}

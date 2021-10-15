@@ -32,8 +32,15 @@ export async function getUser(uid, field = undefined) {
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-        if (field)
-            return docSnap.data()[field]
+        if (field) {
+            let finalData = {}
+            let data = docSnap.data()
+            for (let f in field) {
+                let cf = field[f]
+                finalData[cf] = data[cf]
+            }
+            return finalData
+        }
         else
             return docSnap.data()
     } else {

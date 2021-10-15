@@ -2,11 +2,14 @@ import React from "react";
 import { HomeContainer, ConsentDetails, ConsentButtonApprove, MainPart, ConsentButtonDeny } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
-import { getBrowserDetails, getIPDetails } from "../../../../services/getDeviceDetails";
+import { getBrowserDetails, getIPDetails, getCurrentTime } from "../../../../services/getDeviceDetails";
 import { addUser } from "../../../../services/firebaseFunctions";
+import { setUserDetails } from "../../../../Store/user/actions";
+import { Context } from "../../../../Store";
 
 function Home() {
   let history = useHistory()
+  const { /* state, */ dispatch } = React.useContext(Context);
   return (
     <HomeContainer >
       <MainPart>
@@ -30,10 +33,14 @@ function Home() {
           getIPDetails().then((IPDetails) => {
             console.log(IPDetails)
             console.log(window.location.pathname)
-            addUser({ browserDetails, IPDetails, position:"start/" + "guidelines" }).then((uid) => {
+            let APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
+            let startTime = getCurrentTime()
+            let nextposition = "start/" + "guidelines"
+            addUser({ browserDetails, IPDetails, position: nextposition, APMType: APMType, startTime: startTime }).then((uid) => {
               console.log("User ID successfully created!: ", uid)
               localStorage.setItem("token", uid)
-              history.push(appBasePath + "start/" + "guidelines")
+              setUserDetails({ position: nextposition, uid:uid, APMType: APMType })(dispatch);
+              history.push(appBasePath + nextposition)
             })
           })
         })

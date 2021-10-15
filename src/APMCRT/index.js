@@ -5,7 +5,7 @@ import { Context } from "./Store";
 import Splash from "./components/pages/Splash";
 import { appBasePath } from "./config/paths";
 // import SecureService from "./services/Secure";
-// import { setUserDetails } from "./Store/user/actions";
+import { setUserDetails } from "./Store/user/actions";
 import { useHistory } from "react-router-dom";
 import { checkUser, getUser } from "./services/firebaseFunctions";
 
@@ -23,10 +23,11 @@ function APMCRT(/* props */) {
           if (userExist) {
             // check where he is now
             let uid = localToken
-            getUser(uid, 'position').then((position) => {
-              console.log(position)
-              if (position) {
-                history.push(appBasePath + position)
+            getUser(uid, ['position', 'APMType']).then((finalData) => {
+              console.log(finalData)
+              setUserDetails({ position: finalData.position, APMType: finalData.APMType, uid })(dispatch);
+              if (finalData.position) {
+                history.push(appBasePath + finalData.position)
                 setLocalTokenStatus(true)
               }
               else {
