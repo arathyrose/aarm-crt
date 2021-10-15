@@ -18,20 +18,34 @@ function APMCRT(/* props */) {
       let localToken = localStorage.getItem("token")
       if (localToken) {
         // check in firebase the current progress of the user
-        let userExist = checkUser(localToken)
-        console.log("User exists? ", userExist)
-        if (userExist) {
-          // check where he is now
-          let uid = localToken
-          let position = getUser(uid, 'position')
-          history.push(appBasePath + position)
-          setLocalTokenStatus(true)
-        }
-        else{
-          localStorage.removeItem("token")
-          history.push(appBasePath + "start")
-          setLocalTokenStatus(true)
-        }
+        checkUser(localToken).then((userExist) => {
+          console.log("User exists? ", userExist)
+          if (userExist) {
+            // check where he is now
+            let uid = localToken
+            getUser(uid, 'position').then((position) => {
+              console.log(position)
+              if (position) {
+                history.push(appBasePath + position)
+                setLocalTokenStatus(true)
+              }
+              else {
+                history.push(appBasePath + "start")
+                setLocalTokenStatus(true)
+              }
+            }).catch((err) => {
+              console.log("Error", err)
+              history.push(appBasePath + "start")
+              setLocalTokenStatus(true)
+            })
+
+          }
+          else {
+            localStorage.removeItem("token")
+            history.push(appBasePath + "start")
+            setLocalTokenStatus(true)
+          }
+        })
       }
       else {
         history.push(appBasePath + "start")

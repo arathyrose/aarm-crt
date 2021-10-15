@@ -2,7 +2,7 @@ export const positionNavHeaders = {
     "start/": "APM-CRT Task",
     "start/details": "Experiment Details",
     "start/consent": "Consent Form",
-    "start/guidelines": "Experiment Guidelines",
+    "start/guidelines": "General Guidelines",
     "demographic/instructions": "About You",
     "demographic/task": "About You",
     "task/instructions": "Task 1",
