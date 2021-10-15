@@ -7,6 +7,7 @@ import { appBasePath } from "./config/paths";
 // import SecureService from "./services/Secure";
 // import { setUserDetails } from "./Store/user/actions";
 import { useHistory } from "react-router-dom";
+import { checkUser, getUser } from "./services/firebaseFunctions";
 
 function APMCRT(/* props */) {
   const { /* state, */ dispatch } = React.useContext(Context);
@@ -15,21 +16,43 @@ function APMCRT(/* props */) {
   React.useEffect(() => {
     if (window.location.pathname !== appBasePath + "start") {
       let localToken = localStorage.getItem("token")
-     /*  SecureService.verifyToken(localToken)
-        .then((retrivedUser) => {
-          setUserDetails(retrivedUser)(dispatch);
-          setLocalTokenStatus(true);
-        })
-        .catch((err) => {
+      if (localToken) {
+        // check in firebase the current progress of the user
+        let userExist = checkUser(localToken)
+        console.log("User exists? ", userExist)
+        if (userExist) {
+          // check where he is now
+          let uid = localToken
+          let position = getUser(uid, 'position')
+          history.push(appBasePath + position)
+          setLocalTokenStatus(true)
+        }
+        else{
           localStorage.removeItem("token")
-          if (
-            window.location.pathname.includes(appBasePath) &&
-            window.location.pathname !== appBasePath + "start"
-          ) {
-            history.push(appBasePath + "start");
-          }
-          setLocalTokenStatus(true);
-        }); */
+          history.push(appBasePath + "start")
+          setLocalTokenStatus(true)
+        }
+      }
+      else {
+        history.push(appBasePath + "start")
+        setLocalTokenStatus(true)
+      }
+
+      /*  SecureService.verifyToken(localToken)
+         .then((retrivedUser) => {
+           setUserDetails(retrivedUser)(dispatch);
+           setLocalTokenStatus(true);
+         })
+         .catch((err) => {
+           localStorage.removeItem("token")
+           if (
+             window.location.pathname.includes(appBasePath) &&
+             window.location.pathname !== appBasePath + "start"
+           ) {
+             history.push(appBasePath + "start");
+           }
+           setLocalTokenStatus(true);
+         }); */
     }
     else {
       setLocalTokenStatus(true);
