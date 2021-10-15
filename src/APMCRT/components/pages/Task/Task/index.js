@@ -54,7 +54,7 @@ function Task() {
           }
           else {
             editUser(uid, { demographic: userForm }).then(() => {
-              let nextposition = "task/" + "start"
+              let nextposition = "task/" + "instructions"
               editUser(uid, { position: nextposition }).then(() => {
                 setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
                 history.push(appBasePath + nextposition)

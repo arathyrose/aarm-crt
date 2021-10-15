@@ -5,7 +5,7 @@ export const positionNavHeaders = {
     "start/guidelines": "General Guidelines",
     "demographic/instructions": "About You",
     "demographic/task": "About You",
-    "task/instructions": "Task 1",
+    "task/introduction": "Task 1",
     "task/example1": "Task 1",
     "task/example2": "Task 1",
     "task/demo": "Task 1",

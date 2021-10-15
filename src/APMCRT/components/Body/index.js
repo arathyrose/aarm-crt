@@ -8,6 +8,7 @@ import NavBar from "../NavBar"
 import Start from "../pages/Start"
 import { getUser } from "../../Store/user/accessors";
 import { Context } from "../../Store";
+import Task from "../pages/Task";
 
 
 function Body(props) {
@@ -20,6 +21,8 @@ function Body(props) {
     <Switch>
       <Route path={appBasePath + "start"} component={Start} />
       <Route path={appBasePath + "demographic"} component={Demographic} />
+      <Route path={appBasePath + "task"} component={Task} />
+      
       <Route path={appBasePath} component={Home} />
     </Switch>
   </BodyContainer>;

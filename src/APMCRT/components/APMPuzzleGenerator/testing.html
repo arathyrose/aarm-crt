@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Viewing all images for this puzzle set (with Puzzle ID)</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body
+    style="
+      background-color: #000;
+      display: block;
+      margin: 0 auto;
+      max-width: 1300px;
+      font-family: arial;
+    "
+  >
+    <h1 style="color: white; display: block">All available puzzles</h1>
+    <div style="margin-bottom: 20px">
+      Top three rows here represent the puzzle, while the last row represent the
+      common errors.
+    </div>
+    <div style="color: white; display: flex">
+      <div id="TEST" style="width: 800px; margin: 0 auto"></div>
+    </div>
+  </body>
+  <script src="./constructPuzzle/config.js"></script>
+  <script src="./constructPuzzle/global_settings.js"></script>
+  <script src="./constructPuzzle/svg_maker.js"></script>
+  <script src="./constructPuzzle/main.js"></script>
+  <script src="./constructPuzzle/constructPuzzle.js"></script>
+  <script>
+    putallshapes();
+  </script>
+</html>

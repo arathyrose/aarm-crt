@@ -14,7 +14,7 @@ function APMCRT(/* props */) {
   const [checkLocalToken, setLocalTokenStatus] = React.useState(false);
   let history = useHistory();
   React.useEffect(() => {
-    if (window.location.pathname !== appBasePath + "start") {
+    if (window.location.pathname !== appBasePath + "star2t") {
       let localToken = localStorage.getItem("token")
       if (localToken) {
         // check in firebase the current progress of the user

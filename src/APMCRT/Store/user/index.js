@@ -23,11 +23,7 @@ var reducers = {
 };
 
 const initialState = {
-    role: "unauthorised",
-    showHelp: {
-        transcribe: true,
-        verify: true
-    }
+    
 };
 
 export default createReducer(initialState, reducers);

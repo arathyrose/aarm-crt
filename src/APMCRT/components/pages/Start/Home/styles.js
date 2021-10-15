@@ -16,20 +16,20 @@ export const LabPart = styled.div`
   box-sizing: border-box;
   margin-bottom: 10%;
 `;
-export const LabName = styled.div`
-  font-size: 1.5em;
+export const LabName = styled.h1`
+  font-weight: normal;
   box-sizing: border-box;
 `;
 
-export const CollegeName = styled.div`
-  font-size: 1.3em;
+export const CollegeName = styled.h2`
   font-weight: bold;
   box-sizing: border-box;
   margin-bottom: 5%;
 `;
 
-export const WelcomeMessage = styled.div`
-  font-size: 1.5em;
+export const WelcomeMessage = styled.h1`
+  font-size: 1.75em;
+  font-weight: normal;
   box-sizing: border-box;
 `;
 
