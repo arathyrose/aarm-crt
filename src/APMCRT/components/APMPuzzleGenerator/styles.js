@@ -6,7 +6,7 @@ const width = window.innerWidth;
 const puzzleCellDimension = (Math.min(height, width) / 4) * 0.6;
 console.log("Puzzle cell dimension", puzzleCellDimension);
 
-export const PuzzleContainer = styled.div`
+export const TraditionalPuzzleContainer = styled.div`
   min-height: 50vh;
   max-width: 800px;
   margin: auto;
@@ -14,6 +14,18 @@ export const PuzzleContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-sizing: border-box;
+  flex: 1;
+`;
+
+export const AbstractPuzzleContainer = styled.div`
+  min-width: 80vh;
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
   box-sizing: border-box;
   flex: 1;
 `;
@@ -58,10 +70,10 @@ export const OptionItem = styled.div`
     props.isCorrect
       ? "green"
       : props.isWrong
-      ? "red"
-      : props.selected
-      ? "blue"
-      : "none"};
+        ? "red"
+        : props.selected
+          ? "blue"
+          : "none"};
   margin: 1px;
   display: inline-block;
   padding: 0;
@@ -77,4 +89,51 @@ export const MainPart = styled.div`
 
 export const ErrorImportant = styled.h1`
   color: ${colors.errorText};
+`;
+
+export const OptionStashContainer = styled.div`
+  flex: 1;
+  height: ${(puzzleCellDimension * 3 + 16).toString() + "px"};
+  width: ${(puzzleCellDimension * 2 + 40).toString() + "px"};
+  float: right;
+  text-align: right;
+`;
+
+export const OptionStash = styled.div`
+  height: ${(puzzleCellDimension * 3 + 12).toString() + "px"};
+  width: ${(puzzleCellDimension * 2 + 8 + 12).toString() + "px"};
+  background-color: ${colors.majorText};
+  border: 6px solid ${colors.majorText};
+  margin: 0;
+  padding-right: 4px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  float: right;
+  ::-webkit-scrollbar { // width
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track { // track
+    box-shadow: inset 0 0 5px ${colors.majorText};
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb { // handle
+    background: white;
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-button { // arrows
+    display: none;
+  }
+  ::-webkit-scrollbar-track-piece { // bar background
+    background: ${colors.text};
+    border-radius: 5px;
+  }
+`;
+
+export const OptionItemDraggable = styled.div`
+  position: relative;
+  width: ${puzzleCellDimension.toString() + "px"};
+  display: inline-block;
+  background-color: #ddd;
+  border: 1px dashed gray;
+  margin: 1px;
 `;
