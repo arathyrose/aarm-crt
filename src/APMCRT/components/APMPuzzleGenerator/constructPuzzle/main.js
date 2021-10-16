@@ -10,15 +10,15 @@ export const sampleOptions = {
     COL: ['F23', 'F13', 'CE2', 'F33', 'F22', 'F32', 'F12', 'CE1'],
     ROW: ['F23', 'CE1', 'F31', 'CE2', 'F33', 'F22', 'F32', 'F21'],
 }
-export const APM_puzzles = {
-    "demo": [2, 7],
+export const APM_IDs = {
+    "demo": [2, 1],// [2, 7],
     "VA": [4, 8, 13, 17, 21, 34],
     "VS": [3, 9, 12, 18, 22, 33],
 }
 
 export const traditionalPuzzleElements = {
-    puzzle: ["F11","F12","F13","F21","F22","F23","F31","F32","F33"],
-    options:["O1","O2","O3","O4","O5","O6","O7","O8"]
+    puzzle: ["F11", "F12", "F13", "F21", "F22", "F23", "F31", "F32", "F33"],
+    options: ["O1", "O2", "O3", "O4", "O5", "O6", "O7", "O8"]
 }
 export const APM_puzzle = {
     1: {
@@ -30,7 +30,8 @@ export const APM_puzzle = {
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F22', 'F31', 'CE1', 'F32', 'CE2', 'F21', 'F23'] },
             "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
-        commonErrors: [2, 1], correctOption: 5,
+        commonErrors: [2, 1],
+        correctOption: 5,
         features: [
             { name: "shape", example: ["circle", "diamond", "square", "hexagon", "empty"], default: "empty" },
             { name: "numline", example: [0, 1, 2, 3], "default": 0 },
@@ -142,7 +143,8 @@ export const APM_puzzle = {
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F31', 'F23', 'CE1', 'F21', 'CE2', 'F22', 'F32'] },
             "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
-        commonErrors: [2, 7], correctOption: 1,
+        commonErrors: [2, 7],
+        correctOption: 1,
         features: [
             { name: "numPaths", example: [0, 1, 2, 3], default: 0 },
             { name: "orientline", example: [[], [0], [1], [2], [0, 1], [0, 2], [1, 2], [0, 1, 2],], default: [] },

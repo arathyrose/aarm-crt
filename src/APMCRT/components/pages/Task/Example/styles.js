@@ -39,8 +39,8 @@ export const ViewExplanationButton = styled.button`
 `;
 
 export const Explanation = styled.div`
-font-size: 0.8em;
-justify-content: left;
-text-align: left;
-margin-top:2px;
-`
+  font-size: 0.8em;
+  justify-content: left;
+  text-align: left;
+  margin-top: 2px;
+`;

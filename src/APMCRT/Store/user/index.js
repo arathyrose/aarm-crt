@@ -17,13 +17,12 @@ var reducers = {
         document.cookie = "";
         localStorage.removeItem("token");
         return {
-            role: "unauthorised",
         };
     },
 };
 
 const initialState = {
-    
+
 };
 
 export default createReducer(initialState, reducers);

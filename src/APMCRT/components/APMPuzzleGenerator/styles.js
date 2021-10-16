@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import colors from "../../config/colors";
 
-const height = window.innerHeight
-const width = window.innerWidth
-const puzzleCellDimension = (Math.min(height, width) / 4 * 0.6)
-console.log("Puzzle cell dimension", puzzleCellDimension)
+const height = window.innerHeight;
+const width = window.innerWidth;
+const puzzleCellDimension = (Math.min(height, width) / 4) * 0.6;
+console.log("Puzzle cell dimension", puzzleCellDimension);
 
 export const PuzzleContainer = styled.div`
   min-height: 50vh;
@@ -30,8 +30,8 @@ export const PuzzleGrid = styled.div`
 
 export const PuzzleItem = styled.div`
   position: relative;
-  width:${puzzleCellDimension.toString() + "px"};
-  height:${puzzleCellDimension};
+  width: ${puzzleCellDimension.toString() + "px"};
+  height: ${puzzleCellDimension};
 
   border: 1px dashed gray;
   margin: 1px;
@@ -39,7 +39,6 @@ export const PuzzleItem = styled.div`
   padding: 0;
   aspect-ratio: 1;
 `;
-
 
 export const OptionGrid = styled.div`
   width: ${(puzzleCellDimension * 4 + 16).toString() + "px"};
@@ -55,17 +54,18 @@ export const OptionItem = styled.div`
   position: relative;
   width: ${puzzleCellDimension.toString() + "px"};
   border: 1px dashed gray;
-  background-color: ${(props) => (props.isCorrect ? "green"  : (props.isWrong ? "red" : (props.selected ? "blue" :  "none")))};
+  background-color: ${(props) =>
+    props.isCorrect
+      ? "green"
+      : props.isWrong
+      ? "red"
+      : props.selected
+      ? "blue"
+      : "none"};
   margin: 1px;
   display: inline-block;
   padding: 0;
   aspect-ratio: 1;
-  
- /*  &:hover {
-    border-color: green;
-    border-style: solid;
-    background-color: green;
-  } */
 `;
 
 export const MainPart = styled.div`
@@ -73,4 +73,8 @@ export const MainPart = styled.div`
   box-sizing: border-box;
   margin-bottom: 10%;
   text-align: left;
+`;
+
+export const ErrorImportant = styled.h1`
+  color: ${colors.errorText};
 `;
