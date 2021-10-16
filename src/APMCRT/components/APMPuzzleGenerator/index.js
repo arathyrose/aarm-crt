@@ -61,6 +61,48 @@ function Puzzle({
     }
   }, [orientation, device]);
 
+  function colorise() {
+    console.log("something will happen")
+    for (let i = 1; i <= 3; i++)for (let j = 1; j <= 3; j++) {
+      let puzzleCell = document.getElementById('pos' + i.toString() + j.toString())
+      if (puzzleCell && puzzleCell.children.length == 0) {
+        puzzleCell.innerHTML = '<svg id="' + 'pos' + i.toString() + j.toString() + '" height="100%" width="100%" viewBox="0 0 200 200"></svg>'
+      }
+    }
+  }
+  function drag(ev) {
+    //  LOGGING.PICKUP(ev.target.id)
+    ev.dataTransfer.setData("text", ev.target.id)
+    let parent = document.getElementById(ev.target.id).parentNode.id
+    console.log("pickup ", ev.target.id, " from ", parent)
+  }
+  function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log("Attempting to drop ", data, " on ", ev.target)
+    if (ev.target.id.includes("pos")) {
+      console.log("yay!")
+      //   LOGGING.DROP(data, ev.target.id)
+      let curElement = document.getElementById(ev.target.id)
+      if (curElement.children.length == 1) {
+        curElement.innerHTML = ""
+        curElement.appendChild(document.getElementById(data))
+        // drop successful
+        colorise()
+      }
+    }
+    colorise()
+  }
+  function dropStash(ev) {
+    colorise()
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    console.log("Attempting to drop ", data)
+    // LOGGING.DROP(data, "stash")
+    document.getElementById("stash").appendChild(document.getElementById(data));
+    //  colorComplete()
+    colorise()
+  }
   if (!show) {
     return (
       <ErrorImportant>
@@ -159,7 +201,7 @@ function Puzzle({
                   APM_Puzzle_Elements.puzzleCells[elementid]
                 );
                 return (
-                  <PuzzleItem id={elementid} key={elementid}>
+                  <PuzzleItem id={"pos" + i + j} key={elementid}>
                     <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
                       {puzzleCell}
                     </svg>
@@ -167,8 +209,8 @@ function Puzzle({
                 );
               } else {
                 return (
-                  <PuzzleItem id={elementid} key={elementid}>
-                    <svg
+                  <PuzzleItem id={"pos" + i + j} key={elementid} onDrop={(event) => drop(event)} onDragOver={(event) => event.preventDefault()}>
+                    <svg id={"pos" + i + j}
                       height={"100%"}
                       width={"100%"}
                       viewBox={`0 0 200 200`}
@@ -180,14 +222,13 @@ function Puzzle({
           })}
         </PuzzleGrid>
         <OptionStashContainer>
-          <OptionStash>
-            {APM_Puzzle_Elements.givenPuzzles[type].options.map((eid) => {
-              let elementid = eid.slice(0, 2) == 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid
-              console.log(elementid, eid)
+          <OptionStash id="stash" onDrop={(event) => dropStash(event)} onDragOver={event => event.preventDefault()}>
+            {APM_Puzzle_Elements.givenPuzzles[type].options.map((eid, index) => {
               let puzzleCell = APM_Puzzle_Elements.makeShape(
-                APM_Puzzle_Elements.puzzleCells[elementid]
+                APM_Puzzle_Elements.puzzleCells[eid.slice(0, 2) == 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid]
               );
-              return <OptionItemDraggable id={eid} key={eid}>
+              let fid = "opt" + (index + 1).toString()
+              return <OptionItemDraggable id={fid} key={fid} draggable={true} onDragStart={(event) => drag(event)}>
                 <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
                   {puzzleCell}
                 </svg>
