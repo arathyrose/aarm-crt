@@ -15,7 +15,7 @@ function Instructions() {
     <InstructionsContainer onClick={() => {
       console.log(getUser(state), "UID:", getUser(state).uid)
       let uid = getUser(state).uid
-      let nextposition = "demographic/" + "task"
+      let nextposition = "demographic/task"
       editUser(uid, { position: nextposition }).then(() => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)

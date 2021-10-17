@@ -15,7 +15,7 @@ function Start() {
     <StartContainer onClick={() => {
       console.log(getUser(state), "UID:", getUser(state).uid)
       let uid = getUser(state).uid
-      let nextposition = "task/" + "introduction"
+      let nextposition = "task/introduction"
       editUser(uid, { position: nextposition }).then(() => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)

@@ -19,7 +19,7 @@ import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
 
 function Example() {
   let currentExampleNumberPart = useLocation().pathname.split("/").slice(3);
-  let currentExampleNumber = currentExampleNumberPart == "2" ? 2 : 1;
+  let currentExampleNumber = currentExampleNumberPart === "2" ? 2 : 1;
   const { state, dispatch } = React.useContext(Context);
   const APMType = getUser(state).APMType;
   const [selectedOption, setSelectedOption] = React.useState("");
@@ -27,9 +27,8 @@ function Example() {
   const [previouslySelectedOptions, setPreviouslySelectedOptions] =
     React.useState([]);
   const [answer, setAnswer] = React.useState("");
-  const [logs, setLogs] = React.useState([]); // need to refer and add in logs
+  const [/* logs */, setLogs] = React.useState([]); // need to refer and add in logs
   const [viewExplanation, setViewExplanation] = React.useState(false);
-
   const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
@@ -52,30 +51,35 @@ function Example() {
                 is the correct answer to this question.
               </Explanation>
             );
+          default:
+            return <Explanation> Under Construction</Explanation>
         }
       case 2:
         switch (APMType) {
           case "T":
-            return (
-              <Explanation>
-                Here, the two rules that can be identified are
-                <ul>
-                  <li>
-                    Row-wise: Within the same row, the third column element is a
-                    combination/superimposition of the first two column
-                    elements.{" "}
-                  </li>
-                  <li>
-                    Column-wise: Within the same column, the third row element
-                    is a combination/superimposition of the first two row
-                    elements.{" "}
-                  </li>
-                </ul>
-                Hence, by combining these rules, we can conclude that option 6
-                is the correct answer to this question.
-              </Explanation>
+            return (<Explanation>
+              Here, the two rules that can be identified are
+              <ul>
+                <li>
+                  Row-wise: Within the same row, the third column element is a
+                  combination/superimposition of the first two column
+                  elements.{" "}
+                </li>
+                <li>
+                  Column-wise: Within the same column, the third row element
+                  is a combination/superimposition of the first two row
+                  elements.{" "}
+                </li>
+              </ul>
+              Hence, by combining these rules, we can conclude that option 6
+              is the correct answer to this question.
+            </Explanation>
             );
+          default:
+            return <Explanation> Under Construction</Explanation>
         }
+      default:
+        return <Explanation> Unreachable case</Explanation>
     }
   };
   const instructions = {
@@ -101,19 +105,19 @@ function Example() {
   return (
     <ExampleContainer
       onClick={() => {
-        if (isCorrect == true) {
+        if (isCorrect === true) {
           console.log(getUser(state), "UID:", getUser(state).uid);
           let uid = getUser(state).uid;
           let nextposition =
-            currentExampleNumber == 1
-              ? "task/" + "example/" + (currentExampleNumber + 1).toString()
-              : "task/" + "instruction/";
+            currentExampleNumber === 1
+              ? "task/example/" + (currentExampleNumber + 1).toString()
+              : "task/instruction/";
           editUser(uid, { position: nextposition }).then(() => {
             setUserDetails({ ...getUser(state), position: nextposition })(
               dispatch
             );
             history.push(appBasePath + nextposition);
-            if (currentExampleNumber == 1) {
+            if (currentExampleNumber === 1) {
               // window.location.reload();
               setSelectedOption('')
               setIsCorrect(undefined)
@@ -162,9 +166,9 @@ function Example() {
         Check answer{" "}
       </CheckAnswerButton>
       <ButtonInstruction>
-        {isCorrect == true ? (
+        {isCorrect === true ? (
           <p>Your answer is correct!</p>
-        ) : isCorrect == false ? (
+        ) : isCorrect === false ? (
           <p>
             Your answer is incorrect! Sorry, please try again.
             <br /> Hint: Study the row and see what is changing, and the columns

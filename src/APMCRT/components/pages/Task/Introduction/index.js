@@ -7,7 +7,6 @@ import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
-import Puzzle from "../../../APMPuzzleGenerator";
 
 function Introduction() {
   const { state, dispatch } = React.useContext(Context);
@@ -31,7 +30,7 @@ function Introduction() {
     <IntroductionContainer onClick={() => {
       console.log(getUser(state), "UID:", getUser(state).uid)
       let uid = getUser(state).uid
-      let nextposition = "task/" + "example"
+      let nextposition = "task/example"
       editUser(uid, { position: nextposition }).then(() => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)

@@ -1,12 +1,12 @@
 import React from "react";
-import { DetailsContainer, MainPart, LabName, CollegeName, WelcomeMessage, StudyAim } from "./styles";
+import { DetailsContainer, MainPart } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
 function Details() {
   let history = useHistory()
   return (
-    <DetailsContainer onClick={() => { history.push(appBasePath + "start/" + "consent") }}>
+    <DetailsContainer onClick={() => { history.push(appBasePath + "start/consent") }}>
       <MainPart>
         The experiment will take about 1 hour to complete. There will be 3 main tasks in this study:
         <ol>

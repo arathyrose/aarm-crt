@@ -1,5 +1,5 @@
 import React from "react";
-import { SplashContainer, AppLogo, AppTitle } from "./styles";
+import { SplashContainer, AppTitle } from "./styles";
 
 function Splash() {
   return (

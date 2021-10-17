@@ -1,5 +1,5 @@
 import React from "react";
-import { GuidelinesContainer, MainPart, LabName, CollegeName, WelcomeMessage, StudyAim } from "./styles";
+import { GuidelinesContainer, MainPart } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
@@ -15,7 +15,7 @@ function Guidelines() {
     <GuidelinesContainer onClick={() => {
       console.log(getUser(state))
       let uid = getUser(state).uid
-      let nextposition = "demographic/" + "instructions"
+      let nextposition = "demographic/instructions"
       editUser(uid, { position: nextposition }).then(() => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)

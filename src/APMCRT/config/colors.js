@@ -1,4 +1,4 @@
-import { getCookie } from "../utils/common";
+// import { getCookie } from "../utils/common";
 
 const colors = {
   bgColor: "#F1F1F1",

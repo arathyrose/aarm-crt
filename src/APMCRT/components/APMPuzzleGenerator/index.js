@@ -14,7 +14,7 @@ import {
 } from "./styles";
 
 function Puzzle({
-  type,
+  apmType,
   APMID,
   disabled,
   setAnswer,
@@ -26,7 +26,7 @@ function Puzzle({
   previouslySelectedPuzzleShapes = [],
 }) {
   const APM_Puzzle_Elements = APM_puzzle[APMID];
-  //  console.log(type, APMID, APM_Puzzle_Elements)
+  //  console.log(apmType, APMID, APM_Puzzle_Elements)
   setAnswer("O" + APM_Puzzle_Elements.correctOption.toString());
   const [show, setShow] = React.useState(false);
   const [device, setDevice] = React.useState(
@@ -41,7 +41,7 @@ function Puzzle({
   )
   const [activeEvent, setActiveEvent] = React.useState('')
   const [originalPosition, setOriginalPosition] = React.useState({ x: "0px", y: "0px" })
-  const [entered, setEntered] = React.useState({})
+
   React.useEffect(() => {
     window.addEventListener("resize", () => {
       setDevice(!!navigator.maxTouchPoints ? "mobile" : "computer");
@@ -53,21 +53,21 @@ function Puzzle({
             : "landscape"
       );
     });
-    if (orientation == "desktop") setShow(true);
-    else if (orientation == "portrait") {
-      if (type == "T") setShow(true);
+    if (orientation === "desktop") setShow(true);
+    else if (orientation === "portrait") {
+      if (apmType === "T") setShow(true);
       else setShow(false);
     } else {
-      if (type == "T") setShow(false);
+      if (apmType === "T") setShow(false);
       else setShow(true);
     }
-  }, [orientation, device]);
+  }, [orientation, device]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function colorise() {
     for (let i = 1; i <= 3; i++)for (let j = 1; j <= 3; j++) {
       let puzzleCell = document.getElementById('pos' + i.toString() + j.toString())
-      if (puzzleCell && puzzleCell.children.length == 0) {
-        puzzleCell.innerHTML = '<svg id="' + 'pos' + i.toString() + j.toString() + '" height="100%" width="100%" viewBox="0 0 200 200"></svg>'
+      if (puzzleCell && puzzleCell.children.length === 0) {
+        puzzleCell.innerHTML = '<svg id="pos' + i.toString() + j.toString() + '" height="100%" width="100%" viewBox="0 0 200 200"></svg>'
       }
     }
     // also color the elements
@@ -86,7 +86,7 @@ function Puzzle({
       console.log("yay!")
       //   LOGGING.DROP(data, ev.target.id)
       let curElement = document.getElementById(ev.target.id)
-      if (curElement.children.length == 1) {
+      if (curElement.children.length === 1) {
         curElement.innerHTML = ""
         curElement.appendChild(document.getElementById(data))
         // drop successful
@@ -124,16 +124,16 @@ function Puzzle({
         Please rotate your screen to perform the experiment.
       </ErrorImportant>
     );
-  } else if (type == "T")
+  } else if (apmType === "T")
     return (
       <TraditionalPuzzleContainer>
         <PuzzleGrid>
           {["1", "2", "3"].map((i) => {
             return ["1", "2", "3"].map((j) => {
               let elementid = "F" + i + j;
-              // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[type].given, APM_Puzzle_Elements.givenPuzzles[type].given.includes(elementid))
+              // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[apmType].given, APM_Puzzle_Elements.givenPuzzles[apmType].given.includes(elementid))
               if (
-                APM_Puzzle_Elements.givenPuzzles[type].given.includes(elementid)
+                APM_Puzzle_Elements.givenPuzzles[apmType].given.includes(elementid)
               ) {
                 let puzzleCell = APM_Puzzle_Elements.makeShape(
                   APM_Puzzle_Elements.puzzleCells[elementid]
@@ -179,7 +179,7 @@ function Puzzle({
                 isWrong={isWrong}
                 isCorrect={isCorrect}
                 onClick={
-                  disabled == true || isCorrect === true || isWrong == true
+                  disabled === true || isCorrect === true || isWrong === true
                     ? () => { }
                     : () => { setSelectedOption(elementid); }
                 }
@@ -206,9 +206,9 @@ function Puzzle({
           {["1", "2", "3"].map((i) => {
             return ["1", "2", "3"].map((j) => {
               let elementid = "pos" + i + j;
-              // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[type].given, APM_Puzzle_Elements.givenPuzzles[type].given.includes(elementid))
+              // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[apmType].given, APM_Puzzle_Elements.givenPuzzles[apmType].given.includes(elementid))
               if (
-                APM_Puzzle_Elements.givenPuzzles[type].given.includes("F" + i + j)
+                APM_Puzzle_Elements.givenPuzzles[apmType].given.includes("F" + i + j)
               ) {
                 let puzzleCell = APM_Puzzle_Elements.makeShape(
                   APM_Puzzle_Elements.puzzleCells["F" + i + j]
@@ -236,9 +236,9 @@ function Puzzle({
         </PuzzleGrid>
         <OptionStashContainer>
           <OptionStash id="stash" onDrop={(event) => dropStash(event)} onDragOver={event => event.preventDefault()}>
-            {APM_Puzzle_Elements.givenPuzzles[type].options.map((eid, index) => {
+            {APM_Puzzle_Elements.givenPuzzles[apmType].options.map((eid, index) => {
               let puzzleCell = APM_Puzzle_Elements.makeShape(
-                APM_Puzzle_Elements.puzzleCells[eid.slice(0, 2) == 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid]
+                APM_Puzzle_Elements.puzzleCells[eid.slice(0, 2) === 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid]
               );
               let fid = "opt" + (index + 1).toString()
               return <OptionItemDraggable id={fid} key={fid} draggable={true} onDragStart={(event) => drag(event)}
@@ -273,7 +273,7 @@ function Puzzle({
                 }}
                 onTouchEnd={(e) => {
                   e.preventDefault()
-                  if (activeEvent == 'move') {
+                  if (activeEvent === 'move') {
                     let mousePosition = {
                       x: (parseInt(e.target.style.left) - 50),
                       y: (parseInt(e.target.style.top) - 50)
@@ -292,7 +292,7 @@ function Puzzle({
                         let puzzleCellElement = document.getElementById("pos" + i.toString() + j.toString())
                         if (!flag && onTop(mousePosition, puzzleCellElement)) {
                           console.log("on ", puzzleCellElement.id)
-                          if (puzzleCellElement.children.length == 1) {
+                          if (puzzleCellElement.children.length === 1) {
                             puzzleCellElement.innerHTML = ""
                             puzzleCellElement.appendChild(e.target.element)
                             // drop successful

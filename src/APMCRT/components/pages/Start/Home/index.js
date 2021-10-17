@@ -7,7 +7,7 @@ import { Instruction } from "../styles";
 function Home() {
   let history = useHistory()
   return (
-    <HomeContainer onClick={() => { history.push(appBasePath + "start/" + "details") }}>
+    <HomeContainer onClick={() => { history.push(appBasePath + "start/details") }}>
       <LabPart>
         <LabName>
           Perception and Cognition Group, Cognitive sciences Lab

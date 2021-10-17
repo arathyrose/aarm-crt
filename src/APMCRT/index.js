@@ -12,7 +12,7 @@ import { checkUser, getUser } from "./services/firebaseFunctions";
 function APMCRT(/* props */) {
   const { /* state, */ dispatch } = React.useContext(Context);
   const [checkLocalToken, setLocalTokenStatus] = React.useState(false);
-  let history = useHistory();
+  const history = useHistory();
   React.useEffect(() => {
     if (window.location.pathname !== appBasePath + "star2t") {
       let localToken = localStorage.getItem("token")
@@ -39,7 +39,6 @@ function APMCRT(/* props */) {
               history.push(appBasePath + "start")
               setLocalTokenStatus(true)
             })
-
           }
           else {
             localStorage.removeItem("token")
@@ -52,27 +51,11 @@ function APMCRT(/* props */) {
         history.push(appBasePath + "start")
         setLocalTokenStatus(true)
       }
-
-      /*  SecureService.verifyToken(localToken)
-         .then((retrivedUser) => {
-           setUserDetails(retrivedUser)(dispatch);
-           setLocalTokenStatus(true);
-         })
-         .catch((err) => {
-           localStorage.removeItem("token")
-           if (
-             window.location.pathname.includes(appBasePath) &&
-             window.location.pathname !== appBasePath + "start"
-           ) {
-             history.push(appBasePath + "start");
-           }
-           setLocalTokenStatus(true);
-         }); */
     }
     else {
       setLocalTokenStatus(true);
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   if (!checkLocalToken) {
     return <APMCRTContainer>
       <Splash />

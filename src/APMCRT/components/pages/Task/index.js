@@ -5,7 +5,6 @@ import { appBasePath } from "../../../config/paths";
 import Instructions from "./Instructions";
 import Start from "./Start"
 import Introduction from "./Introduction";
-import Puzzle from "../../APMPuzzleGenerator";
 import Example from "./Example";
 
 function Task(props) {

@@ -36,7 +36,7 @@ function Task() {
           <option value="Female">Female</option>
           <option value="Other">Other</option>
         </select>
-          {userForm.gender == "Other" ? <input type="text" value={userForm.otherGender} onChange={(e) => setFormValue('otherGender', e.target.value)} /> :
+          {userForm.gender === "Other" ? <input type="text" value={userForm.otherGender} onChange={(e) => setFormValue('otherGender', e.target.value)} /> :
             <span></span>}
         </div>
         <SubmitButton onClick={() => {
@@ -45,7 +45,7 @@ function Task() {
             ageError = true
             errorMsg += "Please enter your correct age; "
           }
-          if (userForm.gender == "Other" && userForm.otherGender == "") {
+          if (userForm.gender === "Other" && userForm.otherGender === "") {
             genderError = true
             errorMsg += "Please enter your gender; "
           }
@@ -54,7 +54,7 @@ function Task() {
           }
           else {
             editUser(uid, { demographic: userForm }).then(() => {
-              let nextposition = "task/" + "start"
+              let nextposition = "task/start"
               editUser(uid, { position: nextposition }).then(() => {
                 setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
                 history.push(appBasePath + nextposition)

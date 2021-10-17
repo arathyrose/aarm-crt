@@ -35,7 +35,7 @@ function Home() {
             console.log(window.location.pathname)
             let APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
             let startTime = getCurrentTime()
-            let nextposition = "start/" + "guidelines"
+            let nextposition = "start/guidelines"
             addUser({ browserDetails, IPDetails, position: nextposition, APMType: APMType, startTime: startTime }).then((uid) => {
               console.log("User ID successfully created!: ", uid)
               localStorage.setItem("token", uid)

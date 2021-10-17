@@ -16,7 +16,7 @@ export function makeFinalSVG(constituents, properties) {
      } */
     properties["view-box"] = "0 0 200 200"
     for (let i in properties) {
-        if (i == "patterns") {
+        if (i === "patterns") {
             for (let j in properties[i])
                 finalSVG.innerHTML += CONFIG.FILLPATTERNS[properties[i][j]]
         }
@@ -34,13 +34,13 @@ export function constructTransformText(transformProperty) {
     let transformText = ""
     if (transformProperty)
         for (let i in transformProperty) {
-            if (i == "rotate")
+            if (i === "rotate")
                 transformText += " rotate(" + transformProperty[i].toString() + " " + CONFIG.DIMENSION / 2 + " " + CONFIG.DIMENSION / 2 + ") "
-            else if (i == "scale" && !("translate" in transformProperty))
+            else if (i === "scale" && !("translate" in transformProperty))
                 transformText += " scale(" + transformProperty[i].toString() + ") translate(" + getPosition(transformProperty[i]).toString() + "," + getPosition(transformProperty[i]).toString() + ") "
-            else if (i == "scale")
+            else if (i === "scale")
                 transformText += " scale(" + transformProperty[i].toString() + ")"
-            else if (i == "translate")
+            else if (i === "translate")
                 transformText += " translate(" + transformProperty[i][0].toString() + "," + transformProperty[i][1].toString() + ") "
         }
     return transformText
@@ -61,7 +61,7 @@ export function makeConstituent(constituent) {
             "path"
         );
         for (let i in pathProperty) {
-            if (pathProperty[i] == "fill")
+            if (pathProperty[i] === "fill")
                 path.setAttribute("opacity", "1")
             path.setAttribute(i, pathProperty[i])
         }
@@ -88,11 +88,16 @@ export function makePolygon(points, closed = true) {
     else return finalString
 }
 
+export function makeLine(startPoint, endPoint) {
+    // points are tuples/length 2 arrays
+    return makePolygon([startPoint, endPoint], false)
+}
+
 export function makeRectangle(leftCorner, rightCorner) {
     // left and right corners are tuples/length 2 arrays
     let a = leftCorner[0], b = leftCorner[1], c = rightCorner[0], d = rightCorner[1]
     //  console.log(leftCorner, rightCorner, a,b,c,d)
-    return makePolygon([[a, b], [b, c], [c, d], [d, a]])
+    return makePolygon([[a, b], [c, b], [c, d], [a, d]])
 }
 
 // save in circle maker file
@@ -130,19 +135,19 @@ export function makeCurve2(sx, sy, bx, by, ex, ey, rx, ry, rot, arcFlag, oppo) {
    arcFlag: 0 or 1
    oppo: starting curve orientation concave to convex: 0 or 1
    */
-    let oppo2 = (oppo == 0) ? 1 : 0
+    let oppo2 = (oppo === 0) ? 1 : 0
     return makeElipticalPath(sx, sy, bx, by, rx, ry, rot, arcFlag, oppo) +
         makeElipticalPath(bx, by, ex, ey, rx, ry, rot, arcFlag, oppo2)
 }
 
 // save in drawing small squares
-const sides = {
+export const sides = {
     "U": [-1, 0],
     "D": [1, 0],
     "L": [0, -1],
     "R": [0, 1],
 }
-const borderLineSide = {
+export const borderLineSide = {
     "L": [0, 0, 1, 0],
     "R": [0, 1, 1, 1],
     "U": [0, 1, 0, 0],

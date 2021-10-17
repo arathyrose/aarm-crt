@@ -1,5 +1,5 @@
 import firebase from "./firebaseConfig";
-import { getFirestore, collection, getDocs, updateDoc, addDoc, getDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, updateDoc, addDoc, getDoc, doc } from 'firebase/firestore';
 
 const db = getFirestore(firebase);
 // db.settings({ timestampsInSnapshots: true });
