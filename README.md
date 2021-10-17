@@ -8,6 +8,20 @@ React js+firebase
 
 <https://www.figma.com/file/ielGmEScTN5h3uqz6Xw40z/APM-CRT?node-id=0%3A1>
 
+## To Host
+
+```bash
+npm run build
+npm install firebase-tools -g
+firebase login
+firebase init
+```
+
+Here, select
+
+- Hosting: Configure and deploy Firebase Hosting sites
+- Use an existing project
+
 ## Backend structure
 
 ### Collection: users
