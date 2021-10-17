@@ -21,6 +21,10 @@ Here, select
 
 - Hosting: Configure and deploy Firebase Hosting sites
 - Use an existing project
+- What do you want to use as your public directory? build
+- Configure as a single-page app (rewrite all urls to /index.html)? Yes
+- Set up automatic builds and deploys with GitHub? Yes (optional)
+- File build/index.html already exists. Overwrite? No
 
 ```bash
 npm run build
