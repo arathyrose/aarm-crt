@@ -22,6 +22,11 @@ Here, select
 - Hosting: Configure and deploy Firebase Hosting sites
 - Use an existing project
 
+```bash
+npm run build
+firebase deploy
+```
+
 ## Backend structure
 
 ### Collection: users
