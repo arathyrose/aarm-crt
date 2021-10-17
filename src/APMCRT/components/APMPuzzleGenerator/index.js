@@ -38,8 +38,10 @@ function Puzzle({
       : !window.screen.orientation.angle
         ? "portrait"
         : "landscape"
-  );
-
+  )
+  const [activeEvent, setActiveEvent] = React.useState('')
+  const [originalPosition, setOriginalPosition] = React.useState({ x: "0px", y: "0px" })
+  const [entered, setEntered] = React.useState({})
   React.useEffect(() => {
     window.addEventListener("resize", () => {
       setDevice(!!navigator.maxTouchPoints ? "mobile" : "computer");
@@ -62,13 +64,13 @@ function Puzzle({
   }, [orientation, device]);
 
   function colorise() {
-    console.log("something will happen")
     for (let i = 1; i <= 3; i++)for (let j = 1; j <= 3; j++) {
       let puzzleCell = document.getElementById('pos' + i.toString() + j.toString())
       if (puzzleCell && puzzleCell.children.length == 0) {
         puzzleCell.innerHTML = '<svg id="' + 'pos' + i.toString() + j.toString() + '" height="100%" width="100%" viewBox="0 0 200 200"></svg>'
       }
     }
+    // also color the elements
   }
   function drag(ev) {
     //  LOGGING.PICKUP(ev.target.id)
@@ -103,6 +105,19 @@ function Puzzle({
     //  colorComplete()
     colorise()
   }
+  function detectTouchEnd(x1, y1, x2, y2, w, h) {
+    console.log("Mouse at ", x1, y1)
+    if (x2 - x1 > w)
+      return false;
+    if (y2 - y1 > h)
+      return false;
+    return true;
+  }
+
+  function onTop(mousePosition, div) {
+    return detectTouchEnd(mousePosition.x, mousePosition.y, div.offsetLeft, div.offsetTop, div.offsetWidth, div.offsetHeight)
+  }
+
   if (!show) {
     return (
       <ErrorImportant>
@@ -166,9 +181,7 @@ function Puzzle({
                 onClick={
                   disabled == true || isCorrect === true || isWrong == true
                     ? () => { }
-                    : () => {
-                      setSelectedOption(elementid);
-                    }
+                    : () => { setSelectedOption(elementid); }
                 }
               >
                 <svg
@@ -192,16 +205,16 @@ function Puzzle({
         <PuzzleGrid>
           {["1", "2", "3"].map((i) => {
             return ["1", "2", "3"].map((j) => {
-              let elementid = "F" + i + j;
+              let elementid = "pos" + i + j;
               // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[type].given, APM_Puzzle_Elements.givenPuzzles[type].given.includes(elementid))
               if (
-                APM_Puzzle_Elements.givenPuzzles[type].given.includes(elementid)
+                APM_Puzzle_Elements.givenPuzzles[type].given.includes("F" + i + j)
               ) {
                 let puzzleCell = APM_Puzzle_Elements.makeShape(
-                  APM_Puzzle_Elements.puzzleCells[elementid]
+                  APM_Puzzle_Elements.puzzleCells["F" + i + j]
                 );
                 return (
-                  <PuzzleItem id={"pos" + i + j} key={elementid}>
+                  <PuzzleItem id={elementid} key={elementid}>
                     <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
                       {puzzleCell}
                     </svg>
@@ -209,7 +222,7 @@ function Puzzle({
                 );
               } else {
                 return (
-                  <PuzzleItem id={"pos" + i + j} key={elementid} onDrop={(event) => drop(event)} onDragOver={(event) => event.preventDefault()}>
+                  <PuzzleItem id={elementid} key={elementid} onDrop={(event) => drop(event)} onDragOver={(event) => event.preventDefault()} >
                     <svg id={"pos" + i + j}
                       height={"100%"}
                       width={"100%"}
@@ -228,7 +241,76 @@ function Puzzle({
                 APM_Puzzle_Elements.puzzleCells[eid.slice(0, 2) == 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid]
               );
               let fid = "opt" + (index + 1).toString()
-              return <OptionItemDraggable id={fid} key={fid} draggable={true} onDragStart={(event) => drag(event)}>
+              return <OptionItemDraggable id={fid} key={fid} draggable={true} onDragStart={(event) => drag(event)}
+                onTouchStart={(e) => {
+                  let parent = e.target.parentNode
+                  while (!parent.id || !parent.id.includes('opt'))
+                    parent = parent.parentNode
+                  e.target.element = parent
+                  console.log(parent)
+                  let originalX = (parent.offsetLeft - 10) + "px";
+                  let originalY = (parent.offsetTop - 10) + "px";
+                  console.log("Originally picking", originalX, originalY, parent)
+                  setOriginalPosition({ x: originalX, y: originalY })
+                  setActiveEvent('move')
+                }}
+                onTouchMove={(e) => {
+                  var touchLocation = e.targetTouches[0];
+                  var pageX = (touchLocation.pageX - 50) + "px";
+                  var pageY = (touchLocation.pageY - 50) + "px";
+                  e.target.style.position = "absolute";
+                  e.target.style.left = pageX;
+                  e.target.style.top = pageY;
+                  setActiveEvent('move')
+                  for (let i = 1; i <= 3; i++) {
+                    for (let j = 1; j <= 3; j++) {
+                      let puzzleCellElement = document.getElementById("pos" + i.toString() + j.toString())
+                      if (onTop({ x: pageX, y: pageY }, puzzleCellElement)) {
+                        console.log("on ", puzzleCellElement.id)
+                      }
+                    }
+                  }
+                }}
+                onTouchEnd={(e) => {
+                  e.preventDefault()
+                  if (activeEvent == 'move') {
+                    let mousePosition = {
+                      x: (parseInt(e.target.style.left) - 50),
+                      y: (parseInt(e.target.style.top) - 50)
+                    }
+                    // check if overlapping with stash
+                    let flag = false
+                    let stashElement = document.getElementById('stash')
+                    if (!flag && onTop(mousePosition, stashElement)) {
+                      console.log("on stash!")
+                      stashElement.appendChild(e.target.element);
+                      e.target.style.position = "initial";
+                      flag = true
+                    }
+                    for (let i = 1; i <= 3; i++) {
+                      for (let j = 1; j <= 3; j++) {
+                        let puzzleCellElement = document.getElementById("pos" + i.toString() + j.toString())
+                        if (!flag && onTop(mousePosition, puzzleCellElement)) {
+                          console.log("on ", puzzleCellElement.id)
+                          if (puzzleCellElement.children.length == 1) {
+                            puzzleCellElement.innerHTML = ""
+                            puzzleCellElement.appendChild(e.target.element)
+                            // drop successful
+                            e.target.style.position = "initial";
+                            flag = true
+                            colorise()
+                          }
+                        }
+                      }
+                    }
+                    if (!flag) {
+                      e.target.style.left = originalPosition.x;
+                      e.target.style.top = originalPosition.y;
+                    }
+                  }
+
+                }}
+              >
                 <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
                   {puzzleCell}
                 </svg>
