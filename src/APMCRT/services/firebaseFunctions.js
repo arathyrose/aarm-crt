@@ -22,15 +22,15 @@ export async function addUser(userDetails) {
 }
 
 export async function editUser(uid, newUserDetails) {
-    try{
-    const userRef = doc(db, "users", uid);
-    return await updateDoc(userRef, newUserDetails)
-        .then(() => { return true })
-        .catch((e) => { console.log(e); return false })
-}
-catch(error){
-    console.log(error)
-}
+    try {
+        const userRef = doc(db, "users", uid);
+        return await updateDoc(userRef, newUserDetails)
+            .then(() => { return true })
+            .catch((e) => { console.log(e); return false })
+    }
+    catch (error) {
+        console.log(error)
+    }
 }
 
 export async function getUser(uid, field = undefined) {
@@ -51,4 +51,14 @@ export async function getUser(uid, field = undefined) {
     } else {
         return false
     }
+}
+
+export async function addLogs(uid, timestamp, position, action, parameters) {
+    // logdata should contain
+    //       uid, timestamp, position, action, parameters
+    const logData = { uid, timestamp, position, action, parameters }
+    const logsDB = collection(db, "logs")
+    const logid = await addDoc(logsDB, logData);
+    console.log("Added logs in db: ", logid.id)
+    return logid.id
 }
