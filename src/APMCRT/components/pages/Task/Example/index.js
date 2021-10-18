@@ -29,6 +29,7 @@ function Example() {
   const [answer, setAnswer] = React.useState("");
   const [/* logs */, setLogs] = React.useState([]); // need to refer and add in logs
   const [viewExplanation, setViewExplanation] = React.useState(false);
+  console.log(APMType, "is the type")
   const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
@@ -135,7 +136,7 @@ function Example() {
 
         <p>{instructions[APMType].instruction[currentExampleNumber - 1]} </p>
         <Puzzle
-          type={APMType}
+          apmType={APMType}
           APMID={APM_IDs.demo[currentExampleNumber - 1]}
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}

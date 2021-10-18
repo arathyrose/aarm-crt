@@ -25,6 +25,7 @@ function Puzzle({
   setCurrentPuzzleSetup,
   previouslySelectedPuzzleShapes = [],
 }) {
+  // drag drop attempted from https://medium.com/@deepakkadarivel/drag-and-drop-dnd-for-mobile-browsers-fc9bcd1ad3c5
   const APM_Puzzle_Elements = APM_puzzle[APMID];
   //  console.log(apmType, APMID, APM_Puzzle_Elements)
   setAnswer("O" + APM_Puzzle_Elements.correctOption.toString());
@@ -207,6 +208,7 @@ function Puzzle({
             return ["1", "2", "3"].map((j) => {
               let elementid = "pos" + i + j;
               // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[apmType].given, APM_Puzzle_Elements.givenPuzzles[apmType].given.includes(elementid))
+              console.log(apmType)
               if (
                 APM_Puzzle_Elements.givenPuzzles[apmType].given.includes("F" + i + j)
               ) {
