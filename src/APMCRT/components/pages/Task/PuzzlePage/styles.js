@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../../../../config/colors";
 
-export const TaskContainer = styled.div`
+export const PuzzleContainer = styled.div`
   min-height: 92vh;
   max-width: 800px;
   margin: auto;
@@ -19,15 +19,33 @@ export const MainPart = styled.div`
   text-align: left;
 `;
 
-export const SubmitButton = styled.button`
+export const NextButton = styled.button`
   font-size: 1em;
   box-sizing: border-box;
   background-color: ${colors.primary};
   margin-bottom: 10px;
   margin-top: 10px;
+  float: right
 `;
+
+
+
+export const ClearButton = styled.button`
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: ${colors.primary};
+  margin-bottom: 10px;
+  margin-top: 10px;
+  float: left;
+`;
+
 
 export const ErrorMessage = styled.p`
 font-size: 0.8em;
 color: ${colors.errorText}
+`
+
+export const ButtonLine = styled.div`
+flex-direction: row;
+
 `

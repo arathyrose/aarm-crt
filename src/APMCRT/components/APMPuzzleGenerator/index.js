@@ -14,21 +14,22 @@ import {
 } from "./styles";
 
 function Puzzle({
-  apmType,
-  APMID,
-  disabled,
-  setAnswer,
+  apmType = "T",
+  APMID = 1,
+  disabled = false,
+  setAnswer = undefined,
+  indemo = false,
   selectedOption = "",
-  setSelectedOption,
+  setSelectedOption = undefined,
   previouslySelectedOptions = [],
   currentPuzzleSetup = [],
-  setCurrentPuzzleSetup,
+  setCurrentPuzzleSetup = [],
   previouslySelectedPuzzleShapes = [],
 }) {
   // drag drop attempted from https://medium.com/@deepakkadarivel/drag-and-drop-dnd-for-mobile-browsers-fc9bcd1ad3c5
   const APM_Puzzle_Elements = APM_puzzle[APMID];
   //  console.log(apmType, APMID, APM_Puzzle_Elements)
-  setAnswer("O" + APM_Puzzle_Elements.correctOption.toString());
+
   const [show, setShow] = React.useState(false);
   const [device, setDevice] = React.useState(
     !!navigator.maxTouchPoints ? "mobile" : "computer"
@@ -63,6 +64,12 @@ function Puzzle({
       else setShow(true);
     }
   }, [orientation, device]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  React.useEffect(() => {
+    if (indemo) {
+      setAnswer("O" + APM_Puzzle_Elements.correctOption.toString());
+    }
+  }, [APMID])  // eslint-disable-line react-hooks/exhaustive-deps
 
   function colorise() {
     for (let i = 1; i <= 3; i++)for (let j = 1; j <= 3; j++) {
@@ -208,7 +215,6 @@ function Puzzle({
             return ["1", "2", "3"].map((j) => {
               let elementid = "pos" + i + j;
               // console.log(elementid, APM_Puzzle_Elements.givenPuzzles[apmType].given, APM_Puzzle_Elements.givenPuzzles[apmType].given.includes(elementid))
-              console.log(apmType)
               if (
                 APM_Puzzle_Elements.givenPuzzles[apmType].given.includes("F" + i + j)
               ) {

@@ -19,7 +19,7 @@ import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
 
 function Example() {
   let currentExampleNumberPart = useLocation().pathname.split("/").slice(3);
-  let currentExampleNumber = currentExampleNumberPart === "2" ? 2 : 1;
+  const [currentExampleNumber, setCurrentExampleNumber] = React.useState(currentExampleNumberPart === "2" ? 2 : 1)
   const { state, dispatch } = React.useContext(Context);
   const APMType = getUser(state).APMType;
   const [selectedOption, setSelectedOption] = React.useState("");
@@ -29,7 +29,6 @@ function Example() {
   const [answer, setAnswer] = React.useState("");
   const [/* logs */, setLogs] = React.useState([]); // need to refer and add in logs
   const [viewExplanation, setViewExplanation] = React.useState(false);
-  console.log(APMType, "is the type")
   const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
@@ -93,13 +92,17 @@ function Example() {
     },
     A: {
       header: "Abstract APM",
-      instruction:
+      instruction: [
         "You are given a grid of a 3x3 matrix, and only one row/column is given to you. Your task here is to construct a puzzle using the puzzle shapes given on the side in such a way that the overall puzzle is best completed and make sense.",
+        "Now check out this example. If you still face any difficulties, check out view explanation.",
+      ],
     },
     D: {
       header: "Determinate Abstract APM",
-      instruction:
+      instruction: [
         "You are given a grid of a 3x3 matrix, and only one row/column is given to you and the last cell is also shown to you. Your task here is to construct a puzzle using the puzzle shapes given on the side in such a way that the overall puzzle is best completed and make sense.",
+        "Now check out this example. If you still face any difficulties, check out view explanation.",
+      ],
     },
   };
   let history = useHistory();
@@ -107,7 +110,7 @@ function Example() {
     <ExampleContainer
       onClick={() => {
         if (isCorrect === true) {
-          console.log(getUser(state), "UID:", getUser(state).uid);
+          console.log(getUser(state), "UID:", getUser(state).uid, currentExampleNumber);
           let uid = getUser(state).uid;
           let nextposition =
             currentExampleNumber === 1
@@ -125,6 +128,7 @@ function Example() {
               setPreviouslySelectedOptions([])
               setAnswer("")
               setLogs([])
+              setCurrentExampleNumber(2)
               setViewExplanation(false)
             }
           });
@@ -144,22 +148,28 @@ function Example() {
           disabled={isCorrect}
           setIsCorrect={setIsCorrect}
           setAnswer={setAnswer}
+          indemo={true}
         />
       </MainPart>
 
       <CheckAnswerButton
         onClick={() => {
-          if (selectedOption !== "") {
-            if (selectedOption === answer) {
-              setIsCorrect(true);
-            } else {
-              setIsCorrect(false);
+          if (APMType === 'T') {
+            if (selectedOption !== "") {
+              if (selectedOption === answer) {
+                setIsCorrect(true);
+              } else {
+                setIsCorrect(false);
+              }
+              setPreviouslySelectedOptions([
+                ...previouslySelectedOptions,
+                selectedOption,
+              ]);
+              setSelectedOption("");
             }
-            setPreviouslySelectedOptions([
-              ...previouslySelectedOptions,
-              selectedOption,
-            ]);
-            setSelectedOption("");
+          }
+          else {
+            setIsCorrect(true);
           }
         }}
       >

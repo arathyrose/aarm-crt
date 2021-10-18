@@ -31,6 +31,13 @@ npm run build
 firebase deploy
 ```
 
+## Tasks left
+
+- [] Logging
+- [] Drag N Drop for mobile
+- [] CRT
+- [] Feedback
+
 ## Backend structure
 
 ### Collection: users

@@ -6,6 +6,8 @@ import Instructions from "./Instructions";
 import Start from "./Start"
 import Introduction from "./Introduction";
 import Example from "./Example";
+import PuzzlePage from "./PuzzlePage";
+import End from "./End";
 
 function Task(props) {
   let currentPath = appBasePath + "task/"
@@ -15,8 +17,9 @@ function Task(props) {
       <Route path={currentPath + "introduction"} component={Introduction} />
       <Route path={currentPath + "example"} component={Example} />
       <Route path={currentPath + "instruction"} component={Instructions} />
-      <Route path={currentPath + "puzzle"} component={Instructions} />
-      <Route path={currentPath} component={Instructions} />
+      <Route path={currentPath + "puzzle"} component={PuzzlePage} />
+      <Route path={currentPath + "end"} component={End} />
+      <Route path={currentPath} component={Start} />
     </Switch>
   </TaskContainer>;
 }

@@ -14,7 +14,7 @@ export const sampleOptions = {
     ROW: ['F23', 'CE1', 'F31', 'CE2', 'F33', 'F22', 'F32', 'F21'],
 }
 export const APM_IDs = {
-    "demo": [2, 1],// [2, 7],
+    "demo": [2, 7],// [2, 7],
     "VA": [4, 8, 13, 17, 21, 34],
     "VS": [3, 9, 12, 18, 22, 33],
 }
@@ -31,7 +31,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F22', 'F31', 'CE1', 'F32', 'CE2', 'F21', 'F23', 'F33'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F22', 'F31', 'CE1', 'F32', 'CE2', 'F21', 'F23'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [2, 1],
         correctOption: 5,
@@ -136,7 +136,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F31', 'F23', 'F33', 'CE1', 'F21', 'CE2', 'F22', 'F32'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F31', 'F23', 'CE1', 'F21', 'CE2', 'F22', 'F32'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [2, 7], correctOption: 1,
         features: [
@@ -216,7 +216,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['CE2', 'F32', 'F13', 'CE1', 'F23', 'F12', 'F22', 'F33'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['CE2', 'F32', 'F13', 'CE1', 'F23', 'F12', 'F22'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [6, 4],
         correctOption: 7,
@@ -338,7 +338,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['CE1', 'CE2', 'F13', 'F22', 'F23', 'F12', 'F32', 'F33'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['CE1', 'CE2', 'F13', 'F22', 'F23', 'F12', 'F32'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         CE: [2, 8],
         correctOption: 4,
@@ -425,7 +425,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['F13', 'F23', 'F12', 'CE1', 'F32', 'F22', 'F33', 'CE2',] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['F13', 'F23', 'F12', 'CE1', 'F32', 'F22', 'CE2'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [7, 1],
         correctOption: 3,
@@ -516,7 +516,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['F23', 'F22', 'F12', 'CE2', 'F13', 'CE1', 'F32', 'F33'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['F23', 'F22', 'F12', 'CE2', 'F13', 'CE1', 'F32'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [7, 2],
         correctOption: 1,
@@ -575,7 +575,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['F13', 'F33', 'CE2', 'F12', 'CE1', 'F23', 'F22', 'F32'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['F13', 'CE2', 'F12', 'CE1', 'F23', 'F22', 'F32'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [2, 4],
         correctOption: 6,
@@ -687,7 +687,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['F12', 'F33', 'F32', 'CE1', 'F13', 'F23', 'F22', 'CE2'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['F12', 'F32', 'CE1', 'F13', 'F23', 'F22', 'CE2'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [4, 5],
         correctOption: 1,
@@ -800,7 +800,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['CE2', 'F33', 'F23', 'CE1', 'F12', 'F13', 'F22', 'F32'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['CE2', 'F23', 'CE1', 'F12', 'F13', 'F22', 'F32'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [3, 4],
         correctOption: 8,
@@ -874,7 +874,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F22', 'F33', 'CE1', 'F32', 'CE2', 'F31', 'F23', 'F21'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F22', 'CE1', 'F32', 'CE2', 'F31', 'F23', 'F21'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [5, 7],
         correctOption: 6,
@@ -935,7 +935,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F32', 'F22', 'F33', 'CE1', 'F31', 'CE2', 'F21', 'F23'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F32', 'F22', 'CE1', 'F31', 'CE2', 'F21', 'F23'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [7, 6],
         correctOption: 2,
@@ -1070,7 +1070,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F33', 'F32', 'F21', 'CE1', 'F23', 'F31', 'CE2', 'F22'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F32', 'F21', 'CE1', 'F23', 'F31', 'CE2', 'F22'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         optionOrder: ['F33', 'F32', 'F21', 'CE1', 'F23', 'F31', 'CE2', 'F22'],
         commonErrors: [3, 4],
@@ -1198,7 +1198,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['F33', 'F22', 'F12', 'CE1', 'CE2', 'F23', 'F13', 'F32'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['F22', 'F12', 'CE1', 'CE2', 'F23', 'F13', 'F32'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         correctOption: 7,
         commonErrors: [5, 1],
@@ -1333,7 +1333,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F21', 'F31'], options: ['CE1', 'F33', 'F12', 'F23', 'CE2', 'F13', 'F32', 'F22'] },
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['CE1', 'F12', 'F23', 'CE2', 'F13', 'F32', 'F22'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         correctOption: 8,
         commonErrors: [1, 4],
@@ -1466,7 +1466,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F22', 'F33', 'F31', 'F21', 'CE2', 'F32', 'F23', 'CE1'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F22', 'F31', 'F21', 'CE2', 'F32', 'F23', 'CE1'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [8, 2],
         correctOption: 7,
@@ -1533,7 +1533,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['CE1', 'F21', 'F32', 'F23', 'F33', 'F22', 'CE2', 'F31'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['CE1', 'F21', 'F32', 'F23', 'F22', 'CE2', 'F31'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [7, 4],
         correctOption: 5,
@@ -1606,7 +1606,7 @@ export const APM_puzzle = {
         givenPuzzles: {
             "A": { given: ['F11', 'F12', 'F13'], options: ['F23', 'F31', 'CE2', 'F32', 'F33', 'F22', 'CE1', 'F21'] },
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F23', 'F31', 'CE2', 'F32', 'F22', 'CE1', 'F21'] },
-            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32', 'F33'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
+            "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         correctOption: 1,
         commonErrors: [3, 2],
