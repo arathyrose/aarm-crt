@@ -35,8 +35,8 @@ firebase deploy
 
 - [] Logging
 - [] Drag N Drop for mobile
-- [] CRT Image keep where? For now downloading.
-- [] Feedback
+- [] CRT Image keep where?
+- [] Feedback NASA TLX
 
 ## Backend structure
 

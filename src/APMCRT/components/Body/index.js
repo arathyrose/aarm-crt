@@ -8,6 +8,8 @@ import NavBar from "../NavBar"
 import Start from "../pages/Start"
 import Task from "../pages/Task";
 import CRT from "../pages/CRT";
+import Feedback from "../pages/Feedback";
+import ThankYou from "../pages/ThankYou";
 
 
 function Body(props) {
@@ -18,7 +20,8 @@ function Body(props) {
       <Route path={appBasePath + "demographic"} component={Demographic} />
       <Route path={appBasePath + "task"} component={Task} />
       <Route path={appBasePath + "crt"} component={CRT} />
-      
+      <Route path={appBasePath + "feedback"} component={Feedback} />
+      <Route path={appBasePath + "thankyou"} component={ThankYou} />
       <Route path={appBasePath} component={Home} />
     </Switch>
   </BodyContainer>;
