@@ -24,6 +24,16 @@ export const CheckAnswerButton = styled.button`
   box-sizing: border-box;
   background-color: ${colors.primary};
   color: ${colors.fgColor};
+  float: right;
+  color: ${colors.bgColor};
+`;
+
+export const ClearButton = styled.button`
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: ${colors.secondary};
+  float: left;
+  color: ${colors.bgColor};
 `;
 
 export const ButtonInstruction = styled.div`
@@ -43,4 +53,10 @@ export const Explanation = styled.div`
   justify-content: left;
   text-align: left;
   margin-top: 2px;
+`;
+
+export const ButtonLine = styled.div`
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 `;

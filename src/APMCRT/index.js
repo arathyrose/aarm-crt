@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 import { checkUser, getUser } from "./services/firebaseFunctions";
 
 function APMCRT(/* props */) {
-  const { /* state, */ dispatch } = React.useContext(Context);
+  const { dispatch } = React.useContext(Context);
   const [checkLocalToken, setLocalTokenStatus] = React.useState(false);
   const history = useHistory();
   React.useEffect(() => {

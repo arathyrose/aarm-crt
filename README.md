@@ -35,11 +35,22 @@ firebase deploy
 
 - [ ] Logging
   - [x] Page move logging
+  - [x] User select option in Traditional task
+  - [ ] User pickup option in AD task
+  - [ ] User place option in stash in AD task
+  - [ ] User place option in puzzle in AD task
+  - [x] User check answer in example page
+  - [x] User click next in task page
+  - [x] User select clear in task page
+  - [x] User select clear in example page
+  - [x] User start puzzle in task page
+  - [x] User start puzzle in example page
 - [ ] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
 - [ ] CRT Image keep where?
   - [ ] Firebase storage
 - [ ] Feedback NASA TLX
+- [ ] Timer Row for tasks
 
 ## Logging requirements
 
@@ -50,7 +61,7 @@ Logs: timestamp, uid, position, actionType, parameter
 - For all pages -- DONE
   - User going to the next page, pageChange
     - nextlocation
-- For Traditional APM
+- For Traditional APM -- DONE
   - User selecting an option in the puzzle, optionSelect
     - optionId
 - For other APM

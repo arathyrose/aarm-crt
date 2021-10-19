@@ -25,7 +25,8 @@ export const NextButton = styled.button`
   background-color: ${colors.primary};
   margin-bottom: 10px;
   margin-top: 10px;
-  float: right
+  float: right;
+  color: ${colors.bgColor}
 `;
 
 
@@ -33,10 +34,11 @@ export const NextButton = styled.button`
 export const ClearButton = styled.button`
   font-size: 1em;
   box-sizing: border-box;
-  background-color: ${colors.primary};
+  background-color: ${colors.secondary};
   margin-bottom: 10px;
   margin-top: 10px;
   float: left;
+  color: ${colors.bgColor};
 `;
 
 
