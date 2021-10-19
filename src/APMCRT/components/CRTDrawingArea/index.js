@@ -82,8 +82,7 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
 
   const height = window.innerHeight;
   const width = window.innerWidth;
-  const puzzleCellDimension = (Math.min(height, width) / 3) * 0.6;
-
+  const puzzleCellDimension = (Math.min(height, width) / 3) * 0.8;
 
   return <div> <Stage
     width={(puzzleCellDimension + 4) * 3}
