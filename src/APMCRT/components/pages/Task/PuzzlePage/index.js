@@ -7,7 +7,7 @@ import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
 import Puzzle from "../../../APMPuzzleGenerator";
-import { changePage } from "../../../../services/logging";
+import { changePage, clearPuzzle, endPuzzle, startPuzzle, submitPuzzle } from "../../../../services/logging";
 
 function PuzzlePage() {
   const { state, dispatch } = React.useContext(Context);
@@ -15,7 +15,8 @@ function PuzzlePage() {
   const [selectedOption, setSelectedOption] = React.useState("");
   let nunberPath = useLocation().pathname.split("/").slice(3);
   const [currentNo, setCurrentNo] = React.useState(parseInt(nunberPath) ? parseInt(nunberPath) : 1)
-  const APMType = getUser(state).APMType;
+  const {uid, APMType} = getUser(state);
+  
 
   const [error, setError] = React.useState("");
 
@@ -27,25 +28,30 @@ function PuzzlePage() {
           APMID={APM_IDs.VA[currentNo - 1]}
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
+          uid={uid}
         />
         <ButtonLine>
           <ClearButton onClick={() => {
             setSelectedOption('')
+            clearPuzzle(uid)
           }} >
             Clear
           </ClearButton>
           <NextButton onClick={() => {
+            submitPuzzle(uid)
             if (selectedOption === '') {
               alert("Please complete the task")
               setError("Please complete the task")
             }
             else {
               setError("")
-              changePage(getUser(state).uid, (currentNo < 6) ? "task/puzzle/" + (currentNo + 1).toString() : "task/end", (nextposition) => {
+              endPuzzle(uid)
+              changePage(uid, (currentNo < 6) ? "task/puzzle/" + (currentNo + 1).toString() : "task/end", (nextposition) => {
                 setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
                 history.push(appBasePath + nextposition)
                 setCurrentNo(currentNo + 1)
                 setSelectedOption('')
+                startPuzzle(uid)
               })
             }
           }} >

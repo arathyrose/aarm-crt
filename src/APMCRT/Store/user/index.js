@@ -16,8 +16,7 @@ var reducers = {
     LOGOUT: (state, action) => {
         document.cookie = "";
         localStorage.removeItem("token");
-        return {
-        };
+        return {        };
     },
 };
 

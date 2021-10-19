@@ -61,6 +61,6 @@ export async function addLogs(uid, actionType, parameters) {
     // console.log(logData)
     const logsDB = collection(db, "logs")
     const logid = await addDoc(logsDB, logData);
-    console.log("Added logs in db: ", logid.id)
+    // console.log("Added logs in db: ", logid.id)
     return logid.id
 }

@@ -3,7 +3,7 @@ import colors from "../../config/colors";
 
 const height = window.innerHeight;
 const width = window.innerWidth;
-const puzzleCellDimension = (Math.min(height, width) / 4) * 0.6;
+const puzzleCellDimension = (Math.min(height, width) / 4) * 0.8;
 console.log("Puzzle cell dimension", puzzleCellDimension);
 
 export const TraditionalPuzzleContainer = styled.div`
@@ -31,8 +31,8 @@ export const AbstractPuzzleContainer = styled.div`
 `;
 
 export const PuzzleGrid = styled.div`
-  width: ${(puzzleCellDimension * 3 + 12).toString() + "px"};
-  height: ${(puzzleCellDimension * 3 + 12).toString() + "px"};
+  width: ${((puzzleCellDimension + 4) * 3).toString() + "px"};
+  height: ${((puzzleCellDimension + 4) * 3).toString() + "px"};
   background: ${colors.fgColor};
   border: 6px solid ${colors.fgColor};
   float: left;
@@ -53,8 +53,8 @@ export const PuzzleItem = styled.div`
 `;
 
 export const OptionGrid = styled.div`
-  width: ${(puzzleCellDimension * 4 + 16).toString() + "px"};
-  height: ${(puzzleCellDimension * 2 + 8).toString() + "px"};
+  width: ${((puzzleCellDimension + 4) * 4).toString() + "px"};
+  height: ${((puzzleCellDimension + 4) * 2).toString() + "px"};
   background: ${colors.fgColor};
   border: 6px solid ${colors.fgColor};
   float: left;
@@ -93,15 +93,15 @@ export const ErrorImportant = styled.h1`
 
 export const OptionStashContainer = styled.div`
   flex: 1;
-  height: ${(puzzleCellDimension * 3 + 16).toString() + "px"};
-  width: ${(puzzleCellDimension * 2 + 40).toString() + "px"};
+  height: ${((puzzleCellDimension + 4) * 3 + 4).toString() + "px"};
+  width: ${((puzzleCellDimension + 4) * 2 + 30).toString() + "px"};
   float: right;
   text-align: right;
 `;
 
 export const OptionStash = styled.div`
-  height: ${(puzzleCellDimension * 3 + 12).toString() + "px"};
-  width: ${(puzzleCellDimension * 2 + 8 + 12).toString() + "px"};
+  height: ${((puzzleCellDimension + 4) * 3).toString() + "px"};
+  width: ${((puzzleCellDimension + 4) * 2 + 12).toString() + "px"};
   background-color: ${colors.majorText};
   border: 6px solid ${colors.majorText};
   margin: 0;

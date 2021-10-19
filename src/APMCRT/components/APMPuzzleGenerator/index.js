@@ -1,4 +1,5 @@
 import React from "react";
+import { optionSelectT } from "../../services/logging";
 import { APM_puzzle, traditionalPuzzleElements } from "./constructPuzzle/main";
 import {
   OptionGrid,
@@ -25,6 +26,7 @@ function Puzzle({
   currentPuzzleSetup = [],
   setCurrentPuzzleSetup = [],
   previouslySelectedPuzzleShapes = [],
+  uid = ""
 }) {
   // drag drop attempted from https://medium.com/@deepakkadarivel/drag-and-drop-dnd-for-mobile-browsers-fc9bcd1ad3c5
   const APM_Puzzle_Elements = APM_puzzle[APMID];
@@ -169,14 +171,10 @@ function Puzzle({
         <div style={{ marginBottom: "5%" }}></div>
         <OptionGrid>
           {traditionalPuzzleElements.options.map((elementid) => {
-            let puzzleCell = APM_Puzzle_Elements.makeShape(
-              APM_Puzzle_Elements.puzzleCells[elementid]
-            );
+            let puzzleCell = APM_Puzzle_Elements.makeShape(APM_Puzzle_Elements.puzzleCells[elementid]);
             let selected = elementid === selectedOption;
             let isWrong = previouslySelectedOptions.includes(elementid);
-            let isCorrect =
-              previouslySelectedOptions.includes(elementid) &&
-              elementid === "O" + APM_Puzzle_Elements.correctOption.toString();
+            let isCorrect = previouslySelectedOptions.includes(elementid) && elementid === "O" + APM_Puzzle_Elements.correctOption.toString();
             // console.log("Element ID: ", elementid,selected,isWrong,isCorrect , previouslySelectedOptions)
             return (
               <OptionItem
@@ -188,7 +186,10 @@ function Puzzle({
                 onClick={
                   disabled === true || isCorrect === true || isWrong === true
                     ? () => { }
-                    : () => { setSelectedOption(elementid); }
+                    : () => {
+                      optionSelectT(uid, elementid)
+                      setSelectedOption(elementid);
+                    }
                 }
               >
                 <svg

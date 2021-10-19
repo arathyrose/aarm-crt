@@ -5,23 +5,23 @@ import {
   ButtonInstruction,
   MainPart,
   ViewExplanationButton,
-  Explanation,
+  Explanation, ClearButton, ButtonLine
 } from "./styles";
 import { useHistory, useLocation } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
-import { editUser } from "../../../../services/firebaseFunctions";
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import Puzzle from "../../../APMPuzzleGenerator";
 import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
+import { changePage, checkPuzzle, clearPuzzle, endPuzzle, startPuzzle } from "../../../../services/logging";
 
 function Example() {
   let currentExampleNumberPart = useLocation().pathname.split("/").slice(3);
   const [currentExampleNumber, setCurrentExampleNumber] = React.useState(currentExampleNumberPart === "2" ? 2 : 1)
   const { state, dispatch } = React.useContext(Context);
-  const APMType = getUser(state).APMType;
+  const { uid, APMType } = getUser(state);
   const [selectedOption, setSelectedOption] = React.useState("");
   const [isCorrect, setIsCorrect] = React.useState(undefined);
   const [previouslySelectedOptions, setPreviouslySelectedOptions] =
@@ -106,32 +106,24 @@ function Example() {
   };
   let history = useHistory();
   return (
-    <ExampleContainer
-      onClick={() => {
-        if (isCorrect === true) {
-          console.log(getUser(state), "UID:", getUser(state).uid, currentExampleNumber);
-          let uid = getUser(state).uid;
-          let nextposition =
-            currentExampleNumber === 1
-              ? "task/example/" + (currentExampleNumber + 1).toString()
-              : "task/instruction/";
-          editUser(uid, { position: nextposition }).then(() => {
-            setUserDetails({ ...getUser(state), position: nextposition })(
-              dispatch
-            );
-            history.push(appBasePath + nextposition);
-            if (currentExampleNumber === 1) {
-              // window.location.reload();
-              setSelectedOption('')
-              setIsCorrect(undefined)
-              setPreviouslySelectedOptions([])
-              setAnswer("")
-              setCurrentExampleNumber(2)
-              setViewExplanation(false)
-            }
-          });
-        }
-      }}
+    <ExampleContainer onClick={() => {
+      if (isCorrect === true) {
+        endPuzzle(uid)
+        changePage(getUser(state).uid, currentExampleNumber === 1 ? "task/example/" + (currentExampleNumber + 1).toString() : "task/instruction/", (nextposition) => {
+          setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+          history.push(appBasePath + nextposition)
+          if (currentExampleNumber === 1) {
+            setSelectedOption('')
+            setIsCorrect(undefined)
+            setPreviouslySelectedOptions([])
+            setAnswer("")
+            setCurrentExampleNumber(2)
+            setViewExplanation(false)
+            startPuzzle(uid)
+          }
+        })
+      }
+    }}
     >
       <MainPart>
         <h2> Example {currentExampleNumber}</h2>
@@ -147,36 +139,48 @@ function Example() {
           setIsCorrect={setIsCorrect}
           setAnswer={setAnswer}
           indemo={true}
+          uid={getUser(state).uid}
         />
       </MainPart>
 
-      <CheckAnswerButton
-        onClick={() => {
-          if (APMType === 'T') {
-            if (selectedOption !== "") {
-              if (selectedOption === answer) {
-                setIsCorrect(true);
-              } else {
-                setIsCorrect(false);
+      <ButtonLine>
+
+        <CheckAnswerButton
+          onClick={() => {
+            checkPuzzle(uid)
+            if (APMType === 'T') {
+              if (selectedOption === "") {
+                alert("Please perform the task (select an option)")
               }
-              setPreviouslySelectedOptions([
-                ...previouslySelectedOptions,
-                selectedOption,
-              ]);
-              setSelectedOption("");
+              else {
+                if (selectedOption === answer) {
+                  setIsCorrect(true);
+                } else {
+                  setIsCorrect(false);
+                }
+                setPreviouslySelectedOptions([...previouslySelectedOptions, selectedOption]);
+                setSelectedOption("");
+              }
             }
-          }
-          else {
-            setIsCorrect(true);
-          }
-        }}
-      >
-        {" "}
-        Check answer{" "}
-      </CheckAnswerButton>
+            else {
+              setIsCorrect(true);
+            }
+          }}
+        >
+          Check answer
+        </CheckAnswerButton>
+
+        <ClearButton onClick={() => {
+          clearPuzzle(uid)
+          setSelectedOption("")
+        }}>
+          Clear
+        </ClearButton>
+
+      </ButtonLine>
       <ButtonInstruction>
         {isCorrect === true ? (
-          <p>Your answer is correct!</p>
+          <p>Your answer is correct! Click anywhere to continue</p>
         ) : isCorrect === false ? (
           <p>
             Your answer is incorrect! Sorry, please try again.
@@ -196,8 +200,7 @@ function Example() {
           setViewExplanation(!viewExplanation);
         }}
       >
-        {" "}
-        View Explanation{" "}
+        View Explanation
       </ViewExplanationButton>
 
       {viewExplanation ? (
