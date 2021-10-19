@@ -1,5 +1,6 @@
 import firebase from "./firebaseConfig";
 import { getFirestore, collection, updateDoc, addDoc, getDoc, doc } from 'firebase/firestore';
+import { getCurrentTime } from "./getDeviceDetails";
 
 const db = getFirestore(firebase);
 // db.settings({ timestampsInSnapshots: true });
@@ -53,10 +54,11 @@ export async function getUser(uid, field = undefined) {
     }
 }
 
-export async function addLogs(uid, timestamp, position, action, parameters) {
+export async function addLogs(uid, actionType, parameters) {
     // logdata should contain
     //       uid, timestamp, position, action, parameters
-    const logData = { uid, timestamp, position, action, parameters }
+    const logData = { uid, timestamp: getCurrentTime(), position: window.location.pathname, actionType, parameters }
+    // console.log(logData)
     const logsDB = collection(db, "logs")
     const logid = await addDoc(logsDB, logData);
     console.log("Added logs in db: ", logid.id)

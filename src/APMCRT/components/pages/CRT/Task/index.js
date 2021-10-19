@@ -2,11 +2,11 @@ import React from "react";
 import { PuzzleContainer, MainPart, ButtonLine, NextButton } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
-import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import DrawingArea from "../../../CRTDrawingArea";
+import { changePage } from "../../../../services/logging";
 
 function PuzzlePage() {
   const { state, dispatch } = React.useContext(Context);
@@ -20,15 +20,10 @@ function PuzzlePage() {
           <NextButton onClick={() => {
             setSaveImage(true)
             while (saveImage === true);
-            console.log(getUser(state), "UID:", getUser(state).uid);
-            let uid = getUser(state).uid;
-            let nextposition = "CRT/end"
-            editUser(uid, { position: nextposition }).then(() => {
-              setUserDetails({ ...getUser(state), position: nextposition })(
-                dispatch
-              );
-              history.push(appBasePath + nextposition);
-            });
+            changePage(getUser(state).uid, "CRT/end", (nextposition) => {
+              setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+              history.push(appBasePath + nextposition)
+            })
           }} >
             Next
           </NextButton>

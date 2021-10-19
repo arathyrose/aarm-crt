@@ -2,12 +2,12 @@ import React from "react";
 import { PuzzleContainer, MainPart, ErrorMessage, ButtonLine, ClearButton, NextButton } from "./styles";
 import { useHistory, useLocation } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
-import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
 import Puzzle from "../../../APMPuzzleGenerator";
+import { changePage } from "../../../../services/logging";
 
 function PuzzlePage() {
   const { state, dispatch } = React.useContext(Context);
@@ -41,18 +41,12 @@ function PuzzlePage() {
             }
             else {
               setError("")
-              console.log(getUser(state), "UID:", getUser(state).uid);
-              let uid = getUser(state).uid;
-              let nextposition = (currentNo < 6) ? "task/puzzle/" + (currentNo + 1).toString() : "task/end"
-              editUser(uid, { position: nextposition }).then(() => {
-                setUserDetails({ ...getUser(state), position: nextposition })(
-                  dispatch
-                );
-                history.push(appBasePath + nextposition);
+              changePage(getUser(state).uid, (currentNo < 6) ? "task/puzzle/" + (currentNo + 1).toString() : "task/end", (nextposition) => {
+                setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+                history.push(appBasePath + nextposition)
                 setCurrentNo(currentNo + 1)
                 setSelectedOption('')
-              });
-
+              })
             }
           }} >
             Next

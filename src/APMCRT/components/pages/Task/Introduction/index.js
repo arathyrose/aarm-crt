@@ -3,10 +3,10 @@ import { IntroductionContainer, MainPart } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
-import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
 
 function Introduction() {
   const { state, dispatch } = React.useContext(Context);
@@ -28,10 +28,7 @@ function Introduction() {
   let history = useHistory()
   return (
     <IntroductionContainer onClick={() => {
-      console.log(getUser(state), "UID:", getUser(state).uid)
-      let uid = getUser(state).uid
-      let nextposition = "task/example"
-      editUser(uid, { position: nextposition }).then(() => {
+      changePage(getUser(state).uid, "task/example", (nextposition) => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })

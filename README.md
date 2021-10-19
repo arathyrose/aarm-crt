@@ -33,10 +33,42 @@ firebase deploy
 
 ## Tasks left
 
-- [] Logging
-- [] Drag N Drop for mobile
-- [] CRT Image keep where?
-- [] Feedback NASA TLX
+- [ ] Logging
+  - [x] Page move logging
+- [ ] AARM and DAARM puzzle support
+  - [ ] Drag N Drop for mobile
+- [ ] CRT Image keep where?
+  - [ ] Firebase storage
+- [ ] Feedback NASA TLX
+
+## Logging requirements
+
+Logs: timestamp, uid, position, actionType, parameter
+
+## Parameters for each action
+
+- For all pages -- DONE
+  - User going to the next page, pageChange
+    - nextlocation
+- For Traditional APM
+  - User selecting an option in the puzzle, optionSelect
+    - optionId
+- For other APM
+  - User Picking up an option in the puzzle, optionPickup
+    - optionId
+    - visibleOptions
+  - User Dropping an option in the puzzle, optionDrop
+    - optionId
+    - location
+    - visibleOptions
+    - puzzleStatus
+  - User scrolling up and down in the option area, scroll
+    - Direction
+    - visibleOptions
+    - puzzleStatus
+- For CRT
+  - User making a stoke in the CRT task, draw
+    - Stoke in string format
 
 ## Backend structure
 

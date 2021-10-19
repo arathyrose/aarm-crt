@@ -27,7 +27,6 @@ function Example() {
   const [previouslySelectedOptions, setPreviouslySelectedOptions] =
     React.useState([]);
   const [answer, setAnswer] = React.useState("");
-  const [/* logs */, setLogs] = React.useState([]); // need to refer and add in logs
   const [viewExplanation, setViewExplanation] = React.useState(false);
   const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
@@ -127,7 +126,6 @@ function Example() {
               setIsCorrect(undefined)
               setPreviouslySelectedOptions([])
               setAnswer("")
-              setLogs([])
               setCurrentExampleNumber(2)
               setViewExplanation(false)
             }

@@ -6,6 +6,7 @@ import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
 
 function Task() {
   const { state, dispatch } = React.useContext(Context);
@@ -28,10 +29,10 @@ function Task() {
       <MainPart>
         <p>Please fill in the following details:</p>
 
-        <div>
+        <div style={{marginBottom: "5px"}}>
           <label>Age: </label>    <input type="number" value={userForm.age} onChange={(e) => setFormValue('age', e.target.value)} />
         </div>
-        <div> <label>Gender: </label> <select onChange={(e) => setFormValue('gender', e.target.value)}>
+        <div style={{marginBottom: "5px"}}> <label>Gender: </label> <select onChange={(e) => setFormValue('gender', e.target.value)}>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>
@@ -54,8 +55,7 @@ function Task() {
           }
           else {
             editUser(uid, { demographic: userForm }).then(() => {
-              let nextposition = "task/start"
-              editUser(uid, { position: nextposition }).then(() => {
+              changePage(getUser(state).uid, "task/start", (nextposition) => {
                 setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
                 history.push(appBasePath + nextposition)
               })

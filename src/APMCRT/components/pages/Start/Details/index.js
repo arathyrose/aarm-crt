@@ -12,12 +12,10 @@ function Details() {
         <ol>
           <li> Demographic questionnaire (which takes approximately 2-3 minutes) </li>
           <li> Solving the puzzle task (which takes approximately 40 minutes) </li>
-          <li> 	Creativity task (which takes approximately 5-8 minutes)</li>
+          <li> Creativity task (which takes approximately 5-8 minutes)</li>
           <li> Feedback form (which takes approximately 5-8 minutes) </li>
         </ol>
       </MainPart>
-
-
       <Instruction>
         Click anywhere to continue ...
       </Instruction>

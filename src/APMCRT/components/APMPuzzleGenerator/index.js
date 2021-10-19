@@ -28,8 +28,7 @@ function Puzzle({
 }) {
   // drag drop attempted from https://medium.com/@deepakkadarivel/drag-and-drop-dnd-for-mobile-browsers-fc9bcd1ad3c5
   const APM_Puzzle_Elements = APM_puzzle[APMID];
-  //  console.log(apmType, APMID, APM_Puzzle_Elements)
-
+  // https://konvajs.org/docs/react/Drag_And_Drop.html
   const [show, setShow] = React.useState(false);
   const [device, setDevice] = React.useState(
     !!navigator.maxTouchPoints ? "mobile" : "computer"

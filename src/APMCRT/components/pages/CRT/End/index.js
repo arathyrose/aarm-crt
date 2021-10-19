@@ -2,21 +2,18 @@ import React from "react";
 import { EndContainer, MainPart } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
-import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import { Instruction } from "../styles";
+import { changePage } from "../../../../services/logging";
 
 function End() {
   const { state, dispatch } = React.useContext(Context);
   let history = useHistory()
   return (
     <EndContainer onClick={() => {
-      console.log(getUser(state), "UID:", getUser(state).uid)
-      let uid = getUser(state).uid
-      let nextposition = "feedback/start"
-      editUser(uid, { position: nextposition }).then(() => {
+      changePage(getUser(state).uid, "feedback/start", (nextposition) => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })

@@ -3,20 +3,17 @@ import { InstructionsContainer, MainPart } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
-import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
 
 function Instructions() {
   const { state, dispatch } = React.useContext(Context);
   let history = useHistory()
   return (
     <InstructionsContainer onClick={() => {
-      console.log(getUser(state), "UID:", getUser(state).uid)
-      let uid = getUser(state).uid
-      let nextposition = "demographic/task"
-      editUser(uid, { position: nextposition }).then(() => {
+      changePage(getUser(state).uid, "demographic/task", (nextposition) => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })

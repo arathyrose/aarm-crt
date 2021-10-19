@@ -3,10 +3,10 @@ import { InstructionsContainer, MainPart, CheckAnswerButton } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
-import { editUser } from "../../../../services/firebaseFunctions";
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
 
 function Instructions() {
   const { state, dispatch } = React.useContext(Context);
@@ -19,7 +19,7 @@ function Instructions() {
             Here, you will be given a grid and then asked to draw an APM puzzle.
           </li>
           <li>
-            The APM puzzle drawn should follow some rule along its row/column/both. 
+            The APM puzzle drawn should follow some rule along its row/column/both.
             You are free to make the puzzle as complicated as you like, as long as it is solvable.
           </li>
           <li>
@@ -31,15 +31,10 @@ function Instructions() {
       </MainPart>
       <CheckAnswerButton
         onClick={() => {
-          console.log(getUser(state), "UID:", getUser(state).uid);
-          let uid = getUser(state).uid;
-          let nextposition = "CRT/task";
-          editUser(uid, { position: nextposition }).then(() => {
-            setUserDetails({ ...getUser(state), position: nextposition })(
-              dispatch
-            );
-            history.push(appBasePath + nextposition);
-          });
+          changePage(getUser(state).uid, "CRT/task", (nextposition) => {
+            setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+            history.push(appBasePath + nextposition)
+          })
         }}
       >
         Start Experiment

@@ -3,20 +3,17 @@ import { GuidelinesContainer, MainPart } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
-import { editUser } from "../../../../services/firebaseFunctions"
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
 
 function Guidelines() {
   const { state, dispatch } = React.useContext(Context);
   let history = useHistory()
   return (
     <GuidelinesContainer onClick={() => {
-      console.log(getUser(state))
-      let uid = getUser(state).uid
-      let nextposition = "demographic/instructions"
-      editUser(uid, { position: nextposition }).then(() => {
+      changePage(getUser(state).uid, "demographic/instructions", (nextposition) => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })
