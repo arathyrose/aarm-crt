@@ -35,7 +35,7 @@ firebase deploy
 
 - [] Logging
 - [] Drag N Drop for mobile
-- [] CRT
+- [] CRT Image keep where? For now downloading.
 - [] Feedback
 
 ## Backend structure

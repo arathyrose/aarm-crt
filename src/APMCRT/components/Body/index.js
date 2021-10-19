@@ -7,6 +7,7 @@ import Demographic from "../pages/Demographic";
 import NavBar from "../NavBar"
 import Start from "../pages/Start"
 import Task from "../pages/Task";
+import CRT from "../pages/CRT";
 
 
 function Body(props) {
@@ -16,6 +17,7 @@ function Body(props) {
       <Route path={appBasePath + "start"} component={Start} />
       <Route path={appBasePath + "demographic"} component={Demographic} />
       <Route path={appBasePath + "task"} component={Task} />
+      <Route path={appBasePath + "crt"} component={CRT} />
       
       <Route path={appBasePath} component={Home} />
     </Switch>
