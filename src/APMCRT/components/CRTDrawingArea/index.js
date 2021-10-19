@@ -14,13 +14,13 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
 
   React.useEffect(() => {
     //loadImage();
-    if (saveImage == true) {
+    if (saveImage === true) {
       const uri = stageRef.current.toDataURL();
       console.log(uri);
       downloadURI(uri, 'crtTask.png');
       setSaveImage(false)
     }
-  }, [saveImage])
+  }, [saveImage]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // function from https://stackoverflow.com/a/15832662/512042
   function downloadURI(uri, name) {

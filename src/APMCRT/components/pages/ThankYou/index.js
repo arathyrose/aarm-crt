@@ -4,7 +4,7 @@ import { getUser } from "../../../Store/user/accessors";
 import { Context } from "../../../Store";
 
 function ThankYou() {
-  const { state, dispatch } = React.useContext(Context);
+  const { state } = React.useContext(Context);
   const uid = getUser(state).uid
   return (
     <ThankYouContainer>
