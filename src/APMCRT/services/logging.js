@@ -9,7 +9,7 @@ export const changePage = (uid, nextLocation, cb) => {
     })
 }
 
-export const optionSelectT = (uid, optionId) =>{
+export const optionSelectT = (uid, optionId) => {
     addLogs(uid, "optionSelect_T", { optionId })
 }
 
@@ -21,13 +21,37 @@ export const startPuzzle = (uid) => {
     addLogs(uid, "startPuzzle", {})
 }
 
-export const checkPuzzle = (uid)=>{
+export const checkPuzzle = (uid) => {
     addLogs(uid, "checkPuzzle", {})
 }
-export const endPuzzle =(uid)=>{
+export const endPuzzle = (uid) => {
     addLogs(uid, "endPuzzle", {})
 }
 
-export const clearPuzzle =(uid)=>{
+export const clearPuzzle = (uid) => {
     addLogs(uid, "clearPuzzle", {})
+}
+
+export const startLineCRT = (uid, points, tool, strokeWidth) => {
+    addLogs(uid, "startLineCRT", { points, tool, strokeWidth })
+}
+
+export const endLineCRT = (uid, lastLine) => {
+    addLogs(uid, "endLineCRT", { lastLine })
+}
+
+export const undoCRT = (uid) => {
+    addLogs(uid, "undoCRT", {})
+}
+
+export const redoCRT = (uid) => {
+    addLogs(uid, "redoCRT", {})
+}
+
+export const changeTool = (uid, tool) => {
+    addLogs(uid, "changeTool", { tool })
+}
+
+export const clearCRT = (uid) => {
+    addLogs(uid, "clearCRT", {})
 }

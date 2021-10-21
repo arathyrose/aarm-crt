@@ -13,7 +13,7 @@ function Start() {
   let history = useHistory()
   return (
     <StartContainer onClick={() => {
-      changePage(getUser(state).uid,"CRT/instruction", (nextposition) => {
+      changePage(getUser(state).uid,"crt/instruction", (nextposition) => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })

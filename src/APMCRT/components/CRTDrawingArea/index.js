@@ -3,8 +3,12 @@ import { Stage, Layer, Line, Rect } from 'react-konva';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUndo, faRedo, faPen, faEraser, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 import { MenuRow, MenuButton } from "./styles";
+import firebase from '../../services/firebaseConfig'
+import { getStorage, ref, uploadString } from "firebase/storage";
+import { editUser } from "../../services/firebaseFunctions";
+import { changeTool, clearCRT, endLineCRT, redoCRT, startLineCRT, undoCRT } from "../../services/logging";
 
-const DrawingArea = ({ saveImage, setSaveImage }) => {
+const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear }) => {
   const [lines, setLines] = React.useState([]);
   const [undoneLines, setUndoneLines] = React.useState([])
   const [tool, setTool] = React.useState("pen")
@@ -16,26 +20,40 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
     //loadImage();
     if (saveImage === true) {
       const uri = stageRef.current.toDataURL();
-      console.log(uri);
-      downloadURI(uri, 'crtTask.png');
-      setSaveImage(false)
+      // downloadURI(uri, 'crtTask.png');
+      const fileName = uid + "_" + (4).toString() + ".png"
+      uploadString(ref(getStorage(firebase), fileName), uri, 'data_url').then((snapshot) => {
+        editUser(uid, { CRT: { lines: lines ? lines : [], url: fileName } }).then(() => {
+          setSaveImage(false)
+        })
+      });
     }
   }, [saveImage]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  React.useEffect(() => {
+    //loadImage();
+    if (clear === true) {
+      setLines([])
+      clearCRT(uid)
+      setClear(false)
+    }
+  }, [clear]) // eslint-disable-line react-hooks/exhaustive-deps
+
   // function from https://stackoverflow.com/a/15832662/512042
-  function downloadURI(uri, name) {
+  /* function downloadURI(uri, name) {
     var link = document.createElement('a');
     link.download = name;
     link.href = uri;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  } */
 
   const handleMouseDown = (e) => {
     isDrawing.current = true;
     const pos = e.target.getStage().getPointerPosition();
     setLines([...lines, { points: [pos.x, pos.y], tool: tool, strokeWidth: size }]);
+    startLineCRT(uid, [pos.x, pos.y], tool, size)
   };
 
   const handleMouseMove = (e) => {
@@ -54,6 +72,7 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
       lastLine.points = lastLine.points.concat([point.x, point.y]);
       // replace last
       lines.splice(lines.length - 1, 1, lastLine);
+      endLineCRT(uid, lastLine)
       setLines(lines.concat());
       console.log(lines)
     }
@@ -70,6 +89,7 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
       setUndoneLines([...undoneLines, lastLine])
       setLines(lines.slice(0, -1))
     }
+    undoCRT(uid)
   }
   const onRedo = () => {
     isDrawing.current = false
@@ -78,6 +98,7 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
       setLines([...lines, addedLine])
       setUndoneLines(lines.slice(0, -1))
     }
+    redoCRT(uid)
   }
 
   const height = window.innerHeight;
@@ -131,8 +152,8 @@ const DrawingArea = ({ saveImage, setSaveImage }) => {
     <MenuRow>
       <MenuButton onClick={() => onUndo()}>   <FontAwesomeIcon icon={faUndo} />  </MenuButton>
       <MenuButton onClick={() => onRedo()}>   <FontAwesomeIcon icon={faRedo} />  </MenuButton>
-      <MenuButton onClick={() => setTool("pen")}>   <FontAwesomeIcon icon={faPen} />  </MenuButton>
-      <MenuButton onClick={() => setTool("eraser")}>   <FontAwesomeIcon icon={faEraser} />  </MenuButton>
+      <MenuButton onClick={() => { setTool("pen"); changeTool(uid, "pen") }}>   <FontAwesomeIcon icon={faPen} />  </MenuButton>
+      <MenuButton onClick={() => { setTool("eraser"); changeTool(uid, "eraser") }}>   <FontAwesomeIcon icon={faEraser} />  </MenuButton>
       <MenuButton onClick={() => size < 20 ? setSize(size + 1) : ""}>   <FontAwesomeIcon icon={faPlus} />  </MenuButton>
       <MenuButton onClick={() => {
 

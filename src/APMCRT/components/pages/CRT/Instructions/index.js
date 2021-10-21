@@ -31,7 +31,7 @@ function Instructions() {
       </MainPart>
       <CheckAnswerButton
         onClick={() => {
-          changePage(getUser(state).uid, "CRT/task", (nextposition) => {
+          changePage(getUser(state).uid, "crt/task", (nextposition) => {
             setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
             history.push(appBasePath + nextposition)
           })

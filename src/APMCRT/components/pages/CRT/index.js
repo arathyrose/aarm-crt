@@ -8,7 +8,7 @@ import Task from "./Task";
 import End from "./End";
 
 function CRT(props) {
-  let currentPath = appBasePath + "CRT/"
+  let currentPath = appBasePath + "crt/"
   return <TaskContainer>
     <Switch>
       <Route path={currentPath + "start"} component={Start} />

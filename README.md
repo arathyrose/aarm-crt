@@ -47,8 +47,8 @@ firebase deploy
   - [x] User start puzzle in example page
 - [ ] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
-- [ ] CRT Image keep where?
-  - [ ] Firebase storage
+- [x] CRT Image keep where?
+  - [x] Firebase storage
 - [ ] Feedback NASA TLX
 - [ ] Timer Row for tasks
 
@@ -175,11 +175,3 @@ The position gives the URL last visited by the user. The possible positions are 
 - feedback
   - /instructions
   - /task
-
-## CHECK
-
-1
-
-2nd attempt
-
-3rd attempt
