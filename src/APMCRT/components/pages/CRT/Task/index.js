@@ -34,7 +34,7 @@ function PuzzlePage() {
           </ClearButton>
           <NextButton onClick={() => {
             setSaveImage(true)
-            while (saveImage === true);
+          //  while (saveImage === true);
             changePage(getUser(state).uid, "crt/end", (nextposition) => {
               setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
               history.push(appBasePath + nextposition)

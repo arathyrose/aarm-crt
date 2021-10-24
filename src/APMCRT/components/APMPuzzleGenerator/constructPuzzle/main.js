@@ -33,6 +33,11 @@ export const APM_puzzle = {
             "D": { given: ['F11', 'F12', 'F13', 'F33'], options: ['F22', 'F31', 'CE1', 'F32', 'CE2', 'F21', 'F23'] },
             "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
+        possibleAnswers: {
+            "T": [5],
+            "A": [[['', '', ''], [5, 0, 6], [1, 3, 7]]],
+            "D": [[['', '', ''], [5, 0, 6], [1, 3, '']]]
+        },
         commonErrors: [2, 1],
         correctOption: 5,
         features: [
@@ -139,6 +144,11 @@ export const APM_puzzle = {
             "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
         commonErrors: [2, 7], correctOption: 1,
+        possibleAnswers: {
+            "T": [1],
+            "A": [[['', '', ''], [4, 6, 1], [0, 7, 2]], [['', '', ''], [4, 6, 1], [0, 3, 2]]],
+            "D": [[['', '', ''], [3, 5, 1], [0, 6, '']], [['', '', ''], [3, 5, 1], [0, 2, '']]],
+        },
         features: [
             { name: "numPaths", example: [0, 1, 2, 3], default: 0 },
             { name: "orientline", example: [[], [0], [1], [2], [0, 1], [0, 2], [1, 2], [0, 1, 2],], default: [] },
@@ -340,7 +350,7 @@ export const APM_puzzle = {
             "D": { given: ['F11', 'F21', 'F31', 'F33'], options: ['CE1', 'CE2', 'F13', 'F22', 'F23', 'F12', 'F32'] },
             "T": { given: ['F11', 'F12', 'F13', 'F21', 'F22', 'F23', 'F31', 'F32'], options: ['O1', 'O2', 'O3', 'O4', 'O5', 'O6', 'O7', 'O8'] }
         },
-        CE: [2, 8],
+        commonErrors: [2, 8],
         correctOption: 4,
         features: [
             {
@@ -579,6 +589,11 @@ export const APM_puzzle = {
         },
         commonErrors: [2, 4],
         correctOption: 6,
+        possibleAnswers: {
+            "T": [1],
+            "A": [[['', 3, 0], ['', 6, 5], ['', 7, 1]], [['', 3, 0], ['', 6, 5], ['', 2, 1]]],
+            "D": [[['', 2, 0], ['', 5, 4], ['', 6, '']], [['', 2, 0], ['', 5, 4], ['', 1, '']]],
+        },
         features: [
             { name: "lines", example: [[], [0], [90], [0, 90], [0, 45, 90, 135]], default: [] },
             { name: "curves", example: [[], [0], [90], [0, 90], [0, 45, 90, 135]], default: [] },

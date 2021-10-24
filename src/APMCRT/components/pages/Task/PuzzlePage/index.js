@@ -19,6 +19,9 @@ function PuzzlePage() {
   const [currentNo, setCurrentNo] = React.useState(parseInt(nunberPath) ? parseInt(nunberPath) : 1)
   const { uid, APMType } = getUser(state);
   const [resetTimer, setResetTimer] = React.useState(false)
+  const [currentPuzzleSetup, setCurrentPuzzleSetup] = React.useState([["", "", ""], ["", "", ""], ["", "", ""]]);
+  const [currentOptions, setCurrentOptions] = React.useState(undefined);
+  const [fillable, setFillable] = React.useState(undefined);
 
 
   const [error, setError] = React.useState("");
@@ -34,6 +37,12 @@ function PuzzlePage() {
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           uid={uid}
+          currentPuzzleSetup={currentPuzzleSetup}
+          setCurrentPuzzleSetup={setCurrentPuzzleSetup}
+          currentOptions={currentOptions}
+          setCurrentOptions={setCurrentOptions}
+          setFillable={setFillable}
+          fillable={fillable}
         />
         <ButtonLine>
           <ClearButton onClick={() => {
@@ -44,11 +53,25 @@ function PuzzlePage() {
           </ClearButton>
           <NextButton onClick={() => {
             submitPuzzle(uid)
-            if (selectedOption === '') {
-              alert("Please complete the task")
-              setError("Please complete the task")
+            let errorState = false
+            if (APMType === 'T') {
+              if (selectedOption === '') {
+                alert("Please complete the task")
+                setError("Please complete the task")
+                errorState = true
+              }
             }
             else {
+              for (let i = 0; i < 3; i++)
+                for (let j = 0; j < 3; j++)
+                  if (fillable[i][j] !== '' && currentPuzzleSetup[i][j] === '')
+                    errorState = true
+              if (errorState === true)
+                alert("Please complete the task")
+              setError("Please complete the task")
+            }
+
+            if (errorState === false) {
               setError("")
               endPuzzle(uid)
               changePage(uid, (currentNo < 6) ? "task/puzzle/" + (currentNo + 1).toString() : "task/end", (nextposition) => {

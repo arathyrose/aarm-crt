@@ -37,15 +37,14 @@ firebase deploy
   - [ ] User pickup option in AD task
   - [ ] User place option in stash in AD task
   - [ ] User place option in puzzle in AD task
-- [ ] AARM and DAARM puzzle support
+- [x] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
 - [ ] Feedback NASA TLX
 - [ ] VA and VS support for the puzzles
-- [x] Make a nice progress bar below the navbar
 - [ ] Change instructions at crt page
 - [ ] Investigate why stripes are not working
   - [ ] Get a new engine to make the svg part
-- [ ] Format all files
+- [x] Format all files
 
 ## Path of the experiment
 

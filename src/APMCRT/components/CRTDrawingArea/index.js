@@ -23,7 +23,7 @@ const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear }) => {
       // downloadURI(uri, 'crtTask.png');
       const fileName = uid + "_" + (4).toString() + ".png"
       uploadString(ref(getStorage(firebase), fileName), uri, 'data_url').then((snapshot) => {
-        editUser(uid, { CRT: { lines: lines ? lines : [], url: fileName } }).then(() => {
+        editUser(uid, { CRT: { url: fileName } }).then(() => {
           setSaveImage(false)
         })
       });

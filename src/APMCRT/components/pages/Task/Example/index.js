@@ -18,16 +18,19 @@ import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
 import { changePage, checkPuzzle, clearPuzzle, endPuzzle, startPuzzle } from "../../../../services/logging";
 
 function Example() {
-  let currentExampleNumberPart = useLocation().pathname.split("/").slice(3);
+  let currentExampleNumberPart = useLocation().pathname.split("/").slice(3).toString();
   const [currentExampleNumber, setCurrentExampleNumber] = React.useState(currentExampleNumberPart === "2" ? 2 : 1)
   const { state, dispatch } = React.useContext(Context);
   const { uid, APMType } = getUser(state);
   const [selectedOption, setSelectedOption] = React.useState("");
   const [isCorrect, setIsCorrect] = React.useState(undefined);
-  const [previouslySelectedOptions, setPreviouslySelectedOptions] =
-    React.useState([]);
+  const [previouslySelectedOptions, setPreviouslySelectedOptions] = React.useState([]);
+  const [currentPuzzleSetup, setCurrentPuzzleSetup] = React.useState([["", "", ""], ["", "", ""], ["", "", ""]]);
+  const [currentOptions, setCurrentOptions] = React.useState(undefined);
+  const [fillable, setFillable] = React.useState(undefined);
   const [answer, setAnswer] = React.useState("");
   const [viewExplanation, setViewExplanation] = React.useState(false);
+  
   const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
@@ -119,9 +122,16 @@ function Example() {
           previouslySelectedOptions={previouslySelectedOptions}
           disabled={isCorrect}
           setIsCorrect={setIsCorrect}
+          answer={answer}
           setAnswer={setAnswer}
           indemo={true}
           uid={getUser(state).uid}
+          currentPuzzleSetup={currentPuzzleSetup}
+          setCurrentPuzzleSetup={setCurrentPuzzleSetup}
+          currentOptions={currentOptions}
+          setCurrentOptions={setCurrentOptions}
+          setFillable={setFillable}
+          fillable={fillable}
         />
       </MainPart>
 
@@ -146,7 +156,27 @@ function Example() {
                 }
               }
               else {
-                setIsCorrect(true);
+                let incomplete = 0, correct = 1, overallCorrect = 0
+                for (let a in answer) {
+                  let posAnswer = answer[a]
+                  correct = 1
+                  for (let i = 0; i < 3; i++)for (let j = 0; j < 3; j++) {
+                    if (posAnswer[i][j] !== currentPuzzleSetup[i][j]) correct = 0
+                    if (currentPuzzleSetup[i][j] === "" && posAnswer[i][j] !== "") incomplete = 1
+                  }
+                  if (correct === 1)
+                    overallCorrect = 1
+                }
+                if (incomplete === 1) {
+                  alert("Please perform the task (select an option)")
+                }
+                else if (overallCorrect === 0) {
+                  setIsCorrect(false);
+                  console.log(answer, currentPuzzleSetup)
+                }
+                else {
+                  setIsCorrect(true);
+                }
               }
             }
             else {
@@ -173,6 +203,10 @@ function Example() {
         <ClearButton onClick={() => {
           clearPuzzle(uid)
           setSelectedOption("")
+          setCurrentPuzzleSetup([["", "", ""], ["", "", ""], ["", "", ""]])
+          setCurrentOptions(APMType === 'A' ? ["opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8"] :
+            ["opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7"]
+          ) // this is fixed
         }}>
           Clear
         </ClearButton>
