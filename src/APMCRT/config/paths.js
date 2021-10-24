@@ -1,2 +1,2 @@
 export const appBasePath = "/";
-export const APIBasePath="/";
+export const APIBasePath = "/";

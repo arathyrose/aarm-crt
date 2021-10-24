@@ -9,6 +9,7 @@ import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
 import Puzzle from "../../../APMPuzzleGenerator";
 import { changePage, clearPuzzle, endPuzzle, startPuzzle, submitPuzzle } from "../../../../services/logging";
 import Timer from "../../../Timer";
+import ProgressBar from "../../../ProgressBar"
 
 function PuzzlePage() {
   const { state, dispatch } = React.useContext(Context);
@@ -16,8 +17,8 @@ function PuzzlePage() {
   const [selectedOption, setSelectedOption] = React.useState("");
   let nunberPath = useLocation().pathname.split("/").slice(3);
   const [currentNo, setCurrentNo] = React.useState(parseInt(nunberPath) ? parseInt(nunberPath) : 1)
-  const {uid, APMType} = getUser(state);
-  const [resetTimer, setResetTimer ]= React.useState(false)
+  const { uid, APMType } = getUser(state);
+  const [resetTimer, setResetTimer] = React.useState(false)
 
 
   const [error, setError] = React.useState("");
@@ -25,7 +26,8 @@ function PuzzlePage() {
   return (
     <PuzzleContainer>
       <MainPart>
-      <Timer resetTimer={resetTimer} setResetTimer={setResetTimer}/>
+        <ProgressBar />
+        <Timer resetTimer={resetTimer} setResetTimer={setResetTimer} />
         <Puzzle
           apmType={APMType}
           APMID={APM_IDs.VA[currentNo - 1]}

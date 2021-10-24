@@ -106,25 +106,7 @@ function Example() {
   };
   let history = useHistory();
   return (
-    <ExampleContainer onClick={() => {
-      if (isCorrect === true) {
-        endPuzzle(uid)
-        changePage(getUser(state).uid, currentExampleNumber === 1 ? "task/example/" + (currentExampleNumber + 1).toString() : "task/instruction/", (nextposition) => {
-          setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
-          history.push(appBasePath + nextposition)
-          if (currentExampleNumber === 1) {
-            setSelectedOption('')
-            setIsCorrect(undefined)
-            setPreviouslySelectedOptions([])
-            setAnswer("")
-            setCurrentExampleNumber(2)
-            setViewExplanation(false)
-            startPuzzle(uid)
-          }
-        })
-      }
-    }}
-    >
+    <ExampleContainer>
       <MainPart>
         <h2> Example {currentExampleNumber}</h2>
 
@@ -148,26 +130,44 @@ function Example() {
         <CheckAnswerButton
           onClick={() => {
             checkPuzzle(uid)
-            if (APMType === 'T') {
-              if (selectedOption === "") {
-                alert("Please perform the task (select an option)")
+            if (!isCorrect) {
+              if (APMType === 'T') {
+                if (selectedOption === "") {
+                  alert("Please perform the task (select an option)")
+                }
+                else {
+                  if (selectedOption === answer) {
+                    setIsCorrect(true);
+                  } else {
+                    setIsCorrect(false);
+                  }
+                  setPreviouslySelectedOptions([...previouslySelectedOptions, selectedOption]);
+                  setSelectedOption("");
+                }
               }
               else {
-                if (selectedOption === answer) {
-                  setIsCorrect(true);
-                } else {
-                  setIsCorrect(false);
-                }
-                setPreviouslySelectedOptions([...previouslySelectedOptions, selectedOption]);
-                setSelectedOption("");
+                setIsCorrect(true);
               }
             }
             else {
-              setIsCorrect(true);
+              endPuzzle(uid)
+              changePage(getUser(state).uid, currentExampleNumber === 1 ? "task/example/" + (currentExampleNumber + 1).toString() : "task/instruction/", (nextposition) => {
+                setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+                history.push(appBasePath + nextposition)
+                if (currentExampleNumber === 1) {
+                  setSelectedOption('')
+                  setIsCorrect(undefined)
+                  setPreviouslySelectedOptions([])
+                  setAnswer("")
+                  setCurrentExampleNumber(2)
+                  setViewExplanation(false)
+                  startPuzzle(uid)
+                }
+              })
             }
           }}
         >
-          Check answer
+          {isCorrect ? "Go to next Page" : "Check answer"}
         </CheckAnswerButton>
 
         <ClearButton onClick={() => {
@@ -180,7 +180,7 @@ function Example() {
       </ButtonLine>
       <ButtonInstruction>
         {isCorrect === true ? (
-          <p>Your answer is correct! Click anywhere to continue</p>
+          <p>Your answer is correct! Click on the button to continue.</p>
         ) : isCorrect === false ? (
           <p>
             Your answer is incorrect! Sorry, please try again.
@@ -212,7 +212,7 @@ function Example() {
       )}
 
       <Instruction>
-        Once you have got this question correct, click anywhere to continue...
+        Once you have got this question correct, click on the button to continue.
       </Instruction>
     </ExampleContainer>
   );

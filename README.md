@@ -40,8 +40,35 @@ firebase deploy
 - [ ] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
 - [ ] Feedback NASA TLX
-- [x] Timer Row for tasks
 - [ ] VA and VS support for the puzzles
+- [x] Make a nice progress bar below the navbar
+- [ ] Change instructions at crt page
+- [ ] Investigate why stripes are not working
+  - [ ] Get a new engine to make the svg part
+- [ ] Format all files
+
+## Path of the experiment
+
+- /start/
+- /start/details/
+- /start/consent/
+- /start/guidelines/
+- /demographic/instructions/
+- /demographic/task/
+- /task/start/
+- /task/introduction/
+- /task/example/
+- /task/example/2
+- /task/instruction/
+- /task/puzzle/1
+- /task/end
+- /crt/start
+- /crt/instruction
+- /crt/task
+- /crt/end
+- /feedback/start
+- /feedback/task
+- /thankyou
 
 ## Logging requirements
 

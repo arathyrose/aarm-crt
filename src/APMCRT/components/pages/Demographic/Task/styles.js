@@ -28,6 +28,6 @@ export const SubmitButton = styled.button`
 `;
 
 export const ErrorMessage = styled.p`
-font-size: 0.8em;
-color: ${colors.errorText}
-`
+  font-size: 0.8em;
+  color: ${colors.errorText};
+`;

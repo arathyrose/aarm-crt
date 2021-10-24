@@ -2,14 +2,14 @@ import React from "react";
 import { HomeContainer, ConsentDetails, ConsentButtonApprove, MainPart, ConsentButtonDeny } from "./styles";
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
-import { getBrowserDetails, getIPDetails, getCurrentTime } from "../../../../services/getDeviceDetails";
-import { addUser } from "../../../../services/firebaseFunctions";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
+import { getUser } from "../../../../Store/user/accessors";
 
 function Home() {
   let history = useHistory()
-  const { /* state, */ dispatch } = React.useContext(Context);
+  const { state, dispatch } = React.useContext(Context);
   return (
     <HomeContainer >
       <MainPart>
@@ -27,22 +27,9 @@ function Home() {
       </MainPart>
 
       <ConsentButtonApprove onClick={() => {
-        // this is where the ID and other stuff is done
-        getBrowserDetails().then((browserDetails) => {
-          console.log(browserDetails)
-          getIPDetails().then((IPDetails) => {
-            console.log(IPDetails)
-            console.log(window.location.pathname)
-            let APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
-            let startTime = getCurrentTime()
-            let nextposition = "start/guidelines"
-            addUser({ browserDetails, IPDetails, position: nextposition, APMType: APMType, startTime: startTime }).then((uid) => {
-              console.log("User ID successfully created!: ", uid)
-              localStorage.setItem("token", uid)
-              setUserDetails({ position: nextposition, uid: uid, APMType: APMType })(dispatch);
-              history.push(appBasePath + nextposition)
-            })
-          })
+        changePage(getUser(state).uid, "start/guidelines", (nextposition) => {
+          setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+          history.push(appBasePath + nextposition)
         })
       }}>
         I have read the aforementioned information carefully. Any questions pertaining to this experiment have been answered to my best satisfaction. I hereby voluntarily agree to participate in this project.

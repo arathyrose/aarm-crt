@@ -34,7 +34,7 @@ export async function editUser(uid, newUserDetails) {
     }
 }
 
-export async function getUser(uid, field = undefined) {
+export async function getUserFromFirebase(uid, field = undefined) {
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {

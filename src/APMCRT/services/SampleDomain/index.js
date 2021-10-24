@@ -6,7 +6,7 @@ function getSampleDomain() {
 }
 
 const SampleDomainService = {
-    getSampleDomain,
+  getSampleDomain,
 };
 
 export default SampleDomainService;

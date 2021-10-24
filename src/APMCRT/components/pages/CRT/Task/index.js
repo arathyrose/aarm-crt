@@ -14,10 +14,10 @@ function PuzzlePage() {
   let history = useHistory()
   const [saveImage, setSaveImage] = React.useState(false)
   const [clear, setClear] = React.useState(false)
-  const [resetTimer, setResetTimer ]= React.useState(false)
+  const [resetTimer, setResetTimer] = React.useState(false)
   return (
     <PuzzleContainer>
-      <Timer  resetTimer={resetTimer}/>
+      <Timer resetTimer={resetTimer} />
       <MainPart>
         <DrawingArea saveImage={saveImage}
           setSaveImage={setSaveImage}
@@ -38,6 +38,7 @@ function PuzzlePage() {
             changePage(getUser(state).uid, "crt/end", (nextposition) => {
               setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
               history.push(appBasePath + nextposition)
+              setResetTimer(true)
             })
           }} >
             Next

@@ -1,4 +1,5 @@
 /* Getting required details about the browser and user location */
+import { addUser } from "./firebaseFunctions"
 
 export async function getBrowserDetails() {
     let navigator_appVersion = ""
@@ -57,4 +58,22 @@ export function getCurrentTime() {
     var date = new Date();
     var timestamp = date.getTime();
     return timestamp
+}
+
+export function createUserAndLogin(callback) {
+    getBrowserDetails().then((browserDetails) => {
+        console.log(browserDetails)
+        getIPDetails().then((IPDetails) => {
+            console.log(IPDetails)
+            console.log(window.location.pathname)
+            let APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
+            let startTime = getCurrentTime()
+            let currentPosition = "start/"
+            addUser({ browserDetails, IPDetails, position: currentPosition, APMType: APMType, startTime: startTime }).then((uid) => {
+                console.log("User ID successfully created!: ", uid)
+                localStorage.setItem("token", uid)
+                callback({ position: currentPosition, uid: uid, APMType: APMType })
+            })
+        })
+    })
 }

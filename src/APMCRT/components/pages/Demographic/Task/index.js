@@ -29,10 +29,10 @@ function Task() {
       <MainPart>
         <p>Please fill in the following details:</p>
 
-        <div style={{marginBottom: "5px"}}>
+        <div style={{ marginBottom: "5px" }}>
           <label>Age: </label>    <input type="number" value={userForm.age} onChange={(e) => setFormValue('age', e.target.value)} />
         </div>
-        <div style={{marginBottom: "5px"}}> <label>Gender: </label> <select onChange={(e) => setFormValue('gender', e.target.value)}>
+        <div style={{ marginBottom: "5px" }}> <label>Gender: </label> <select onChange={(e) => setFormValue('gender', e.target.value)}>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
           <option value="Other">Other</option>

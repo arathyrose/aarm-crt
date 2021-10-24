@@ -26,7 +26,7 @@ export const NextButton = styled.button`
   margin-bottom: 10px;
   margin-top: 10px;
   float: right;
-  color: ${colors.bgColor}
+  color: ${colors.bgColor};
 `;
 
 export const ClearButton = styled.button`
@@ -36,7 +36,7 @@ export const ClearButton = styled.button`
   margin-bottom: 10px;
   margin-top: 10px;
   float: left;
-  color: ${colors.bgColor}
+  color: ${colors.bgColor};
 `;
 
 export const ErrorMessage = styled.p`

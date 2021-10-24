@@ -70,10 +70,10 @@ export const OptionItem = styled.div`
     props.isCorrect
       ? "green"
       : props.isWrong
-        ? "red"
-        : props.selected
-          ? "blue"
-          : "none"};
+      ? "red"
+      : props.selected
+      ? "blue"
+      : "none"};
   margin: 1px;
   display: inline-block;
   padding: 0;
@@ -109,21 +109,26 @@ export const OptionStash = styled.div`
   overflow-x: hidden;
   overflow-y: scroll;
   float: right;
-  ::-webkit-scrollbar { // width
+  ::-webkit-scrollbar {
+    // width
     width: 8px;
   }
-  ::-webkit-scrollbar-track { // track
+  ::-webkit-scrollbar-track {
+    // track
     box-shadow: inset 0 0 5px ${colors.majorText};
     border-radius: 5px;
   }
-  ::-webkit-scrollbar-thumb { // handle
+  ::-webkit-scrollbar-thumb {
+    // handle
     background: white;
     border-radius: 5px;
   }
-  ::-webkit-scrollbar-button { // arrows
+  ::-webkit-scrollbar-button {
+    // arrows
     display: none;
   }
-  ::-webkit-scrollbar-track-piece { // bar background
+  ::-webkit-scrollbar-track-piece {
+    // bar background
     background: ${colors.text};
     border-radius: 5px;
   }

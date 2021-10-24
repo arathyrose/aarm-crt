@@ -13,13 +13,13 @@ function Timer({ resetTimer, setResetTimer }) {
     return () => {
       clearInterval(myInterval);
     };
-  });
+  }); // eslint-disable-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     if (resetTimer) {
       reset()
       setResetTimer(false)
     }
-  }, [resetTimer])
+  }, [resetTimer])  // eslint-disable-line react-hooks/exhaustive-deps
 
   function pad(num) {
     num = num.toString();

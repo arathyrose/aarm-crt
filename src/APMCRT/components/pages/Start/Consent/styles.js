@@ -32,8 +32,6 @@ export const ConsentButtonDeny = styled.button`
   margin-bottom: 10px;
 `;
 
-
-
 export const MainPart = styled.div`
   font-size: 1em;
   box-sizing: border-box;

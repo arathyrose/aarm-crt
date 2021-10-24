@@ -1,3 +1,3 @@
-export function getProperty(state,property){
+export function getProperty(state, property) {
     return state.applicationProperties[property];
 }

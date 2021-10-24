@@ -3,11 +3,22 @@ import { HomeContainer, LabPart, LabName, CollegeName, WelcomeMessage, StudyAim 
 import { useHistory } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
 import { Instruction } from "../styles";
+import { setUserDetails } from "../../../../Store/user/actions";
+import { getUser } from "../../../../Store/user/accessors";
+import { Context } from "../../../../Store";
+import { changePage } from "../../../../services/logging";
 
 function Home() {
   let history = useHistory()
+  const { state, dispatch } = React.useContext(Context);
   return (
-    <HomeContainer onClick={() => { history.push(appBasePath + "start/details") }}>
+    <HomeContainer onClick={() => {
+      // this is where the ID and other stuff is done
+      changePage(getUser(state).uid, "start/details", (nextposition) => {
+        setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+        history.push(appBasePath + nextposition)
+      })
+    }}>
       <LabPart>
         <LabName>
           Perception and Cognition Group, Cognitive sciences Lab

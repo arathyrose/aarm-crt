@@ -91,7 +91,7 @@ export const APM_puzzle = {
                 transformProperty: {}
             },]
             for (let lpath in line[numline - 1]) {
-                if (orientline ==="both") {
+                if (orientline === "both") {
                     constituents.push({
                         pathProperty: {
                             "d": line[numline - 1][lpath],
@@ -186,7 +186,7 @@ export const APM_puzzle = {
             for (let i = 0; i < numPaths; i++) {
                 constituents.push({
                     pathProperty: {
-                        "d": earlyBreak && orientline.length !==0 ? shapePaths.armBroken[Math.max(...orientline)] : shapePaths.arm,
+                        "d": earlyBreak && orientline.length !== 0 ? shapePaths.armBroken[Math.max(...orientline)] : shapePaths.arm,
                         "stroke": CONFIG.BLACK,
                         "stroke-width": CONFIG.WIDTH.NORMAL,
                         "fill": CONFIG.NOFILL
@@ -299,11 +299,11 @@ export const APM_puzzle = {
                         "stroke-width": thickness[weight],
                         "fill": CONFIG.NOFILL
                     },
-                    transformProperty: { rotate: (side ==="left") ? 0 : 180, translate: [closeness[shape][position], 0] }
+                    transformProperty: { rotate: (side === "left") ? 0 : 180, translate: [closeness[shape][position], 0] }
                 }
             }
             let constituents = []
-            if (type ==="double") {
+            if (type === "double") {
                 let doubleDistance = 30
                 constituents.push(
                     {
@@ -393,7 +393,7 @@ export const APM_puzzle = {
             }
             for (let i = 0; i < 3; i++) {
                 for (let j = 0; j < 3; j++) {
-                    if (matrix[makeInto1D(i, j)] ==="filled")
+                    if (matrix[makeInto1D(i, j)] === "filled")
                         constituents.push({
                             pathProperty: {
                                 "d": drawSmallSquare_1(i, j),
@@ -462,7 +462,7 @@ export const APM_puzzle = {
             let constituents = []
             for (let i = 0; i < 3; i++) {
                 for (let j = 0; j < 3; j++) {
-                    if (matrix[makeInto1D(i, j)] ==="white")
+                    if (matrix[makeInto1D(i, j)] === "white")
                         constituents.push({
                             pathProperty: {
                                 "d": drawSmallSquare_1(i, j),
@@ -472,7 +472,7 @@ export const APM_puzzle = {
                             },
                             transformProperty: {}
                         })
-                    else if (matrix[makeInto1D(i, j)] ==="filled")
+                    else if (matrix[makeInto1D(i, j)] === "filled")
                         constituents.push({
                             pathProperty: {
                                 "d": drawSmallSquare_1(i, j),
@@ -487,11 +487,11 @@ export const APM_puzzle = {
             // find path around the empty spaces
             for (let i = 0; i < 3; i++) {
                 for (let j = 0; j < 3; j++) {
-                    if (matrix[makeInto1D(i, j)] !=="none") {
+                    if (matrix[makeInto1D(i, j)] !== "none") {
                         // need border if it surrounds non-bordering square
                         for (let side in sides) {
                             let sideElNo = getSideElement(makeInto1D(i, j), side)
-                            if (sideElNo ===-1 || matrix[sideElNo] ==="none")
+                            if (sideElNo === -1 || matrix[sideElNo] === "none")
                                 constituents.push({
                                     pathProperty: {
                                         "d": drawBorder(i, j, side),
@@ -552,7 +552,7 @@ export const APM_puzzle = {
             let constituents = []
             for (let i = 0; i < 3; i++) {
                 for (let j = 0; j < 3; j++) {
-                    if (matrix[makeInto1D(i, j)] ==="filled")
+                    if (matrix[makeInto1D(i, j)] === "filled")
                         constituents.push({
                             pathProperty: {
                                 "d": drawSmallSquare_2(i, j),
@@ -646,28 +646,28 @@ export const APM_puzzle = {
                 for (let type in finalShape) {
                     let items = finalShape[type].items
                     let typeOfPart = finalShape[type].part
-                    if (type ==="curve" && items.length ===4)
+                    if (type === "curve" && items.length === 4)
                         type = "thinCurve";
                     for (let i in items) {
-                        if (typeOfPart ===0 || typeOfPart ===1)
+                        if (typeOfPart === 0 || typeOfPart === 1)
                             constituents.push({
                                 pathProperty: {
                                     "d": shapePaths[type],
                                     "stroke": CONFIG.BLACK,
                                     "stroke-width": CONFIG.WIDTH.NORMAL,
-                                    "fill": type ==='line' ? CONFIG.BLACK : CONFIG.NOFILL
+                                    "fill": type === 'line' ? CONFIG.BLACK : CONFIG.NOFILL
                                 },
                                 transformProperty: {
                                     rotate: items[i],
                                 }
                             })
-                        if (typeOfPart ===0 || typeOfPart ===-1)
+                        if (typeOfPart === 0 || typeOfPart === -1)
                             constituents.push({
                                 pathProperty: {
                                     "d": shapePaths[type],
                                     "stroke": CONFIG.BLACK,
                                     "stroke-width": CONFIG.WIDTH.NORMAL,
-                                    "fill": type ==='line' ? CONFIG.BLACK : CONFIG.NOFILL
+                                    "fill": type === 'line' ? CONFIG.BLACK : CONFIG.NOFILL
                                 },
                                 transformProperty: {
                                     rotate: 180 + items[i],
@@ -842,7 +842,7 @@ export const APM_puzzle = {
             const containerShape = "M 40,40 L 160,40 L 160,160 L 40,160 Z"
             let constituents = []
             for (let i in shapes) {
-                if (curShape[i] ===1) {
+                if (curShape[i] === 1) {
                     constituents.push({
                         pathProperty: {
                             "d": shapes[i],
@@ -918,7 +918,7 @@ export const APM_puzzle = {
                             "d": shapePaths[shape],
                             "stroke": CONFIG.BLACK,
                             "stroke-width": CONFIG.WIDTH.NORMAL,
-                            "fill": shape ==="innerDot" ? CONFIG.FILLCOLORS.BLACK : CONFIG.NOFILL
+                            "fill": shape === "innerDot" ? CONFIG.FILLCOLORS.BLACK : CONFIG.NOFILL
                         },
                         transformProperty: {}
                     })
@@ -1114,7 +1114,7 @@ export const APM_puzzle = {
                 straight: "M 100 30 L 40 135"
             }
             let constituents = []
-            if (special ==="opt1") {
+            if (special === "opt1") {
                 const opt1 = {
                     straight: { path: makeLine([50, 50], [150, 50]), line: "dotted" },
                     curve: { path: makeElipticalPath(50, 50, 100, 100, 80, 80, 0, 0, 1), line: "solid" }
@@ -1125,15 +1125,15 @@ export const APM_puzzle = {
                             pathProperty: {
                                 "d": opt1[j].path,
                                 "stroke": CONFIG.BLACK,
-                                "stroke-width": opt1[j].line ==="dotted" ? CONFIG.WIDTH.NARROW : CONFIG.WIDTH.NORMAL,
+                                "stroke-width": opt1[j].line === "dotted" ? CONFIG.WIDTH.NARROW : CONFIG.WIDTH.NORMAL,
                                 "fill": CONFIG.NOFILL,
-                                "stroke-dasharray": opt1[j].line ==="dotted" ? CONFIG.DASHED.DOTTED : ""
+                                "stroke-dasharray": opt1[j].line === "dotted" ? CONFIG.DASHED.DOTTED : ""
                             },
                             transformProperty: { rotate: 90 * i }
                         })
                 }
             }
-            else if (special ==="opt2") {
+            else if (special === "opt2") {
                 const opt2 = {
                     straight: { path: makeLine([50, 50], [150, 150]), line: "solid" },
                     curve: { path: makeCurve2(140, 50, 100, 100, 60, 150, 80, 80, 0, 0, 1), line: "dotted" }
@@ -1143,14 +1143,14 @@ export const APM_puzzle = {
                         pathProperty: {
                             "d": opt2[j].path,
                             "stroke": CONFIG.BLACK,
-                            "stroke-width": opt2[j].line ==="dotted" ? CONFIG.WIDTH.NARROW : CONFIG.WIDTH.NORMAL,
+                            "stroke-width": opt2[j].line === "dotted" ? CONFIG.WIDTH.NARROW : CONFIG.WIDTH.NORMAL,
                             "fill": CONFIG.NOFILL,
-                            "stroke-dasharray": opt2[j].line ==="dotted" ? CONFIG.DASHED.DOTTED : ""
+                            "stroke-dasharray": opt2[j].line === "dotted" ? CONFIG.DASHED.DOTTED : ""
                         },
                         transformProperty: {}
                     })
             }
-            else if (special ==="opt7") {
+            else if (special === "opt7") {
                 for (let i = 0; i < 3; i++) {
                     constituents.push({
                         pathProperty: {
@@ -1179,9 +1179,9 @@ export const APM_puzzle = {
                         pathProperty: {
                             "d": paths[type],
                             "stroke": CONFIG.BLACK,
-                            "stroke-width": line ==="dotted" ? CONFIG.WIDTH.NARROW : CONFIG.WIDTH.NORMAL,
+                            "stroke-width": line === "dotted" ? CONFIG.WIDTH.NARROW : CONFIG.WIDTH.NORMAL,
                             "fill": CONFIG.NOFILL,
-                            "stroke-dasharray": line ==="dotted" ? CONFIG.DASHED.DOTTED : ""
+                            "stroke-dasharray": line === "dotted" ? CONFIG.DASHED.DOTTED : ""
                         },
                         transformProperty: { rotate: 120 * i }
                     })
@@ -1516,7 +1516,7 @@ export const APM_puzzle = {
                             "d": shapePaths[shape],
                             "stroke": CONFIG.BLACK,
                             "stroke-width": CONFIG.WIDTH.NORMAL,
-                            "fill": shape ==="borderDots" ? CONFIG.FILLCOLORS.BLACK : CONFIG.NOFILL
+                            "fill": shape === "borderDots" ? CONFIG.FILLCOLORS.BLACK : CONFIG.NOFILL
                         },
                         transformProperty: {}
                     })
@@ -1582,8 +1582,8 @@ export const APM_puzzle = {
             for (let s in posSides) {
                 let side = posSides[s]
                 for (let i in curShape[side])
-                    if (curShape[side][i] !=="none") {
-                        let fillColor = curShape[side][i] ==="filled" ? CONFIG.FILLCOLORS.BLACK : CONFIG.FILLCOLORS.NONE
+                    if (curShape[side][i] !== "none") {
+                        let fillColor = curShape[side][i] === "filled" ? CONFIG.FILLCOLORS.BLACK : CONFIG.FILLCOLORS.NONE
                         constituents.push({
                             pathProperty: {
                                 "d": smallCirclePath,

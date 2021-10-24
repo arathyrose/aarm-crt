@@ -4,7 +4,7 @@ import colors from "../../../config/colors";
 export const FeedbackContainer = styled.div`
   background-color: ${colors.bgColor};
   min-height: 100vh;
-  margin:10px;
+  margin: 10px;
 `;
 
 export const Instruction = styled.div`
