@@ -7,14 +7,17 @@ import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import DrawingArea from "../../../CRTDrawingArea";
 import { changePage, clearCRT } from "../../../../services/logging";
+import Timer from "../../../Timer";
 
 function PuzzlePage() {
   const { state, dispatch } = React.useContext(Context);
   let history = useHistory()
   const [saveImage, setSaveImage] = React.useState(false)
   const [clear, setClear] = React.useState(false)
+  const [resetTimer, setResetTimer ]= React.useState(false)
   return (
     <PuzzleContainer>
+      <Timer  resetTimer={resetTimer}/>
       <MainPart>
         <DrawingArea saveImage={saveImage}
           setSaveImage={setSaveImage}

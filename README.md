@@ -34,23 +34,14 @@ firebase deploy
 ## Tasks left
 
 - [ ] Logging
-  - [x] Page move logging
-  - [x] User select option in Traditional task
   - [ ] User pickup option in AD task
   - [ ] User place option in stash in AD task
   - [ ] User place option in puzzle in AD task
-  - [x] User check answer in example page
-  - [x] User click next in task page
-  - [x] User select clear in task page
-  - [x] User select clear in example page
-  - [x] User start puzzle in task page
-  - [x] User start puzzle in example page
 - [ ] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
-- [x] CRT Image keep where?
-  - [x] Firebase storage
 - [ ] Feedback NASA TLX
-- [ ] Timer Row for tasks
+- [x] Timer Row for tasks
+- [ ] VA and VS support for the puzzles
 
 ## Logging requirements
 
