@@ -1,7 +1,5 @@
 import { CONFIG } from "./config"
-
-import ReactHtmlParser from 'react-html-parser';
-
+import React from "react"
 
 export function makeFinalSVG(constituents, properties) {
     const finalSVG = document.createElementNS(
@@ -14,7 +12,10 @@ export function makeFinalSVG(constituents, properties) {
      if (!("height" in properties)) {
          properties["height"] = CONFIG.DIMENSION
      } */
-    properties["view-box"] = "0 0 200 200"
+     // preserveAspectRatio="xMinYMin slice"
+    properties["viewBox"] = "0 0 200 200"
+    properties["height"] = "100%"
+    properties["width"] = "100%"
     for (let i in properties) {
         if (i === "patterns") {
             for (let j in properties[i])
@@ -27,7 +28,10 @@ export function makeFinalSVG(constituents, properties) {
     for (let constituent in constituents) {
         finalSVG.appendChild(makeConstituent(constituents[constituent]));
     }
-    return ReactHtmlParser(finalSVG.outerHTML)
+    //console.log(<Convert string={finalSVG.outerHTML.toString()} /> )
+    return (<div dangerouslySetInnerHTML={{ __html: finalSVG.outerHTML}} />);
+    // return ReactHtmlParser(finalSVG.outerHTML,{decodeEntities:false})
+    //return  <><Convert string={finalSVG.outerHTML.toString()} /> </>
 }
 
 export function constructTransformText(transformProperty) {

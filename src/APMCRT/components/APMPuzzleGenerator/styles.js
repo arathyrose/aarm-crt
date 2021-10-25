@@ -137,6 +137,11 @@ export const OptionStash = styled.div`
 export const OptionItemDraggable = styled.div`
   position: relative;
   width: ${puzzleCellDimension.toString() + "px"};
+  min-width: ${puzzleCellDimension.toString() + "px"};
+  max-width: ${puzzleCellDimension.toString() + "px"};
+  height: ${puzzleCellDimension.toString() + "px"};
+  min-height: ${puzzleCellDimension.toString() + "px"};
+  max-height: ${puzzleCellDimension.toString() + "px"};
   display: inline-block;
   background-color: #ddd;
   border: 1px dashed gray;

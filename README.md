@@ -50,8 +50,8 @@ firebase deploy
 - [ ] Feedback NASA TLX
 - [ ] VA and VS support for the puzzles
 - [ ] Change instructions at crt page
-- [ ] Investigate why stripes are not working
-  - [ ] Get a new engine to make the svg part
+- [x] Investigate why stripes are not working
+  - [x] Get a new engine to make the svg part
 - [x] Format all files
 
 ## Path of the experiment

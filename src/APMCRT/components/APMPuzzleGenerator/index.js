@@ -146,9 +146,7 @@ function Puzzle({
       eid.slice(0, 2) === 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid
     ])
     return <OptionItemDraggable id={id} key={id} draggable={disabled ? false : true} onDragStart={(event) => drag(event)}      >
-      <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
-        {puzzleCell}
-      </svg>
+      {puzzleCell}
     </OptionItemDraggable>
   }
 
@@ -234,9 +232,7 @@ function Puzzle({
                 );
                 return (
                   <PuzzleItem id={elementid} key={elementid}>
-                    <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
-                      {puzzleCell}
-                    </svg>
+                    {puzzleCell}
                   </PuzzleItem>
                 );
               } else {
@@ -277,14 +273,7 @@ function Puzzle({
                     }
                 }
               >
-                <svg
-                  height={"100%"}
-                  width={"100%"}
-                  preserveAspectRatio="xMinYMin slice"
-                  viewBox={`0 0 200 200`}
-                >
-                  {puzzleCell}
-                </svg>
+                {puzzleCell}
               </OptionItem>
             );
           })}
@@ -306,9 +295,7 @@ function Puzzle({
                 );
                 return (
                   <PuzzleItem id={"fixed_" + elementid} key={elementid}>
-                    <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
-                      {puzzleCell}
-                    </svg>
+                    {puzzleCell}
                   </PuzzleItem>
                 );
               }
@@ -329,17 +316,6 @@ function Puzzle({
           <OptionStash id="stash" onDrop={(event) => dropStash(event)} onDragOver={event => event.preventDefault()}>
             {currentOptions.map((optionID) => {
               return <DraggablePuzzleElement id={optionID} />
-              /* let optionIndex = parseInt(optionID[3])
-              let eid = APM_Puzzle_Elements.givenPuzzles[apmType].options[optionIndex - 1]
-              console.log(optionIndex, optionID, eid)
-              let puzzleCell = APM_Puzzle_Elements.makeShape(
-                APM_Puzzle_Elements.puzzleCells[eid.slice(0, 2) === 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid]
-              );
-              return <OptionItemDraggable id={optionID} key={optionID} draggable={true} onDragStart={(event) => drag(event)}      >
-                <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
-                  {puzzleCell}
-                </svg>
-              </OptionItemDraggable> */
             })}
           </OptionStash>
         </OptionStashContainer>
