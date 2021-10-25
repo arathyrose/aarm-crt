@@ -38,21 +38,13 @@ firebase deploy
 ## Tasks left
 
 - [ ] Logging
-  - [x] User pickup option in AD task
-  - [x] User place option in stash in AD task
-  - [x] User place option in puzzle in AD task
   - [ ] Scroll up and down in the options
 - [x] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
   - [ ] Example: set colors
-  - [x] Example: disable when not in use
   - [ ] Example: Add view explanation
 - [ ] Feedback NASA TLX
 - [ ] VA and VS support for the puzzles
-- [x] Change instructions at crt page
-- [x] Investigate why stripes are not working
-  - [x] Get a new engine to make the svg part
-- [x] Format all files
 
 ## Path of the experiment
 
