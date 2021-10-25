@@ -12,6 +12,12 @@ export const changePage = (uid, nextLocation, cb) => {
 export const optionSelectT = (uid, optionId) => {
     addLogs(uid, "optionSelect_T", { optionId })
 }
+export const pickupOption = (uid, optionId, from) => {
+    addLogs(uid, "pickupPuzzle", { optionId, from })
+}
+export const dropOption = (uid, optionId, from, to) => {
+    addLogs(uid, "dropOption", { optionId, from, to })
+}
 
 export const submitPuzzle = (uid) => {
     addLogs(uid, "submitPuzzle", {})

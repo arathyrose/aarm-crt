@@ -1,5 +1,9 @@
 # AARM-CRT PROJECT
 
+## Current Status
+
+The application now works on desktop computers.
+
 ## Technology used
 
 React js+firebase
@@ -34,11 +38,15 @@ firebase deploy
 ## Tasks left
 
 - [ ] Logging
-  - [ ] User pickup option in AD task
-  - [ ] User place option in stash in AD task
-  - [ ] User place option in puzzle in AD task
+  - [x] User pickup option in AD task
+  - [x] User place option in stash in AD task
+  - [x] User place option in puzzle in AD task
+  - [ ] Scroll up and down in the options
 - [x] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
+  - [ ] Example: set colors
+  - [x] Example: disable when not in use
+  - [ ] Example: Add view explanation
 - [ ] Feedback NASA TLX
 - [ ] VA and VS support for the puzzles
 - [ ] Change instructions at crt page

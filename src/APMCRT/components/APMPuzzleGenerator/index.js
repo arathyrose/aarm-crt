@@ -1,5 +1,5 @@
 import React from "react";
-import { optionSelectT } from "../../services/logging";
+import { dropOption, optionSelectT, pickupOption } from "../../services/logging";
 import { APM_puzzle, traditionalPuzzleElements } from "./constructPuzzle/main";
 import {
   OptionGrid,
@@ -135,6 +135,7 @@ function Puzzle({
         }
       }
     // also color the elements
+
   }
 
   const DraggablePuzzleElement = ({ id }) => {
@@ -144,7 +145,7 @@ function Puzzle({
     const puzzleCell = APM_Puzzle_Elements.makeShape(APM_Puzzle_Elements.puzzleCells[
       eid.slice(0, 2) === 'CE' ? 'O' + APM_Puzzle_Elements.commonErrors[parseInt(eid[2]) - 1].toString() : eid
     ])
-    return <OptionItemDraggable id={id} key={id} draggable={true} onDragStart={(event) => drag(event)}      >
+    return <OptionItemDraggable id={id} key={id} draggable={disabled ? false : true} onDragStart={(event) => drag(event)}      >
       <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`}>
         {puzzleCell}
       </svg>
@@ -157,6 +158,7 @@ function Puzzle({
     let parent = document.getElementById(ev.target.id).parentNode.id
     ev.dataTransfer.setData("parent", parent)
     console.log("pickup ", ev.target.id, " from ", parent)
+    pickupOption(uid, ev.target.id, parent)
   }
   function drop(ev) {
     ev.preventDefault();
@@ -173,6 +175,7 @@ function Puzzle({
           let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
           currentPuzzleSetup[pos[0]][pos[1]] = ""
         }
+        dropOption(uid, data, parent, ev.target.id)
       }
     }
     colorise()
@@ -185,10 +188,13 @@ function Puzzle({
     console.log("Attempting to drop ", data, " of parent ", parent, " on top of stash")
     // LOGGING.DROP(data, "stash")
     //document.getElementById("stash").appendChild(document.getElementById(data));
-    setCurrentOptions([...currentOptions, data])
-    if (parent[0] === 'p') {
-      let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
-      currentPuzzleSetup[pos[0]][pos[1]] = ""
+    if (parent !== 'stash') {
+      setCurrentOptions([...currentOptions, data])
+      if (parent[0] === 'p') {
+        let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
+        currentPuzzleSetup[pos[0]][pos[1]] = ""
+      }
+      dropOption(uid, data, parent, ev.target.id)
     }
     //  colorComplete()
     colorise()
