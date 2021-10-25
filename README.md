@@ -49,7 +49,7 @@ firebase deploy
   - [ ] Example: Add view explanation
 - [ ] Feedback NASA TLX
 - [ ] VA and VS support for the puzzles
-- [ ] Change instructions at crt page
+- [x] Change instructions at crt page
 - [x] Investigate why stripes are not working
   - [x] Get a new engine to make the svg part
 - [x] Format all files

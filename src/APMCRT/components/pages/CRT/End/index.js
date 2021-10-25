@@ -19,7 +19,8 @@ function End() {
       })
     }}>
       <MainPart>
-        You must have downloaded an image. Please send it via mail to us. Press anywhere on this page to go to the next task.
+        Your puzzle looks great! The puzzle image has been uploaded successfully.
+        Press anywhere on this page to go to the next task.
       </MainPart>
       <Instruction>
         Click anywhere to continue ...
