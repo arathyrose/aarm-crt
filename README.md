@@ -35,6 +35,10 @@ npm run build
 firebase deploy
 ```
 
+## Experiment design
+
+Consent form --> Demographic --> Task 1 --> CRT --> Task 2 --> CRT --> Feedback
+
 ## Tasks left
 
 - [ ] Logging
