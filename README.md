@@ -43,7 +43,7 @@ Consent form --> Demographic --> Task 1 --> CRT --> Task 2 --> CRT --> Feedback
 
 - [ ] Logging for scrolling up and down in options
 - [ ] Drag N Drop for mobile for AARM and DAARM
-- [ ] Feedback NASA TLX
+- [x] Feedback NASA TLX
 - [ ] Update instructions for all tasks
 
 ## Path of the experiment

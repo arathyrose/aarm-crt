@@ -31,3 +31,13 @@ export const ErrorMessage = styled.p`
   font-size: 0.8em;
   color: ${colors.errorText};
 `;
+
+export const SelectLikert = styled.div`
+  box-sizing: border-box;
+  border: 1px solid gray;
+  width: 1.2em;
+  aspect-ratio: 1;
+  background-color: ${(props) => (props.selected ? "blue" : "none")};
+  color: ${(props) => (props.selected ? "white" : `colors.text`)};
+  padding: 0.1em;
+`;
