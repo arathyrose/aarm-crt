@@ -41,14 +41,10 @@ Consent form --> Demographic --> Task 1 --> CRT --> Task 2 --> CRT --> Feedback
 
 ## Tasks left
 
-- [ ] Logging
-  - [ ] Scroll up and down in the options
-- [x] AARM and DAARM puzzle support
-  - [ ] Drag N Drop for mobile
-  - [x] Example: set colors
-  - [x] Example: Add view explanation
+- [ ] Logging for scrolling up and down in options
+- [ ] Drag N Drop for mobile for AARM and DAARM
 - [ ] Feedback NASA TLX
-- [x] VA and VS support for the puzzles
+- [ ] Update instructions for all tasks
 
 ## Path of the experiment
 
