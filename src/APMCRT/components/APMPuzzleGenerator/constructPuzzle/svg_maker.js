@@ -12,7 +12,7 @@ export function makeFinalSVG(constituents, properties) {
      if (!("height" in properties)) {
          properties["height"] = CONFIG.DIMENSION
      } */
-     // preserveAspectRatio="xMinYMin slice"
+    // preserveAspectRatio="xMinYMin slice"
     properties["viewBox"] = "0 0 200 200"
     properties["height"] = "100%"
     properties["width"] = "100%"
@@ -29,7 +29,7 @@ export function makeFinalSVG(constituents, properties) {
         finalSVG.appendChild(makeConstituent(constituents[constituent]));
     }
     //console.log(<Convert string={finalSVG.outerHTML.toString()} /> )
-    return (<div dangerouslySetInnerHTML={{ __html: finalSVG.outerHTML}} />);
+    return (<div dangerouslySetInnerHTML={{ __html: finalSVG.outerHTML }} />);
     // return ReactHtmlParser(finalSVG.outerHTML,{decodeEntities:false})
     //return  <><Convert string={finalSVG.outerHTML.toString()} /> </>
 }

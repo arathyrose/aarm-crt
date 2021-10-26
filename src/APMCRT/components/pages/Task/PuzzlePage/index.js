@@ -18,7 +18,7 @@ function PuzzlePage() {
   let nunberPath = useLocation().pathname.split("/").slice(3);
   const [currentNo, setCurrentNo] = React.useState(parseInt(nunberPath) ? parseInt(nunberPath) : 1)
   const { uid } = getUser(state);
-  const APMType = getUser(state).APMType[getUser(state).currentIteration-1]
+  const APMType = getUser(state).APMType[getUser(state).currentIteration - 1]
   const [resetTimer, setResetTimer] = React.useState(false)
   const [currentPuzzleSetup, setCurrentPuzzleSetup] = React.useState([["", "", ""], ["", "", ""], ["", "", ""]]);
   const [currentOptions, setCurrentOptions] = React.useState(undefined);

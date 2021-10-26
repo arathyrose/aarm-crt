@@ -10,7 +10,7 @@ import { changePage } from "../../../../services/logging";
 
 function Introduction() {
   const { state, dispatch } = React.useContext(Context);
-  const APMType = getUser(state).APMType[getUser(state).currentIteration-1]
+  const APMType = getUser(state).APMType[getUser(state).currentIteration - 1]
   const instructions = {
     "T": {
       header: "Traditional APM",
