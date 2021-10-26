@@ -7,19 +7,24 @@ import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import { Instruction } from "../styles";
 import { changePage } from "../../../../services/logging";
+import { editUser } from "../../../../services/firebaseFunctions";
 
 function End() {
   const { state, dispatch } = React.useContext(Context);
   let history = useHistory()
   return (
     <EndContainer onClick={() => {
-      changePage(getUser(state).uid, "feedback/start", (nextposition) => {
+      let ci = getUser(state).currentIteration + 1
+      setUserDetails({ ...getUser(state), currentIteration: ci })(dispatch);
+      editUser(getUser(state).uid, { currentIteration: ci })
+      changePage(getUser(state).uid, ci === 3 ? "feedback/start" : "task/start", (nextposition) => {
         setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
         history.push(appBasePath + nextposition)
       })
     }}>
       <MainPart>
         Your puzzle looks great! The puzzle image has been uploaded successfully.
+        You would have downloaded an image.
         Press anywhere on this page to go to the next task.
       </MainPart>
       <Instruction>

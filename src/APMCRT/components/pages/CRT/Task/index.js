@@ -24,6 +24,7 @@ function PuzzlePage() {
           uid={getUser(state).uid}
           clear={clear}
           setClear={setClear}
+          currentIteration={getUser(state).currentIteration}
         />
         <ButtonLine>
           <ClearButton onClick={() => {
@@ -34,7 +35,7 @@ function PuzzlePage() {
           </ClearButton>
           <NextButton onClick={() => {
             setSaveImage(true)
-          //  while (saveImage === true);
+            //  while (saveImage === true);
             changePage(getUser(state).uid, "crt/end", (nextposition) => {
               setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
               history.push(appBasePath + nextposition)

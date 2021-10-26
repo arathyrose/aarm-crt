@@ -30,7 +30,6 @@ function Guidelines() {
         </ul>
       </MainPart>
 
-
       <Instruction>
         Click anywhere to continue ...
       </Instruction>

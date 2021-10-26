@@ -15,7 +15,8 @@ import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import Puzzle from "../../../APMPuzzleGenerator";
 import { APM_IDs } from "../../../APMPuzzleGenerator/constructPuzzle/main";
-import { changePage, checkPuzzle, clearPuzzle, endPuzzle, startPuzzle } from "../../../../services/logging";
+import { changePage, checkPuzzle, clearPuzzle, endPuzzle, skipPuzzle, startPuzzle } from "../../../../services/logging";
+import { NextButton } from "../End/styles";
 
 function Example() {
   let currentExampleNumberPart = useLocation().pathname.split("/").slice(3).toString();
@@ -30,7 +31,8 @@ function Example() {
   const [fillable, setFillable] = React.useState(undefined);
   const [answer, setAnswer] = React.useState("");
   const [viewExplanation, setViewExplanation] = React.useState(false);
-  
+  const [colorAnswer, setColorAnswer] = React.useState(false);
+
   const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
@@ -111,8 +113,18 @@ function Example() {
   return (
     <ExampleContainer>
       <MainPart>
-        <h2> Example {currentExampleNumber}</h2>
-
+        <h2> Example {currentExampleNumber} </h2>
+        {getUser(state).currentIteration === 2 ? <p>
+          <NextButton onClick={() => {
+            skipPuzzle(uid)
+            changePage(getUser(state).uid, "task/instruction/", (nextposition) => {
+              setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+              history.push(appBasePath + nextposition)
+            })
+          }}          >
+            Skip Examples
+          </NextButton>
+        </p> : ""}
         <p>{instructions[APMType].instruction[currentExampleNumber - 1]} </p>
         <Puzzle
           apmType={APMType}
@@ -132,6 +144,8 @@ function Example() {
           setCurrentOptions={setCurrentOptions}
           setFillable={setFillable}
           fillable={fillable}
+          colorAnswer={colorAnswer}
+          setColorAnswer={setColorAnswer}
         />
       </MainPart>
 
@@ -172,10 +186,12 @@ function Example() {
                 }
                 else if (overallCorrect === 0) {
                   setIsCorrect(false);
+                  setColorAnswer(true)
                   console.log(answer, currentPuzzleSetup)
                 }
                 else {
                   setIsCorrect(true);
+                  setColorAnswer(true)
                 }
               }
             }
@@ -191,7 +207,8 @@ function Example() {
                   setAnswer("")
                   setCurrentExampleNumber(2)
                   setViewExplanation(false)
-                  startPuzzle(uid)
+                  setColorAnswer(true)
+                  startPuzzle(uid, "example")
                 }
               })
             }
@@ -201,12 +218,15 @@ function Example() {
         </CheckAnswerButton>
 
         <ClearButton onClick={() => {
-          clearPuzzle(uid)
-          setSelectedOption("")
-          setCurrentPuzzleSetup([["", "", ""], ["", "", ""], ["", "", ""]])
-          setCurrentOptions(APMType === 'A' ? ["opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8"] :
-            ["opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7"]
-          ) // this is fixed
+          if (!isCorrect) {
+            clearPuzzle(uid)
+            setSelectedOption("")
+            setCurrentPuzzleSetup([["", "", ""], ["", "", ""], ["", "", ""]])
+            setCurrentOptions(APMType === 'A' ? ["opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7", "opt8"] :
+              ["opt1", "opt2", "opt3", "opt4", "opt5", "opt6", "opt7"]
+            ) // this is fixed
+            setColorAnswer(true)
+          }
         }}>
           Clear
         </ClearButton>

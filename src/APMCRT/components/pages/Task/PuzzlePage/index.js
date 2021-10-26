@@ -22,8 +22,6 @@ function PuzzlePage() {
   const [currentPuzzleSetup, setCurrentPuzzleSetup] = React.useState([["", "", ""], ["", "", ""], ["", "", ""]]);
   const [currentOptions, setCurrentOptions] = React.useState(undefined);
   const [fillable, setFillable] = React.useState(undefined);
-
-
   const [error, setError] = React.useState("");
 
   return (
@@ -33,7 +31,7 @@ function PuzzlePage() {
         <Timer resetTimer={resetTimer} setResetTimer={setResetTimer} />
         <Puzzle
           apmType={APMType}
-          APMID={APM_IDs.VA[currentNo - 1]}
+          APMID={APM_IDs[getUser(state).PuzzleTypes[getUser(state).currentIteration - 1]][currentNo - 1]}
           selectedOption={selectedOption}
           setSelectedOption={setSelectedOption}
           uid={uid}
@@ -79,7 +77,7 @@ function PuzzlePage() {
                 history.push(appBasePath + nextposition)
                 setCurrentNo(currentNo + 1)
                 setSelectedOption('')
-                startPuzzle(uid)
+                startPuzzle(uid, getUser(state).PuzzleTypes[getUser(state).currentIteration - 1])
                 setResetTimer(true)
               })
             }

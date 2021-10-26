@@ -34,8 +34,8 @@ function Introduction() {
       })
     }}>
       <MainPart>
-        <h2> {instructions[APMType].header}</h2>
-        <p>{instructions[APMType].instruction}  </p>
+        <h2> {instructions[APMType].header + " (" + getUser(state).currentIteration + ")"} </h2>
+        <p> {instructions[APMType].instruction}  </p>
       </MainPart>
       <Instruction>
         Click anywhere to continue ...

@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
 
-
 const config = {
     apiKey: "AIzaSyBQLx4w5D9w1ghTBZvVk17tEmJVuam1IVc",
     authDomain: "crt-apm-project.firebaseapp.com",

@@ -11,7 +11,6 @@ import CRT from "../pages/CRT";
 import Feedback from "../pages/Feedback";
 import ThankYou from "../pages/ThankYou";
 
-
 function Body(props) {
   return <BodyContainer>
     <NavBar />
@@ -26,4 +25,5 @@ function Body(props) {
     </Switch>
   </BodyContainer>;
 }
+
 export default Body;

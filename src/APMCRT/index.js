@@ -22,9 +22,9 @@ function APMCRT(/* props */) {
         if (userExist) {
           // check where he is now
           let uid = localToken
-          getUserFromFirebase(uid, ['position', 'APMType']).then((finalData) => {
+          getUserFromFirebase(uid, ['position', 'APMType', 'PuzzleTypes', 'currentIteration']).then((finalData) => {
             console.log("data retrieved for uid: ", uid, " is ", finalData)
-            setUserDetails({ position: finalData.position, APMType: finalData.APMType, uid: uid })(dispatch);
+            setUserDetails({ position: finalData.position, APMType: finalData.APMType, uid: uid, PuzzleTypes: finalData.PuzzleTypes, currentIteration: finalData.currentIteration })(dispatch);
             if (finalData.position) {
               history.push(appBasePath + finalData.position)
               setLocalTokenStatus(true)

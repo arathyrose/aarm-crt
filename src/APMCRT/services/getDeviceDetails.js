@@ -67,12 +67,17 @@ export function createUserAndLogin(callback) {
             console.log(IPDetails)
             console.log(window.location.pathname)
             let APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
+            let PuzzleTypes = ["VA", "VS"]
+            if (Math.random() > 0.5) {
+                PuzzleTypes = ["VS", "VA"]
+            }
+            let currentIteration = 1
             let startTime = getCurrentTime()
-            let currentPosition = "start/"
-            addUser({ browserDetails, IPDetails, position: currentPosition, APMType: APMType, startTime: startTime }).then((uid) => {
+            let position = "start/"
+            addUser({ browserDetails, IPDetails, position, APMType, startTime, PuzzleTypes, currentIteration }).then((uid) => {
                 console.log("User ID successfully created!: ", uid)
                 localStorage.setItem("token", uid)
-                callback({ position: currentPosition, uid: uid, APMType: APMType })
+                callback({ position, uid: uid, APMType })
             })
         })
     })

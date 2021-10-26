@@ -8,7 +8,7 @@ import { getStorage, ref, uploadString } from "firebase/storage";
 import { editUser } from "../../services/firebaseFunctions";
 import { changeTool, clearCRT, endLineCRT, redoCRT, startLineCRT, undoCRT } from "../../services/logging";
 
-const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear }) => {
+const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear, currentIteration = 1 }) => {
   const [lines, setLines] = React.useState([]);
   const [undoneLines, setUndoneLines] = React.useState([])
   const [tool, setTool] = React.useState("pen")
@@ -20,8 +20,8 @@ const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear }) => {
     //loadImage();
     if (saveImage === true) {
       const uri = stageRef.current.toDataURL();
-      // downloadURI(uri, 'crtTask.png');
-      const fileName = uid + "_" + (4).toString() + ".png"
+      const fileName = uid + "_" + (currentIteration).toString() + ".png"
+      downloadURI(uri, fileName); // for ensuring that the person's solution does reach us
       uploadString(ref(getStorage(firebase), fileName), uri, 'data_url').then((snapshot) => {
         editUser(uid, { CRT: { url: fileName } }).then(() => {
           setSaveImage(false)
@@ -40,14 +40,14 @@ const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear }) => {
   }, [clear]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // function from https://stackoverflow.com/a/15832662/512042
-  /* function downloadURI(uri, name) {
+  function downloadURI(uri, name) {
     var link = document.createElement('a');
     link.download = name;
     link.href = uri;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  } */
+  }
 
   const handleMouseDown = (e) => {
     isDrawing.current = true;

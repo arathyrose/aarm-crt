@@ -41,10 +41,10 @@ firebase deploy
   - [ ] Scroll up and down in the options
 - [x] AARM and DAARM puzzle support
   - [ ] Drag N Drop for mobile
-  - [ ] Example: set colors
-  - [ ] Example: Add view explanation
+  - [x] Example: set colors
+  - [x] Example: Add view explanation
 - [ ] Feedback NASA TLX
-- [ ] VA and VS support for the puzzles
+- [x] VA and VS support for the puzzles
 
 ## Path of the experiment
 

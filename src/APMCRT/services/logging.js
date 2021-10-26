@@ -23,15 +23,20 @@ export const submitPuzzle = (uid) => {
     addLogs(uid, "submitPuzzle", {})
 }
 
-export const startPuzzle = (uid) => {
-    addLogs(uid, "startPuzzle", {})
+export const startPuzzle = (uid, puzzleType) => {
+    addLogs(uid, "startPuzzle", { puzzleType })
 }
 
 export const checkPuzzle = (uid) => {
     addLogs(uid, "checkPuzzle", {})
 }
+
 export const endPuzzle = (uid) => {
     addLogs(uid, "endPuzzle", {})
+}
+
+export const skipPuzzle = (uid) => {
+    addLogs(uid, "skipPuzzle", {})
 }
 
 export const clearPuzzle = (uid) => {
