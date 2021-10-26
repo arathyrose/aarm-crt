@@ -18,9 +18,10 @@ function Task() {
     otherGender: ""
   })
   const [error, setError] = React.useState("");
-  const genderValues = ["Woman", "Man", "Transgender woman", "Transgender man", "Non-binary gender", "Non conforming gender",
+  const genderValues = ["Select an option", "Woman", "Man", "Transgender woman", "Transgender man", "Non-binary gender", "Non conforming gender",
     "Prefer not to say", "Not listed"]
   const Other = "Not listed"
+  const Unselected = "Select an option"
   function setFormValue(field, value) {
     setUserForm({
       ...userForm,
@@ -36,7 +37,7 @@ function Task() {
           <label>Age: </label>    <input type="number" value={userForm.age} onChange={(e) => setFormValue('age', e.target.value)} />
         </div>
         <div style={{ marginBottom: "5px" }}> <label>Gender: </label> <select onChange={(e) => setFormValue('gender', e.target.value)}>
-          {genderValues.map((g) => <option value={g}>{g}</option>)}
+          {genderValues.map((g) => <option key={g} value={g}>{g}</option>)}
         </select>
           {userForm.gender === Other ? <input type="text" value={userForm.otherGender} onChange={(e) => setFormValue('otherGender', e.target.value)} /> :
             <span></span>}
@@ -47,7 +48,7 @@ function Task() {
             ageError = true
             errorMsg += "Please enter your correct age; "
           }
-          if (userForm.gender === Other && userForm.otherGender === "") {
+          if (userForm.gender === Unselected || (userForm.gender === Other && userForm.otherGender === "")) {
             genderError = true
             errorMsg += "Please enter your gender; "
           }

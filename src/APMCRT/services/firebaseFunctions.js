@@ -17,6 +17,7 @@ export async function checkUser(uid) {
 }
 
 export async function addUser(userDetails) {
+    console.log(userDetails)
     const uid = await addDoc(userDB, userDetails);
     console.log("Added user with uid: ", uid.id)
     return uid.id

@@ -22,7 +22,9 @@ function Example() {
   let currentExampleNumberPart = useLocation().pathname.split("/").slice(3).toString();
   const [currentExampleNumber, setCurrentExampleNumber] = React.useState(currentExampleNumberPart === "2" ? 2 : 1)
   const { state, dispatch } = React.useContext(Context);
-  const { uid, APMType } = getUser(state);
+  const { uid } = getUser(state);
+  const APMType = getUser(state).APMType[getUser(state).currentIteration-1]
+  console.log(getUser(state).APMType, getUser(state).currentIteration)
   const [selectedOption, setSelectedOption] = React.useState("");
   const [isCorrect, setIsCorrect] = React.useState(undefined);
   const [previouslySelectedOptions, setPreviouslySelectedOptions] = React.useState([]);

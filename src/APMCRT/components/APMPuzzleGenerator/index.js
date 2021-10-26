@@ -38,6 +38,9 @@ function Puzzle({
   const APM_Puzzle_Elements = APM_puzzle[APMID]
   // https://konvajs.org/docs/react/Drag_And_Drop.html
   const [status, setStatus] = React.useState([[0, 0, 0], [0, 0, 0], [0, 0, 0]])
+  const updateStatus = (i, j, newVal) => {
+    let ns = status; ns[i][j] = newVal; setStatus(ns)
+  }
   const [show, setShow] = React.useState(false)
   const [device, setDevice] = React.useState(
     !!navigator.maxTouchPoints ? "mobile" : "computer"
@@ -104,7 +107,6 @@ function Puzzle({
               }
             }
           }
-          console.log(a)
           setAnswer([a])
         }
       }
@@ -133,29 +135,33 @@ function Puzzle({
   React.useEffect(() => {
     if (colorAnswer) {
       // set the color matrix: 1 if correct, 0 if reset, -1 if incorrect
-      let maxnumCorrect = 0, numCorrect = 0, correctType = -1
-      for (let a in answer) {
-        let posAnswer = answer[a]
-        numCorrect = 0
+      if (apmType !== 'T') {
+        let maxnumCorrect = 0, numCorrect = 0, correctType = -1
+        for (let a in answer) {
+          let posAnswer = answer[a]
+          numCorrect = 0
+          for (let i = 0; i < 3; i++)for (let j = 0; j < 3; j++) {
+            if (posAnswer[i][j] === currentPuzzleSetup[i][j])
+              numCorrect += 1
+          }
+          if (numCorrect > maxnumCorrect) {
+            correctType = a
+            maxnumCorrect = numCorrect
+          }
+        }
+        // then set the colors
+        let ns = status
         for (let i = 0; i < 3; i++)for (let j = 0; j < 3; j++) {
-          if (posAnswer[i][j] === currentPuzzleSetup[i][j])
-            numCorrect += 1
+          if (currentPuzzleSetup[i][j] === "")
+            ns[i][j] = 0
+          else if (answer[correctType][i][j] === currentPuzzleSetup[i][j])
+            ns[i][j] = 1
+          else
+            ns[i][j] = -1
         }
-        if (numCorrect > maxnumCorrect) {
-          correctType = a
-          maxnumCorrect = numCorrect
-        }
+        setStatus(ns)
+        setColorAnswer(false)
       }
-      // then set the colors
-      for (let i = 0; i < 3; i++)for (let j = 0; j < 3; j++) {
-        if (currentPuzzleSetup[i][j] === "")
-          status[i][j] = 0
-        else if (answer[correctType][i][j] === currentPuzzleSetup[i][j])
-          status[i][j] = 1
-        else
-          status[i][j] = -1
-      }
-      setColorAnswer(false)
     }
   }, [colorAnswer]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -181,26 +187,29 @@ function Puzzle({
     let parent = document.getElementById(ev.target.id).parentNode
     if (!parent) parent = parent.parentNode
     ev.dataTransfer.setData("parent", parent.id)
-    console.log("pickup ", ev.target.id, " from ", parent)
-    pickupOption(uid, ev.target.id, parent)
+    console.log("pickup ", ev.target.id, " from ", parent.id)
+    pickupOption(uid, ev.target.id, parent.id)
   }
   function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    var parent = ev.dataTransfer.getData("parent");
-    if (ev.target.id) {
-      let pos = [parseInt(ev.target.id[3]) - 1, parseInt(ev.target.id[4] - 1)]
-      console.log("Attempting to drop ", data, " from parent ", parent, " on ", pos, " which has content ", currentPuzzleSetup[pos[0]][pos[1]])
-      if (currentPuzzleSetup[pos[0]][pos[1]] === "" && ev.target.id[0] === 'p') {
+    var data = ev.dataTransfer.getData("text")
+    var parent = ev.dataTransfer.getData("parent")
+    let destination = ev.target
+    while (!destination.id && destination.parentNode) destination = destination.parentNode
+    console.log("Attempting to drop ", data, " from parent ", parent, " on top of ", destination.id)
+    if (destination.id && destination.id[0] === 'p') {
+      let pos = [parseInt(destination.id[3]) - 1, parseInt(destination.id[4] - 1)]
+      // console.log("Attempting to drop ", data, " from parent ", parent, " on ", pos, " which has content ", currentPuzzleSetup[pos[0]][pos[1]])
+      if (currentPuzzleSetup[pos[0]][pos[1]] === "" && destination.id[0] === 'p') {
         currentPuzzleSetup[pos[0]][pos[1]] = data
-        status[pos[0]][pos[1]] = 0
+        updateStatus(pos[0], pos[1], 0)
         console.log("Drop successful!")
         setCurrentOptions(currentOptions.filter((item) => item !== data))
         if (parent[0] === 'p') {
           let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
           currentPuzzleSetup[pos[0]][pos[1]] = ""
-          status[pos[0]][pos[1]] = 0
-          document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
+          updateStatus(pos[0], pos[1], 0)
+          // document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
         }
         dropOption(uid, data, parent, ev.target.id)
       }
@@ -219,8 +228,8 @@ function Puzzle({
       if (parent[0] === 'p') {
         let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
         currentPuzzleSetup[pos[0]][pos[1]] = ""
-        status[pos[0]][pos[1]] = 0
-        document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
+        updateStatus(pos[0], pos[1], 0)
+        // document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
       }
       dropOption(uid, data, parent, ev.target.id)
     }
@@ -239,20 +248,19 @@ function Puzzle({
   } */
 
   function checkIfComplete(I, J) {
-    console.log(currentPuzzleSetup)
+    // console.log(currentPuzzleSetup)
     let rowComplete = true
     for (let j = 0; j < 3; j++)
       if (currentPuzzleSetup[I][j] === "" && !APM_Puzzle_Elements.givenPuzzles[apmType].given.includes('F' + (I + 1).toString() + (j + 1).toString())) {
         rowComplete = false
-        console.log(I, j, currentPuzzleSetup[I][j], APM_Puzzle_Elements.givenPuzzles[apmType].given.includes('F' + I + j))
+        // console.log(I, j, currentPuzzleSetup[I][j], APM_Puzzle_Elements.givenPuzzles[apmType].given.includes('F' + I + j))
       }
     let colComplete = true
     for (let i = 0; i < 3; i++)
       if (currentPuzzleSetup[i][J] === "" && !APM_Puzzle_Elements.givenPuzzles[apmType].given.includes('F' + (i + 1).toString() + (J + 1).toString())) {
         colComplete = false
-        console.log(i, J, currentPuzzleSetup[i][J], APM_Puzzle_Elements.givenPuzzles[apmType].given.includes('F' + i + J))
+        // console.log(i, J, currentPuzzleSetup[i][J], APM_Puzzle_Elements.givenPuzzles[apmType].given.includes('F' + i + J))
       }
-    console.log(rowComplete || colComplete)
     if (rowComplete || colComplete)
       return true
     else

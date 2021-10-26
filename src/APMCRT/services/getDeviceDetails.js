@@ -1,6 +1,34 @@
 /* Getting required details about the browser and user location */
 import { addUser } from "./firebaseFunctions"
 
+const main_type = "apmTypeDifference"
+
+// GLOBAL CONFIGURATION
+const experiment_configuration = (type) => {
+    let APMType, PuzzleTypes
+    switch (type) {
+        case "puzzleTypeDifference":
+            APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
+            PuzzleTypes = Math.random() > 0.5 ? ["VA", "VS"] : ["VS", "VA"]
+            return {
+                APMType: [APMType, APMType],
+                PuzzleTypes: PuzzleTypes
+            }
+        case "apmTypeDifference":
+            APMType = Math.random() > 0.5 ? ["A", "T"] : ["T", "A"]
+            PuzzleTypes = ["1", "2"]
+            return {
+                APMType: APMType,
+                PuzzleTypes: PuzzleTypes
+            }
+        default: return {
+            APMType: ['T', 'T'],
+            PuzzleTypes: ['1', '2']
+        }
+    }
+}
+
+
 export async function getBrowserDetails() {
     let navigator_appVersion = ""
     let navigator_userAgent = ""
@@ -66,18 +94,16 @@ export function createUserAndLogin(callback) {
         getIPDetails().then((IPDetails) => {
             console.log(IPDetails)
             console.log(window.location.pathname)
-            let APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
-            let PuzzleTypes = ["VA", "VS"]
-            if (Math.random() > 0.5) {
-                PuzzleTypes = ["VS", "VA"]
-            }
+            let expConfig = experiment_configuration(main_type)
+            let APMType = expConfig.APMType
+            let PuzzleTypes = expConfig.PuzzleTypes
             let currentIteration = 1
             let startTime = getCurrentTime()
             let position = "start/"
             addUser({ browserDetails, IPDetails, position, APMType, startTime, PuzzleTypes, currentIteration }).then((uid) => {
                 console.log("User ID successfully created!: ", uid)
                 localStorage.setItem("token", uid)
-                callback({ position, uid: uid, APMType })
+                callback({ position, uid: uid, APMType, PuzzleTypes, currentIteration })
             })
         })
     })

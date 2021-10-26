@@ -12,7 +12,14 @@ const colors = {
   instructionText: "#000000",
   majorText: "#9C7A7A",
   titleText: "#FFFDF9",
-  errorText: "#ff0000"
+  errorText: "#ff0000",
+
+  correct: "#ccffdd",
+  wrong: "#ffcccc",
+  selected: "#ccddff",
+  completed: "#eeeeee",
+  incomplete: "#cccccc"
+
 
   /* text: "#62615F",
   primary: "#FE8590",

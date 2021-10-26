@@ -3,7 +3,7 @@ import colors from "../../config/colors";
 
 const height = window.innerHeight;
 const width = window.innerWidth;
-const puzzleCellDimension = (Math.min(height, width) / 4) * 0.8;
+const puzzleCellDimension = (Math.min(height, width) / 4) * 0.7;
 console.log("Puzzle cell dimension", puzzleCellDimension);
 
 export const TraditionalPuzzleContainer = styled.div`
@@ -68,12 +68,12 @@ export const OptionItem = styled.div`
   border: 1px dashed gray;
   background-color: ${(props) =>
     props.isCorrect
-      ? "green"
+      ? `${colors.correct}`
       : props.isWrong
-      ? "red"
-      : props.selected
-      ? "blue"
-      : "none"};
+        ? `${colors.wrong}`
+        : props.selected
+          ? `${colors.selected}`
+          : "none"};
   margin: 1px;
   display: inline-block;
   padding: 0;
@@ -145,12 +145,12 @@ export const OptionItemDraggable = styled.div`
   display: inline-block;
   background-color: ${(props) =>
     props.isCorrect
-      ? "green"
+      ? `${colors.correct}`
       : props.isWrong
-      ? "red"
-      : props.complete
-      ? "#eeeeee"
-      : "#cccccc"};
+        ? `${colors.wrong}`
+        : props.complete
+          ? `${colors.completed}`
+          : `${colors.incomplete}`};
   border: 1px dashed gray;
   margin: 1px;
 `;
