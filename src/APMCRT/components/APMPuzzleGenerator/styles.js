@@ -70,10 +70,10 @@ export const OptionItem = styled.div`
     props.isCorrect
       ? "green"
       : props.isWrong
-        ? "red"
-        : props.selected
-          ? "blue"
-          : "none"};
+      ? "red"
+      : props.selected
+      ? "blue"
+      : "none"};
   margin: 1px;
   display: inline-block;
   padding: 0;
@@ -143,17 +143,14 @@ export const OptionItemDraggable = styled.div`
   min-height: ${puzzleCellDimension.toString() + "px"};
   max-height: ${puzzleCellDimension.toString() + "px"};
   display: inline-block;
-  background-color: ${(props) => {
-    console.log(props.complete)
-    return props.isCorrect
+  background-color: ${(props) =>
+    props.isCorrect
       ? "green"
       : props.isWrong
-        ? "red"
-        : props.complete 
-          ? "#eeeeee"
-          : "#cccccc"
-  }};
-  
+      ? "red"
+      : props.complete
+      ? "#eeeeee"
+      : "#cccccc"};
   border: 1px dashed gray;
   margin: 1px;
 `;
