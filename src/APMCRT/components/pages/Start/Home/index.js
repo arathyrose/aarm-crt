@@ -31,8 +31,7 @@ function Home() {
         </WelcomeMessage>
       </LabPart>
       <StudyAim>
-        In this study, we aim to understand how one’s creative ability is affected after solving different kinds of mental tasks and puzzles.
-        This is a pilot study.
+        In this study, we aim to understand how one’s creative ability is affected after solving different kinds of puzzles.
       </StudyAim>
 
       <Instruction>

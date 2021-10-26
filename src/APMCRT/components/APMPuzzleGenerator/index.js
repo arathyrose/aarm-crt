@@ -178,8 +178,9 @@ function Puzzle({
   function drag(ev) {
     //  LOGGING.PICKUP(ev.target.id)
     ev.dataTransfer.setData("text", ev.target.id)
-    let parent = document.getElementById(ev.target.id).parentNode.id
-    ev.dataTransfer.setData("parent", parent)
+    let parent = document.getElementById(ev.target.id).parentNode
+    if (!parent) parent = parent.parentNode
+    ev.dataTransfer.setData("parent", parent.id)
     console.log("pickup ", ev.target.id, " from ", parent)
     pickupOption(uid, ev.target.id, parent)
   }
@@ -199,6 +200,7 @@ function Puzzle({
           let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
           currentPuzzleSetup[pos[0]][pos[1]] = ""
           status[pos[0]][pos[1]] = 0
+          document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
         }
         dropOption(uid, data, parent, ev.target.id)
       }
@@ -218,6 +220,7 @@ function Puzzle({
         let pos = [parseInt(parent[3]) - 1, parseInt(parent[4] - 1)]
         currentPuzzleSetup[pos[0]][pos[1]] = ""
         status[pos[0]][pos[1]] = 0
+        document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
       }
       dropOption(uid, data, parent, ev.target.id)
     }
@@ -284,11 +287,7 @@ function Puzzle({
               } else {
                 return (
                   <PuzzleItem id={elementid} key={elementid}>
-                    <svg
-                      height={"100%"}
-                      width={"100%"}
-                      viewBox={`0 0 200 200`}
-                    />
+                    <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />
                   </PuzzleItem>
                 );
               }
@@ -352,7 +351,7 @@ function Puzzle({
                 return (
                   <PuzzleItem id={elementid} key={elementid} onDrop={(event) => drop(event)} onDragOver={(event) => event.preventDefault()} >
                     {contents === ""
-                      ? <svg id={"pos" + i + j} height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />
+                      ? <svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />
                       : <DraggablePuzzleElement
                         id={contents}
                         complete={checkIfComplete(parseInt(i) - 1, parseInt(j) - 1)}
