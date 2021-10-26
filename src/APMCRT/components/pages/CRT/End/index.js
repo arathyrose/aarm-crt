@@ -15,11 +15,12 @@ function End() {
   return (
     <EndContainer onClick={() => {
       let ci = getUser(state).currentIteration + 1
-      setUserDetails({ ...getUser(state), currentIteration: ci })(dispatch);
-      editUser(getUser(state).uid, { currentIteration: ci })
-      changePage(getUser(state).uid, ci === 3 ? "feedback/start" : "task/start", (nextposition) => {
-        setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
-        history.push(appBasePath + nextposition)
+      editUser(getUser(state).uid, { currentIteration: ci }).then(() => {
+        changePage(getUser(state).uid, ci === 3 ? "feedback/start" : "task/start", (nextposition) => {
+          setUserDetails({ ...getUser(state), position: nextposition })(dispatch)
+          setUserDetails({ ...getUser(state), currentIteration: ci })(dispatch)
+          history.push(appBasePath + nextposition)
+        })
       })
     }}>
       <MainPart>

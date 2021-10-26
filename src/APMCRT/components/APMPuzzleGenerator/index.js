@@ -157,7 +157,7 @@ function Puzzle({
       }
       setColorAnswer(false)
     }
-  }, [colorAnswer])
+  }, [colorAnswer]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const DraggablePuzzleElement = ({ id, complete, correctStatus }) => {
     const optionIndex = parseInt(id[3])

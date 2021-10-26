@@ -21,9 +21,10 @@ const DrawingArea = ({ saveImage, setSaveImage, uid, clear, setClear, currentIte
     if (saveImage === true) {
       const uri = stageRef.current.toDataURL();
       const fileName = uid + "_" + (currentIteration).toString() + ".png"
+      const CRTNum = "CRT_" + (currentIteration).toString()
       downloadURI(uri, fileName); // for ensuring that the person's solution does reach us
       uploadString(ref(getStorage(firebase), fileName), uri, 'data_url').then((snapshot) => {
-        editUser(uid, { CRT: { url: fileName } }).then(() => {
+        editUser(uid, { [CRTNum]: { url: fileName } }).then(() => {
           setSaveImage(false)
         })
       });
