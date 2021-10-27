@@ -100,7 +100,7 @@ export function createUserAndLogin(callback) {
             let currentIteration = 1
             let startTime = getCurrentTime()
             let position = "start/"
-            addUser({ browserDetails, IPDetails, position, APMType, startTime, PuzzleTypes, currentIteration }).then((uid) => {
+            addUser({ main_type, browserDetails, IPDetails, position, APMType, startTime, PuzzleTypes, currentIteration }).then((uid) => {
                 console.log("User ID successfully created!: ", uid)
                 localStorage.setItem("token", uid)
                 callback({ position, uid: uid, APMType, PuzzleTypes, currentIteration })
