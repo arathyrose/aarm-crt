@@ -16,14 +16,14 @@ const experiment_configuration = (type) => {
             }
         case "apmTypeDifference":
             APMType = Math.random() > 0.5 ? ["A", "T"] : ["T", "A"]
-            PuzzleTypes = ["1", "2"]
+            PuzzleTypes = ["VA", "VS"]
             return {
                 APMType: APMType,
                 PuzzleTypes: PuzzleTypes
             }
         default: return {
             APMType: ['T', 'T'],
-            PuzzleTypes: ['1', '2']
+            PuzzleTypes: ["VA", "VS"]
         }
     }
 }
