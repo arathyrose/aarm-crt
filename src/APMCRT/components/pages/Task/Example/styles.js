@@ -28,6 +28,14 @@ export const CheckAnswerButton = styled.button`
   color: ${colors.bgColor};
 `;
 
+export const GoBackToExamplesButton = styled.button`
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: ${colors.primary};
+  color: ${colors.fgColor};
+  color: ${colors.bgColor};
+`;
+
 export const ClearButton = styled.button`
   font-size: 1em;
   box-sizing: border-box;

@@ -7,20 +7,15 @@ import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
 import { Instruction } from "../styles";
 import { changePage } from "../../../../services/logging";
-import { editUser } from "../../../../services/firebaseFunctions";
 
 function End() {
   const { state, dispatch } = React.useContext(Context);
   let history = useHistory()
   return (
     <EndContainer onClick={() => {
-      let ci = getUser(state).currentIteration + 1
-      editUser(getUser(state).uid, { currentIteration: ci }).then(() => {
-        changePage(getUser(state).uid, ci === 3 ? "feedback/start" : "task/start", (nextposition) => {
-          setUserDetails({ ...getUser(state), position: nextposition })(dispatch)
-          setUserDetails({ ...getUser(state), currentIteration: ci })(dispatch)
-          history.push(appBasePath + nextposition)
-        })
+      changePage(getUser(state).uid, getUser(state).currentIteration === 2 ? "feedback/start" : "break", (nextposition) => {
+        setUserDetails({ ...getUser(state), position: nextposition })(dispatch)
+        history.push(appBasePath + nextposition)
       })
     }}>
       <MainPart>

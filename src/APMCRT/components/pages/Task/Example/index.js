@@ -116,7 +116,7 @@ function Example() {
     <ExampleContainer>
       <MainPart>
         <h2> Example {currentExampleNumber} </h2>
-        {getUser(state).currentIteration === 2 ? <p>
+        {getUser(state).currentIteration === 2 && getUser(state).PuzzleTypes[0] === getUser(state).PuzzleTypes[1] ? <p>
           <NextButton onClick={() => {
             skipPuzzle(uid)
             changePage(getUser(state).uid, "task/instruction/", (nextposition) => {
@@ -251,11 +251,7 @@ function Example() {
 
       <Instruction />
 
-      <ViewExplanationButton
-        onClick={() => {
-          setViewExplanation(!viewExplanation);
-        }}
-      >
+      <ViewExplanationButton onClick={() => { setViewExplanation(!viewExplanation); }}      >
         View Explanation
       </ViewExplanationButton>
 

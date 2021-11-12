@@ -60,7 +60,19 @@ export async function addLogs(uid, actionType, parameters) {
     //       uid, timestamp, position, action, parameters
     const logData = { uid, timestamp: getCurrentTime(), position: window.location.pathname, actionType, parameters }
     // console.log(logData)
-    const logsDB = collection(db, "logs")
+
+    // store in different collection based on the type of the logs
+    let logCollection = "newLogs"
+    if (actionType.includes("Puzzle") || actionType === "optionSelect_T" || actionType === "dropOption") {
+        logCollection = "puzzleLogs"
+    }
+    else if (actionType.includes("pageChange")) {
+        logCollection = "pageChangeLogs"
+    }
+    else if (actionType.includes("CRT") || actionType.includes("changeTool")) {
+        logCollection = "CRTLogs"
+    }
+    const logsDB = collection(db, logCollection)
     const logid = await addDoc(logsDB, logData);
     // console.log("Added logs in db: ", logid.id)
     return logid.id

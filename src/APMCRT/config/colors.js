@@ -20,7 +20,6 @@ const colors = {
   completed: "#eeeeee",
   incomplete: "#cccccc"
 
-
   /* text: "#62615F",
   primary: "#FE8590",
   secondary: "#AFABAB",

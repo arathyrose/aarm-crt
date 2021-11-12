@@ -6,7 +6,7 @@ import { Instruction } from "../styles";
 import { getUser } from "../../../../Store/user/accessors";
 import { setUserDetails } from "../../../../Store/user/actions";
 import { Context } from "../../../../Store";
-import { CheckAnswerButton } from "../Example/styles";
+import { CheckAnswerButton, GoBackToExamplesButton } from "../Example/styles";
 import { changePage } from "../../../../services/logging";
 
 function Instructions() {
@@ -16,7 +16,7 @@ function Instructions() {
     <InstructionsContainer>
       <MainPart>
         <ul>
-          <li> Here, you will be given 12 puzzles, similar to the one you have answered earlier. </li>
+          <li> Here, you will be given 6 puzzles, similar to the one you have answered earlier. </li>
           <li> All puzzle tasks need to be solved. There is no navigation in this task, i.e. once you have completed one puzzle, you cannot go back to a previous puzzle. </li>
           <li> There is no feedback after completing each question. (the option will turn blue, once selected, to show submission). </li>
           <li> There is no enforced time limit. Nevertheless, try to respond as fast and accurate as you can. </li>
@@ -25,7 +25,7 @@ function Instructions() {
         </ul>
         <p>
           If you have any doubts and wish to go back to the examples, you may click here:
-          <CheckAnswerButton
+          <GoBackToExamplesButton
             onClick={() => {
               changePage(getUser(state).uid, "task/example/1", (nextposition) => {
                 setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
@@ -34,7 +34,7 @@ function Instructions() {
             }}
           >
             Go back to examples
-          </CheckAnswerButton>
+          </GoBackToExamplesButton>
         </p>
         <p>If you are ready to start the experiment, click on the button below</p>
       </MainPart>

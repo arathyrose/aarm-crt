@@ -1,10 +1,12 @@
 import { addLogs, editUser } from "./firebaseFunctions";
 
 export const changePage = (uid, nextLocation, cb) => {
-    editUser(uid, { position: nextLocation }).then(() => {
-        addLogs(uid, "pageChange", { nextLocation }).then(() => {
-            console.log("Page changed")
-            cb(nextLocation)
+    new Promise(r => setTimeout(r, 600)).then(()=>{
+        editUser(uid, { position: nextLocation }).then(() => {
+            addLogs(uid, "pageChange", { nextLocation }).then(() => {
+                console.log("Page changed")
+                cb(nextLocation)
+            })
         })
     })
 }
@@ -44,11 +46,13 @@ export const clearPuzzle = (uid) => {
 }
 
 export const startLineCRT = (uid, points, tool, strokeWidth) => {
-    addLogs(uid, "startLineCRT", { points, tool, strokeWidth })
+    console.log(uid, points, tool, strokeWidth)
+    // addLogs(uid, "startLineCRT", { points, tool, strokeWidth })
 }
 
 export const endLineCRT = (uid, lastLine) => {
-    addLogs(uid, "endLineCRT", { lastLine })
+    console.log(uid, lastLine)
+    // addLogs(uid, "endLineCRT", { lastLine })
 }
 
 export const undoCRT = (uid) => {

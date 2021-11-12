@@ -10,6 +10,7 @@ import Task from "../pages/Task";
 import CRT from "../pages/CRT";
 import Feedback from "../pages/Feedback";
 import ThankYou from "../pages/ThankYou";
+import Break from "../pages/Break";
 
 function Body(props) {
   return <BodyContainer>
@@ -19,6 +20,7 @@ function Body(props) {
       <Route path={appBasePath + "demographic"} component={Demographic} />
       <Route path={appBasePath + "task"} component={Task} />
       <Route path={appBasePath + "crt"} component={CRT} />
+      <Route path={appBasePath + "break"} component={Break} />
       <Route path={appBasePath + "feedback"} component={Feedback} />
       <Route path={appBasePath + "thankyou"} component={ThankYou} />
       <Route path={appBasePath} component={Home} />

@@ -28,7 +28,6 @@ const experiment_configuration = (type) => {
     }
 }
 
-
 export async function getBrowserDetails() {
     let navigator_appVersion = ""
     let navigator_userAgent = ""

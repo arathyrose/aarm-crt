@@ -7,9 +7,7 @@ function Timer({ resetTimer, setResetTimer }) {
     setTimeTaken(0)
   }
   React.useEffect(() => {
-    let myInterval = setInterval(() => {
-      setTimeTaken(timeTaken + 1)
-    }, 1000)
+    let myInterval = setInterval(() => { setTimeTaken(timeTaken + 1) }, 1000)
     return () => {
       clearInterval(myInterval);
     };

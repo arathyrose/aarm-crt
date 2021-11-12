@@ -3,7 +3,7 @@ import colors from "../../config/colors";
 
 const height = window.innerHeight;
 const width = window.innerWidth;
-const puzzleCellDimension = (Math.min(height, width) / 4) * 0.7;
+const puzzleCellDimension = (Math.min(height, width) / 5) * 0.8;
 console.log("Puzzle cell dimension", puzzleCellDimension);
 
 export const TraditionalPuzzleContainer = styled.div`
@@ -19,8 +19,7 @@ export const TraditionalPuzzleContainer = styled.div`
 `;
 
 export const AbstractPuzzleContainer = styled.div`
-  min-width: 80vh;
-  max-width: 1000px;
+  width: ${((puzzleCellDimension + 4) * 6 + 50).toString() + "px"};
   margin: auto;
   display: flex;
   align-items: center;
