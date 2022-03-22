@@ -1,12 +1,19 @@
 /* Getting required details about the browser and user location */
 import { addUser } from "./firebaseFunctions"
 
-const main_type = "apmTypeDifference"
+const main_type = "betweenSingleTask"
 
 // GLOBAL CONFIGURATION
 const experiment_configuration = (type) => {
     let APMType, PuzzleTypes
     switch (type) {
+        case "betweenSingleTask":
+            APMType = [["A", "T"][Math.floor(Math.random() * 2)]]
+            PuzzleTypes = [["VA", "VS"][Math.floor(Math.random() * 2)]]
+            return {
+                APMType: APMType,
+                PuzzleTypes: PuzzleTypes
+            }
         case "puzzleTypeDifference":
             APMType = ["A", "D", "T"][Math.floor(Math.random() * 3)]
             PuzzleTypes = Math.random() > 0.5 ? ["VA", "VS"] : ["VS", "VA"]

@@ -20,7 +20,7 @@ function Start() {
     }}>
       <MainPart>
         <h2>A gentle reminder...</h2>
-        <p> Please avoid all distractions especially during this part of the quiz. Stay alert, and solve each problem to the best of your ability. </p>
+        <p> Please avoid all distractions especially during this part of the task. Stay alert, and solve each problem to the best of your ability. </p>
       </MainPart>
       <Instruction>
         Click anywhere to continue ...
