@@ -19,7 +19,7 @@ function End() {
       })
     }}>
       <MainPart>
-        You have performed quite well in this task! Press anywhere on this page to go to the creativity task.
+        You have performed quite well in this task! Press anywhere on this page to go to the next task.
       </MainPart>
       <Instruction>
         Click anywhere to continue ...

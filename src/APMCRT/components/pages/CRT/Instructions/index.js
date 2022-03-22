@@ -31,7 +31,8 @@ function Instructions() {
       </MainPart>
       <CheckAnswerButton
         onClick={() => {
-          changePage(getUser(state).uid, "crt/task", (nextposition) => {
+          // go directly to feedback
+          changePage(getUser(state).uid, "feedback/start", (nextposition) => {
             setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
             history.push(appBasePath + nextposition)
           })

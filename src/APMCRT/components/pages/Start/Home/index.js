@@ -21,7 +21,7 @@ function Home() {
     }}>
       <LabPart>
         <LabName>
-          Perception and Cognition Group, Cognitive sciences Lab
+          Perception and Cognition Group, Cognitive Sciences Lab
         </LabName>
         <CollegeName>
           IIIT Hyderabad

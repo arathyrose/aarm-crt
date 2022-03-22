@@ -23,10 +23,10 @@ function Start() {
           Now that you have seen how the puzzle looks like, here is your chance to draw your own puzzle!
         </p>
         <p>
-          ou are given a 3x3 grid. Your task is to draw a puzzle similar to the ones you have seen in the previous task, although not exactly the same. You are free to make the puzzle as complicated as you like.
+          You are given a 3x3 grid. Your task is to draw a puzzle similar to the ones you have seen in the previous task, although not exactly the same. You are free to make the puzzle as complicated as you like.
         </p>
         <p>
-          Click on the demo video below to see a demo of using this application.
+          This task will be done on pen and paper. You can reach out to the experimenter for details.
         </p>
       </MainPart>
       <Instruction>
