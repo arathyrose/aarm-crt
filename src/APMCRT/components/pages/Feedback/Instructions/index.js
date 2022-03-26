@@ -20,7 +20,7 @@ function Instructions() {
     }}>
       <MainPart>
         <p>In this section, we would be asking for your feedback on the whole experiment.</p>
-        <p>Please fill all questions seriously.</p>
+        <p>Please fill in all questions seriously.</p>
       </MainPart>
       <Instruction>
         Click anywhere to continue ...

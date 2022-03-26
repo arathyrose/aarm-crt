@@ -30,7 +30,7 @@ function Task() {
     performance: { name: "Performance", description: "How successful were you in accomplishing what you were asked to do?" },
     effort: { name: "Effort", description: "How hard did you have to work to accomplish your level of performance?" },
     frustrationLevel: { name: "Frustration Level", description: "How insecure, discouraged, irritated, stressed, and annoyed were you?" },
-    uiDistraction: { name: "UI Distraction", description: "How distracting did you find the UI of the application" },
+    uiDistraction: { name: "UI Distraction", description: "How distracting did you find the user interface of the application" },
   }
   const [error, setError] = React.useState("");
   function setFormValue(field, value) {

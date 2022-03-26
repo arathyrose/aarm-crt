@@ -184,7 +184,7 @@ function Example() {
                     overallCorrect = 1
                 }
                 if (incomplete === 1) {
-                  alert("Please perform the task (select an option)")
+                  alert("Please perform the task (fill all the cells)")
                 }
                 else if (overallCorrect === 0) {
                   setIsCorrect(false);
@@ -245,7 +245,7 @@ function Example() {
             cell.
           </p>
         ) : (
-          <p>Press the button above to check your answer</p>
+          <p>Press the button 'Check Answer' to check whether answer your correct or not</p>
         )}
       </ButtonInstruction>
 

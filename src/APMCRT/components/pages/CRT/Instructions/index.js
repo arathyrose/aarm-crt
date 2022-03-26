@@ -24,10 +24,13 @@ function Instructions() {
           </li>
           <li>
             Please avoid all distractions especially during this part of the
-            task. Stay alert during the experiment
+            task.
+          </li>
+          <li>
+            Stay alert during the experiment.
           </li>
         </ul>
-        <p>If you are ready to start the experiment, click on the button below</p>
+        <p> Once you are done with the task (using pen and paper), click on the button below</p>
       </MainPart>
       <CheckAnswerButton
         onClick={() => {
@@ -38,7 +41,7 @@ function Instructions() {
           })
         }}
       >
-        Start Experiment
+        Finish Task
       </CheckAnswerButton>
       <Instruction>
         Click on the start experiment button to start the experiment

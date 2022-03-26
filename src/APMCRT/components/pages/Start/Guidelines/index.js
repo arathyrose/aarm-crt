@@ -19,7 +19,7 @@ function Guidelines() {
       })
     }}>
       <MainPart>
-        If you are doing the experiment in person (at the lab), you can ignore these instructions.
+        If you are doing the experiment in person (at our lab), you can ignore these instructions. But, if you are doing this experiment somewhere else with the use of internet, please attend to the following:
         <ul>
           <li>Do the experiment in a quiet place free from distractions for the whole duration of the experiment.</li>
           <li>Please try to finish each task in a single sitting. Do not take breaks within the same task.</li>

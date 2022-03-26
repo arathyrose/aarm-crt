@@ -20,7 +20,7 @@ function Instructions() {
     }}>
       <MainPart>
         <p>In this section, we would be asking for your demographic information.</p>
-        <p>Please fill all questions seriously.</p>
+        <p>Please fill all the questions seriously.</p>
       </MainPart>
       <Instruction>
         Click anywhere to continue ...

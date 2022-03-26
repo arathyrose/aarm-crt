@@ -16,12 +16,12 @@ function Instructions() {
     <InstructionsContainer>
       <MainPart>
         <ul>
-          <li> Here, you will be given 6 puzzles, similar to the one you have answered earlier. </li>
+          <li> Here, you will be given 6 puzzles, similar to the ones you have answered earlier. </li>
           <li> All puzzle tasks need to be solved. There is no navigation in this task, i.e. once you have completed one puzzle, you cannot go back to a previous puzzle. </li>
-          <li> There is no feedback after completing each question. (the option will turn blue, once selected, to show submission). </li>
+          <li> There is no feedback after completing each puzzle. (the option will turn blue, once selected, to show submission). </li>
           <li> There is no enforced time limit. Nevertheless, try to respond as fast and accurate as you can. </li>
           <li> You are requested to stay alert during the task, and answer it to the best of your ability. </li>
-          <li> Please avoid all distractions especially during this part of the task. Stay alert, and solve each problem as accurately as possible. </li>
+          <li> Please avoid all distractions especially during this part of the task. Stay alert, and solve each puzzle as accurately as possible. </li>
         </ul>
         <p>
           If you have any doubts and wish to go back to the examples, you may click here:
