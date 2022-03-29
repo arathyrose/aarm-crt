@@ -19,6 +19,7 @@ export const APM_IDs = {
     "VS": [3, 9, 12, 18, 22, 33],
     "1": [3, 8, 12, 17, 22, 34],
     "2": [4, 9, 13, 18, 21, 33],
+    "final": [3, 9, 22, 4, 8, 13]
 }
 
 export const traditionalPuzzleElements = {

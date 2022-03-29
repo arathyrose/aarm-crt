@@ -7,6 +7,13 @@ const main_type = "betweenSingleTask"
 const experiment_configuration = (type) => {
     let APMType, PuzzleTypes
     switch (type) {
+        case "singleTaskFinal":
+            APMType = [["A", "T"][Math.floor(Math.random() * 2)]]
+            PuzzleTypes = ["final"]
+            return {
+                APMType: APMType,
+                PuzzleTypes: PuzzleTypes
+            }
         case "betweenSingleTask":
             APMType = [["A", "T"][Math.floor(Math.random() * 2)]]
             PuzzleTypes = [["VA", "VS"][Math.floor(Math.random() * 2)]]
