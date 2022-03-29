@@ -1,7 +1,7 @@
 /* Getting required details about the browser and user location */
 import { addUser } from "./firebaseFunctions"
 
-const main_type = "betweenSingleTask"
+const main_type = "singleTaskFinal"
 
 // GLOBAL CONFIGURATION
 const experiment_configuration = (type) => {
