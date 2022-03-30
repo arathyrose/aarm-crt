@@ -93,6 +93,18 @@ export async function getIPDetails() {
                 city: ip_city
             }
         })
+        .catch((er) => {
+            console.log(er)
+            return {
+                ipAddress: '',
+                continentCode: '',
+                continentName: '',
+                countryCode: '',
+                countryName: '',
+                stateProv: '',
+                city: ''
+            }
+        })
 }
 
 export function getCurrentTime() {
