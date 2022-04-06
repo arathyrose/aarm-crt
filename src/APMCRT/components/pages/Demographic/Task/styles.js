@@ -31,3 +31,20 @@ export const ErrorMessage = styled.p`
   font-size: 0.8em;
   color: ${colors.errorText};
 `;
+
+export const Label = styled.div`
+  justify-content: flex-end;
+  text-align: left;
+  min-width: 300px;
+  max-width: 20%;
+`
+
+export const Input = styled.input`
+  margin-left: 10px;
+`
+
+export const FormRow = styled.div`
+display: flex;
+  flex-direction: row;
+  margin-bottom:10px
+`
