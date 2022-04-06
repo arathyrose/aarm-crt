@@ -44,7 +44,7 @@ export const Input = styled.input`
 `
 
 export const FormRow = styled.div`
-display: flex;
+  display: flex;
   flex-direction: row;
   margin-bottom:10px
 `
