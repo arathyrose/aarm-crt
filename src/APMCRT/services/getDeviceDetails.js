@@ -96,13 +96,13 @@ export async function getIPDetails() {
         .catch((er) => {
             console.log(er)
             return {
-                ipAddress: '',
-                continentCode: '',
-                continentName: '',
-                countryCode: '',
-                countryName: '',
-                stateProv: '',
-                city: ''
+                ipAddress: '-',
+                continentCode: '-',
+                continentName: '-',
+                countryCode: '-',
+                countryName: '-',
+                stateProv: '-',
+                city: '-'
             }
         })
 }
