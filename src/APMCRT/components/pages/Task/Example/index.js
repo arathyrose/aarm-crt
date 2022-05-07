@@ -99,14 +99,14 @@ function Example() {
     A: {
       header: "Abstract APM",
       instruction: [
-        "You are given a grid of a 3x3 matrix, and only one row/column is given to you. Your task here is to construct a puzzle using the puzzle shapes given on the side in such a way that the overall puzzle is best completed and make sense.",
-        "Now check out this example. If you still face any difficulties, check out view explanation.",
+        "You are given a grid of a 3x3 matrix, and only one row/column is given to you. You are required to create the best puzzle possible as per your understanding. An example will be provided to you in next screen"
+        ,
       ],
     },
     D: {
       header: "Determinate Abstract APM",
       instruction: [
-        "You are given a grid of a 3x3 matrix, and only one row/column is given to you and the last cell is also shown to you. Your task here is to construct a puzzle using the puzzle shapes given on the side in such a way that the overall puzzle is best completed and make sense.",
+        "You are given a grid of a 3x3 matrix, and only one row/column is given to you and the last cell is also shown to you. Your task here is to construct a puzzle using the puzzle components given on the side in such a way that the overall puzzle is best completed and make sense.",
         "Now check out this example. If you still face any difficulties, check out view explanation.",
       ],
     },

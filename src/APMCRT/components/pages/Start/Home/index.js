@@ -31,7 +31,7 @@ function Home() {
         </WelcomeMessage>
       </LabPart>
       <StudyAim>
-        In this study, we aim to understand how one’s creative ability is affected after solving different kinds of puzzles.
+        In this study, we aim to understand How presentation of the puzzle influences puzzle solving and creating tasks?
       </StudyAim>
 
       <Instruction>

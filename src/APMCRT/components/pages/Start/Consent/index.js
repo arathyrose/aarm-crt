@@ -17,7 +17,7 @@ function Home() {
         <ConsentDetails>
           <ul>
             <li> Your participation in this experiment is entirely voluntary. You can choose to withdraw from this study at any point in time. However, for the benefit of the study, please consider seeing it through till the end. </li>
-            <li>Your participation will be completely anonymous. No personal identifiable information would be stored. All data kept will be purely confidential, and used only for research purposes. The data will be accessible only to those working on the project.</li>
+            <li>Your participation will be completely anonymous. No personal identifiable information would be stored. All data kept will be purely confidential, and used only for research purposes. </li>
             <li>There are no anticipated risks to the participants. </li>
             <li>You will be compensated Rs. 100 for your time. (via UPI id)</li>
             <li>After taking into account the requirements of this study, if you are ready to contribute, please give your consent by ticking on the checkbox (provided below).</li>

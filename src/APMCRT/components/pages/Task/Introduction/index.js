@@ -20,12 +20,12 @@ function Introduction() {
     "A": {
       // header: "Abstract APM",
       header: "Task 1",
-      instruction: "You are presented with a grid of a 3x3 matrix, in which only one row/column contains components. Your task here is to fill the remaining rows/columns using the puzzle shapes given on the right, in such a way that the overall puzzle is best completed and makes sense."
+      instruction: "You are presented with a grid of a 3x3 matrix, in which only one row/column contains components. Your task here is to fill the remaining rows/columns using the puzzle components given on the right, in such a way that the overall puzzle is best completed and makes sense."
     },
     "D": {
       // header: "Determinate Abstract APM",
       header: "Task 1",
-      instruction: "You are given a grid of a 3x3 matrix, and only one row/column is given to you and the last cell is also shown to you. Your task here is to construct a puzzle using the puzzle shapes given on the side in such a way that the overall puzzle is best completed and make sense."
+      instruction: "You are given a grid of a 3x3 matrix, and only one row/column is given to you and the last cell is also shown to you. Your task here is to construct a puzzle using the puzzle components given on the side in such a way that the overall puzzle is best completed and make sense."
     }
   }
   let history = useHistory()
