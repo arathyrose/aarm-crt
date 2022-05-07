@@ -56,6 +56,13 @@ export const ViewExplanationButton = styled.button`
   color: ${colors.fgColor};
 `;
 
+export const ProceedButton = styled.button`
+  font-size: 1em;
+  box-sizing: border-box;
+  background-color: ${colors.primary};
+  color: ${colors.fgColor};
+`;
+
 export const Explanation = styled.div`
   font-size: 0.8em;
   justify-content: left;

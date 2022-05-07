@@ -4,8 +4,9 @@ import {
   ExampleContainer,
   ButtonInstruction,
   MainPart,
-  ViewExplanationButton,
-  Explanation, ClearButton, ButtonLine
+  /*  ViewExplanationButton, */
+  /* Explanation,  */
+  ClearButton, ButtonLine, ProceedButton
 } from "./styles";
 import { useHistory, useLocation } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
@@ -26,16 +27,17 @@ function Example() {
   const APMType = getUser(state).APMType[getUser(state).currentIteration - 1]
   console.log(getUser(state).APMType, getUser(state).currentIteration)
   const [selectedOption, setSelectedOption] = React.useState("");
-  const [isCorrect, setIsCorrect] = React.useState(undefined);
+  const [isCorrect, setIsCorrect] = React.useState(false);
   const [previouslySelectedOptions, setPreviouslySelectedOptions] = React.useState([]);
   const [currentPuzzleSetup, setCurrentPuzzleSetup] = React.useState([["", "", ""], ["", "", ""], ["", "", ""]]);
   const [currentOptions, setCurrentOptions] = React.useState(undefined);
   const [fillable, setFillable] = React.useState(undefined);
   const [answer, setAnswer] = React.useState("");
-  const [viewExplanation, setViewExplanation] = React.useState(false);
+  /*   const [viewExplanation, setViewExplanation] = React.useState(false); */
+  const [isDone, setIsDone] = React.useState(false)
   const [colorAnswer, setColorAnswer] = React.useState(false);
 
-  const GetExplanations = (APMType, currentExampleNumber) => {
+  /* const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
         switch (APMType) {
@@ -87,7 +89,7 @@ function Example() {
       default:
         return <Explanation> Unreachable case</Explanation>
     }
-  };
+  }; */
   const instructions = {
     T: {
       header: "Traditional APM",
@@ -111,6 +113,25 @@ function Example() {
       ],
     },
   };
+  function gotoNextPage() {
+    endPuzzle(uid)
+    changePage(getUser(state).uid, currentExampleNumber < APM_IDs.demo.length ? "task/example/" + (currentExampleNumber + 1).toString() : "task/instruction/", (nextposition) => {
+      // just show only one example
+      setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
+      history.push(appBasePath + nextposition)
+      if (currentExampleNumber === 1) {
+        setSelectedOption('')
+        setIsCorrect(undefined)
+        setPreviouslySelectedOptions([])
+        setAnswer("")
+        setCurrentExampleNumber(2)
+        /* setViewExplanation(false) */
+        setColorAnswer(true)
+        startPuzzle(uid, "example")
+      }
+    })
+  }
+
   let history = useHistory();
   return (
     <ExampleContainer>
@@ -153,15 +174,17 @@ function Example() {
 
       <ButtonLine>
 
-        <CheckAnswerButton
+        <ProceedButton
           onClick={() => {
             checkPuzzle(uid)
             if (!isCorrect) {
               if (APMType === 'T') {
                 if (selectedOption === "") {
                   alert("Please perform the task (select an option)")
+                  setIsDone(false)
                 }
                 else {
+                  setIsDone(true)
                   if (selectedOption === answer) {
                     setIsCorrect(true);
                   } else {
@@ -169,6 +192,51 @@ function Example() {
                   }
                   setPreviouslySelectedOptions([...previouslySelectedOptions, selectedOption]);
                   setSelectedOption("");
+                }
+              }
+              else {
+                let incomplete = 0, correct = 1, overallCorrect = 0
+                for (let a in answer) {
+                  let posAnswer = answer[a]
+                  correct = 1
+                  for (let i = 0; i < 3; i++)for (let j = 0; j < 3; j++) {
+                    if (posAnswer[i][j] !== currentPuzzleSetup[i][j]) correct = 0
+                    if (currentPuzzleSetup[i][j] === "" && posAnswer[i][j] !== "") incomplete = 1
+                  }
+                  if (correct === 1)
+                    overallCorrect = 1
+                }
+                if (incomplete === 1) {
+                  alert("Please perform the task (fill all the cells)")
+                  setIsDone(false)
+                }
+                else if (overallCorrect === 0) {
+                  setIsCorrect(false)
+                  setIsDone(true)
+                  setColorAnswer(true)
+                  console.log(answer, currentPuzzleSetup)
+                }
+                else {
+                  setIsCorrect(true);
+                  setColorAnswer(true)
+                  setIsDone(true)
+                }
+              }
+            }
+            else gotoNextPage()
+          }}
+        >
+          {isDone ? "Go to next Page" : ""}
+        </ProceedButton>
+
+
+        <CheckAnswerButton
+          onClick={() => {
+            checkPuzzle(uid)
+            if (!isCorrect) {
+              if (APMType === 'T') {
+                if (selectedOption === "") {
+                  alert("Please perform the task (select an option)")
                 }
               }
               else {
@@ -197,23 +265,7 @@ function Example() {
                 }
               }
             }
-            else {
-              endPuzzle(uid)
-              changePage(getUser(state).uid, currentExampleNumber === 1 ? "task/example/" + (currentExampleNumber + 1).toString() : "task/instruction/", (nextposition) => {
-                setUserDetails({ ...getUser(state), position: nextposition })(dispatch);
-                history.push(appBasePath + nextposition)
-                if (currentExampleNumber === 1) {
-                  setSelectedOption('')
-                  setIsCorrect(undefined)
-                  setPreviouslySelectedOptions([])
-                  setAnswer("")
-                  setCurrentExampleNumber(2)
-                  setViewExplanation(false)
-                  setColorAnswer(true)
-                  startPuzzle(uid, "example")
-                }
-              })
-            }
+            else gotoNextPage()
           }}
         >
           {isCorrect ? "Go to next Page" : "Check answer"}
@@ -233,6 +285,7 @@ function Example() {
           Clear
         </ClearButton>
 
+       
       </ButtonLine>
       <ButtonInstruction>
         {isCorrect === true ? (
@@ -251,7 +304,7 @@ function Example() {
 
       <Instruction />
 
-     {/*  <ViewExplanationButton onClick={() => { setViewExplanation(!viewExplanation); }}      >
+      {/*   <ViewExplanationButton onClick={() => { setViewExplanation(!viewExplanation); }}      >
         View Explanation
       </ViewExplanationButton>
 
