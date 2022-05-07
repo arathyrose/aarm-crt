@@ -251,7 +251,7 @@ function Example() {
 
       <Instruction />
 
-      <ViewExplanationButton onClick={() => { setViewExplanation(!viewExplanation); }}      >
+     {/*  <ViewExplanationButton onClick={() => { setViewExplanation(!viewExplanation); }}      >
         View Explanation
       </ViewExplanationButton>
 
@@ -262,7 +262,7 @@ function Example() {
       ) : (
         <span></span>
       )}
-
+ */}
       <Instruction>
         Once you have got this question correct, click on the button to continue.
       </Instruction>
