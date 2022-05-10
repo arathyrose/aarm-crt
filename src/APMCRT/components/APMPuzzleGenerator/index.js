@@ -211,7 +211,7 @@ function Puzzle({
           updateStatus(pos[0], pos[1], 0)
           // document.getElementById(parent).innerHTML = '<svg height={"100%"} width={"100%"} viewBox={`0 0 200 200`} />'
         }
-        dropOption(uid, data, parent, ev.target.id)
+        dropOption(uid, data, parent, destination.id)
       }
     }
   }
