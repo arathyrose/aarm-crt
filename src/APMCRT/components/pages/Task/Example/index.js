@@ -4,8 +4,9 @@ import {
   ExampleContainer,
   ButtonInstruction,
   MainPart,
-  ViewExplanationButton,
-  Explanation, ClearButton, ButtonLine
+  //ViewExplanationButton,
+  //Explanation, 
+  ClearButton, ButtonLine
 } from "./styles";
 import { useHistory, useLocation } from "react-router-dom";
 import { appBasePath } from "../../../../config/paths";
@@ -32,10 +33,10 @@ function Example() {
   const [currentOptions, setCurrentOptions] = React.useState(undefined);
   const [fillable, setFillable] = React.useState(undefined);
   const [answer, setAnswer] = React.useState("");
-  const [viewExplanation, setViewExplanation] = React.useState(false);
+  const [/* viewExplanation,  */setViewExplanation] = React.useState(false);
   const [colorAnswer, setColorAnswer] = React.useState(false);
 
-  const GetExplanations = (APMType, currentExampleNumber) => {
+ /*  const GetExplanations = (APMType, currentExampleNumber) => {
     switch (currentExampleNumber) {
       case 1:
         switch (APMType) {
@@ -87,7 +88,7 @@ function Example() {
       default:
         return <Explanation> Unreachable case</Explanation>
     }
-  };
+  }; */
   const instructions = {
     T: {
       header: "Traditional APM",
