@@ -98,7 +98,7 @@ function Task() {
             yearError = true
             errorMsg += "Please enter your year; "
           }
-          if (userForm.creativityLAQ.length < 100) {
+          if (userForm.creativityLAQ.length < 20) {
             laqError = true
             errorMsg += "Please enter a longer answer to the creativity question; "
           }
