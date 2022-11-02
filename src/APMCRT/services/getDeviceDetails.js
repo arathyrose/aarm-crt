@@ -8,7 +8,7 @@ const experiment_configuration = (type) => {
     let APMType, PuzzleTypes
     switch (type) {
         case "singleTaskFinal":
-            APMType = ["T"]
+            APMType = ["A"]
             PuzzleTypes = ["final"]
             return {
                 APMType: APMType,
