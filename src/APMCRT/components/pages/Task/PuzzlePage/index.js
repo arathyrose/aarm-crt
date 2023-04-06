@@ -47,6 +47,7 @@ function PuzzlePage() {
           <ClearButton onClick={() => {
             setSelectedOption('')
             clearPuzzle(uid)
+            console.log('ll');
           }} >
             Clear
           </ClearButton>
